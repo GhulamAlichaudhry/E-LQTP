@@ -1,0 +1,3 @@
+month,month_name,n_levels_with_data,z_min_m,z_max_m,T_surface_c,T_1500_c,c_surface_mps,c_min_mps,z_c_min_m,c_1500_mps
+1,January,57,0,1500,24.8051,2.67701,1533.44,1481.76,1050,1485.14
+7,July,57,0,1500,29.2448,2.69361,1543.29,1482.66,1050,1485.21

@@ -1,0 +1,54 @@
+% =============================================================================
+% Alias of main.tex so `pdflatex elqtp` still works.
+% The assembled driver is main.tex.
+% =============================================================================
+\documentclass[journal]{IEEEtran}
+
+\usepackage{cite}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{graphicx}
+\usepackage{algorithm}
+\usepackage{algorithmic}
+\usepackage{url}
+\usepackage{textcomp}
+\usepackage{bm}
+\usepackage{dblfloatfix}
+\usepackage{float}
+\usepackage[section]{placeins}
+\renewcommand{\algorithmiccomment}[1]{\hfill//~#1}
+\setlength{\textfloatsep}{6pt plus 1pt minus 2pt}
+\setlength{\floatsep}{6pt plus 1pt minus 2pt}
+\setlength{\intextsep}{6pt plus 1pt minus 2pt}
+\setlength{\dbltextfloatsep}{8pt plus 2pt minus 2pt}
+\setlength{\dblfloatsep}{6pt plus 1pt minus 2pt}
+\setlength{\abovecaptionskip}{3pt}
+\setlength{\belowcaptionskip}{0pt}
+
+\hyphenation{Aqua-Sim under-water event-triggered Bellhop E-LQTP LQARP}
+
+\begin{document}
+
+\title{Event-Triggered Link-Quality and Topology Prediction for Mobile
+Underwater Wireless Sensor Networks: A Kalman Filter and
+Reinforcement Learning Approach}
+
+\input{authors}
+
+\markboth{IEEE Internet of Things Journal}%
+{Ma \MakeLowercase{\textit{et al.}}: Event-Triggered Link-Quality and Topology Prediction}
+
+\maketitle
+
+\input{abstract}
+\input{keywords}
+\input{ntp}
+\input{sec1_introduction}
+\input{sec2_preliminaries}
+\input{sec3_design}
+\input{sec4_evaluation}
+\input{sec5_conclusion}
+
+\bibliographystyle{IEEEtran}
+\bibliography{refs}
+
+\end{document}

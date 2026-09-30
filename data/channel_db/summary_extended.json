@@ -1,0 +1,758 @@
+{
+  "created_utc": "2026-09-21T04:59:47Z",
+  "grid": {
+    "range_m": [
+      0.0,
+      6000.0
+    ],
+    "dr_m": 25.0,
+    "n_ranges": 241,
+    "depth_m": [
+      0.0,
+      500.0
+    ],
+    "dz_m": 10.0,
+    "n_depths": 51,
+    "n_points": 12291,
+    "rbox_km": 6.15,
+    "nbeams": 9601,
+    "note": "241 ranges = 0,25,\u2026,6000 inclusive (240 intervals). User cited 240; the inclusive count is the analog of 201 on 0\u20132000/10."
+  },
+  "unchanged": {
+    "bottom_m": 5524.0,
+    "ssp": "full-column WOA23 monthly 0-1500 + annual 1550-5500 + Mackenzie 5524",
+    "src_depth_m": 50.0,
+    "freq_hz": 24000.0,
+    "run_type_arrivals": "A",
+    "run_type_tl": "CB",
+    "kappa": 2.0,
+    "SL_dB": 175.0,
+    "DI_dB": 0.0,
+    "NL_dB": 65.77497291279225,
+    "SNR_th_dB": 8.68,
+    "s_shipping_assumed": 0.2,
+    "w_mps_assumed": 2.0
+  },
+  "reasoning_6km": "6 km extends beyond LQARP's reported 4 km operational range so the grid can capture the SNR=8.68 dB transition if it exists at this site. The 0\u20132 km grid was too benign (100% of z>=10 m cells above threshold).",
+  "january": {
+    "c_src_mps": 1533.55,
+    "n_arrivals": 362499,
+    "n_empty": 51,
+    "n_finite_tl": 12240,
+    "n_nan_tl": 51,
+    "n_neg_tl": 0,
+    "d_p_method": "d_p = tau_p * c(z_src). Bellhop ASCII .arr does not report geometric path length or a ray-integrated slowness. c(z_src) is the full-column WOA23 Mackenzie SSP at 50 m.",
+    "crossings": {
+      "50.0": {
+        "depth_m": 50.0,
+        "n_ranges": 240,
+        "n_below_th": 30,
+        "frac_below_th": 0.125,
+        "snr_min_dB": 2.1985745081294255,
+        "range_at_snr_min_m": 5975.0,
+        "snr_at_6km_dB": 6.314733417230073,
+        "snr_at_1km_dB": 50.351954747163006,
+        "snr_at_2km_dB": 38.8381555767978,
+        "snr_at_4km_dB": 18.3223701851244,
+        "crossed": true,
+        "first_below_m": 5125.0,
+        "snr_at_first_below_dB": 8.301548385236245,
+        "stays_below_at_6km": true,
+        "below_intervals_m": [
+          [
+            5125.0,
+            5125.0
+          ],
+          [
+            5175.0,
+            5300.0
+          ],
+          [
+            5350.0,
+            5400.0
+          ],
+          [
+            5450.0,
+            5625.0
+          ],
+          [
+            5675.0,
+            5725.0
+          ],
+          [
+            5800.0,
+            6000.0
+          ]
+        ],
+        "n_intervals": 6,
+        "note": "SNR first drops below 8.68 dB at 5125 m (SNR 8.30 dB) and remains below at 6 km. 30/240 ranges along this depth are below threshold."
+      },
+      "10.0": {
+        "depth_m": 10.0,
+        "n_ranges": 240,
+        "n_below_th": 2,
+        "frac_below_th": 0.008333333333333333,
+        "snr_min_dB": 7.381690567270468,
+        "range_at_snr_min_m": 4600.0,
+        "snr_at_6km_dB": 10.416413264423412,
+        "snr_at_1km_dB": 47.349116696085986,
+        "snr_at_2km_dB": 36.1748564176182,
+        "snr_at_4km_dB": 21.99912355865358,
+        "crossed": true,
+        "first_below_m": 4600.0,
+        "snr_at_first_below_dB": 7.381690567270468,
+        "stays_below_at_6km": false,
+        "below_intervals_m": [
+          [
+            4600.0,
+            4600.0
+          ],
+          [
+            5975.0,
+            5975.0
+          ]
+        ],
+        "n_intervals": 2,
+        "note": "SNR first drops below 8.68 dB at 4600 m (SNR 7.38 dB) but recovers above threshold by 6 km. 2/240 ranges along this depth are below threshold."
+      },
+      "250.0": {
+        "depth_m": 250.0,
+        "n_ranges": 240,
+        "n_below_th": 13,
+        "frac_below_th": 0.05416666666666667,
+        "snr_min_dB": 6.113947236327093,
+        "range_at_snr_min_m": 5975.0,
+        "snr_at_6km_dB": 8.942811644274613,
+        "snr_at_1km_dB": 46.053583916245586,
+        "snr_at_2km_dB": 34.727997335110786,
+        "snr_at_4km_dB": 23.385826845293437,
+        "crossed": true,
+        "first_below_m": 5200.0,
+        "snr_at_first_below_dB": 6.505012396350509,
+        "stays_below_at_6km": false,
+        "below_intervals_m": [
+          [
+            5200.0,
+            5200.0
+          ],
+          [
+            5500.0,
+            5500.0
+          ],
+          [
+            5575.0,
+            5575.0
+          ],
+          [
+            5650.0,
+            5700.0
+          ],
+          [
+            5775.0,
+            5775.0
+          ],
+          [
+            5825.0,
+            5850.0
+          ],
+          [
+            5900.0,
+            5975.0
+          ]
+        ],
+        "n_intervals": 7,
+        "note": "SNR first drops below 8.68 dB at 5200 m (SNR 6.51 dB) but recovers above threshold by 6 km. 13/240 ranges along this depth are below threshold."
+      },
+      "500.0": {
+        "depth_m": 500.0,
+        "n_ranges": 240,
+        "n_below_th": 9,
+        "frac_below_th": 0.0375,
+        "snr_min_dB": 6.930156360484176,
+        "range_at_snr_min_m": 5925.0,
+        "snr_at_6km_dB": 7.266507043883166,
+        "snr_at_1km_dB": 44.76139993156819,
+        "snr_at_2km_dB": 34.03201108634016,
+        "snr_at_4km_dB": 21.043811916405716,
+        "crossed": true,
+        "first_below_m": 5650.0,
+        "snr_at_first_below_dB": 8.491458420018944,
+        "stays_below_at_6km": true,
+        "below_intervals_m": [
+          [
+            5650.0,
+            5650.0
+          ],
+          [
+            5725.0,
+            5725.0
+          ],
+          [
+            5850.0,
+            6000.0
+          ]
+        ],
+        "n_intervals": 3,
+        "note": "SNR first drops below 8.68 dB at 5650 m (SNR 8.49 dB) and remains below at 6 km. 9/240 ranges along this depth are below threshold."
+      }
+    },
+    "bands_zge10": [
+      {
+        "band": "0-1000m",
+        "lo_m": 0.0,
+        "hi_m": 1000.0,
+        "n": 2000,
+        "n_gt_th": 2000,
+        "frac_gt_th": 1.0,
+        "snr_median_dB": 53.29860122093085,
+        "snr_min_dB": 44.76139993156819,
+        "snr_max_dB": 81.35080424413876
+      },
+      {
+        "band": "1000-2000m",
+        "lo_m": 1000.0,
+        "hi_m": 2000.0,
+        "n": 2000,
+        "n_gt_th": 2000,
+        "frac_gt_th": 1.0,
+        "snr_median_dB": 39.759431124935645,
+        "snr_min_dB": 34.03201108634016,
+        "snr_max_dB": 50.00679698626112
+      },
+      {
+        "band": "2000-3000m",
+        "lo_m": 2000.0,
+        "hi_m": 3000.0,
+        "n": 2000,
+        "n_gt_th": 2000,
+        "frac_gt_th": 1.0,
+        "snr_median_dB": 30.61778010118278,
+        "snr_min_dB": 22.65135315266558,
+        "snr_max_dB": 38.88844090018446
+      },
+      {
+        "band": "3000-4000m",
+        "lo_m": 3000.0,
+        "hi_m": 4000.0,
+        "n": 2000,
+        "n_gt_th": 2000,
+        "frac_gt_th": 1.0,
+        "snr_median_dB": 24.04865630888291,
+        "snr_min_dB": 14.508423411195992,
+        "snr_max_dB": 31.567104385556263
+      },
+      {
+        "band": "4000-5000m",
+        "lo_m": 4000.0,
+        "hi_m": 5000.0,
+        "n": 2000,
+        "n_gt_th": 1990,
+        "frac_gt_th": 0.995,
+        "snr_median_dB": 17.89166506738362,
+        "snr_min_dB": 6.93703918973884,
+        "snr_max_dB": 24.693855522182886
+      },
+      {
+        "band": "5000-6000m",
+        "lo_m": 5000.0,
+        "hi_m": 6000.0,
+        "n": 2000,
+        "n_gt_th": 1439,
+        "frac_gt_th": 0.7195,
+        "snr_median_dB": 10.558495347501761,
+        "snr_min_dB": -0.28383416584975407,
+        "snr_max_dB": 17.405977820947797
+      }
+    ],
+    "bands_all_z": [
+      {
+        "band": "0-1000m",
+        "lo_m": 0.0,
+        "hi_m": 1000.0,
+        "n": 2040,
+        "n_gt_th": 2005,
+        "frac_gt_th": 0.9828431372549019,
+        "snr_median_dB": 53.1292553357192,
+        "snr_min_dB": -255.25208122149718,
+        "snr_max_dB": 81.35080424413876
+      },
+      {
+        "band": "1000-2000m",
+        "lo_m": 1000.0,
+        "hi_m": 2000.0,
+        "n": 2040,
+        "n_gt_th": 2000,
+        "frac_gt_th": 0.9803921568627451,
+        "snr_median_dB": 39.643673569970225,
+        "snr_min_dB": -113.19126717964876,
+        "snr_max_dB": 50.00679698626112
+      },
+      {
+        "band": "2000-3000m",
+        "lo_m": 2000.0,
+        "hi_m": 3000.0,
+        "n": 2040,
+        "n_gt_th": 2000,
+        "frac_gt_th": 0.9803921568627451,
+        "snr_median_dB": 30.544944035400988,
+        "snr_min_dB": -119.76498759848879,
+        "snr_max_dB": 38.88844090018446
+      },
+      {
+        "band": "3000-4000m",
+        "lo_m": 3000.0,
+        "hi_m": 4000.0,
+        "n": 2040,
+        "n_gt_th": 2001,
+        "frac_gt_th": 0.9808823529411764,
+        "snr_median_dB": 24.00280892335484,
+        "snr_min_dB": -118.60407505091568,
+        "snr_max_dB": 31.567104385556263
+      },
+      {
+        "band": "4000-5000m",
+        "lo_m": 4000.0,
+        "hi_m": 5000.0,
+        "n": 2040,
+        "n_gt_th": 1991,
+        "frac_gt_th": 0.9759803921568627,
+        "snr_median_dB": 17.809392365689085,
+        "snr_min_dB": -122.45755086327163,
+        "snr_max_dB": 24.693855522182886
+      },
+      {
+        "band": "5000-6000m",
+        "lo_m": 5000.0,
+        "hi_m": 6000.0,
+        "n": 2040,
+        "n_gt_th": 1440,
+        "frac_gt_th": 0.7058823529411765,
+        "snr_median_dB": 10.499266611973084,
+        "snr_min_dB": -22.49360713205418,
+        "snr_max_dB": 17.405977820947797
+      }
+    ],
+    "f3_spot": [
+      {
+        "requested_range_m": 4000.0,
+        "requested_depth_m": 50.0,
+        "used_range_m": 4000.0,
+        "used_depth_m": 50.0,
+        "native_range_m": 4000.0,
+        "native_depth_m": 50.0,
+        "recon_TL_dB": 90.90265690208335,
+        "native_TL_dB": 100.33232116699219,
+        "abs_delta_dB": 9.429664264908837,
+        "ptp_dB": 59.725531143717205,
+        "n_arrivals": 23,
+        "fair_slice_ptp_lt_6dB": false
+      },
+      {
+        "requested_range_m": 6000.0,
+        "requested_depth_m": 50.0,
+        "used_range_m": 6000.0,
+        "used_depth_m": 50.0,
+        "native_range_m": 6000.0,
+        "native_depth_m": 50.0,
+        "recon_TL_dB": 102.91029366997768,
+        "native_TL_dB": 109.52507019042969,
+        "abs_delta_dB": 6.614776520452011,
+        "ptp_dB": 10.964511947454852,
+        "n_arrivals": 27,
+        "fair_slice_ptp_lt_6dB": false
+      }
+    ],
+    "f3_spot_mean_abs_dB": 8.022220392680424,
+    "tl_50m_6km_dB": 102.91029366997768,
+    "snr_50m_6km_dB": 6.314733417230073,
+    "snr_contour_drawn": true
+  },
+  "july": {
+    "c_src_mps": 1540.21,
+    "n_arrivals": 366999,
+    "n_empty": 51,
+    "n_finite_tl": 12240,
+    "n_nan_tl": 51,
+    "n_neg_tl": 0,
+    "d_p_method": "d_p = tau_p * c(z_src). Bellhop ASCII .arr does not report geometric path length or a ray-integrated slowness. c(z_src) is the full-column WOA23 Mackenzie SSP at 50 m.",
+    "crossings": {
+      "50.0": {
+        "depth_m": 50.0,
+        "n_ranges": 240,
+        "n_below_th": 42,
+        "frac_below_th": 0.175,
+        "snr_min_dB": -3.13933380006749,
+        "range_at_snr_min_m": 5625.0,
+        "snr_at_6km_dB": 2.581893558091977,
+        "snr_at_1km_dB": 46.45828607870985,
+        "snr_at_2km_dB": 38.1426705998301,
+        "snr_at_4km_dB": 15.631997928349037,
+        "crossed": true,
+        "first_below_m": 4525.0,
+        "snr_at_first_below_dB": 8.032698549964692,
+        "stays_below_at_6km": true,
+        "below_intervals_m": [
+          [
+            4525.0,
+            4525.0
+          ],
+          [
+            4650.0,
+            4650.0
+          ],
+          [
+            4775.0,
+            4775.0
+          ],
+          [
+            4825.0,
+            4850.0
+          ],
+          [
+            5025.0,
+            5050.0
+          ],
+          [
+            5150.0,
+            6000.0
+          ]
+        ],
+        "n_intervals": 6,
+        "note": "SNR first drops below 8.68 dB at 4525 m (SNR 8.03 dB) and remains below at 6 km. 42/240 ranges along this depth are below threshold."
+      },
+      "10.0": {
+        "depth_m": 10.0,
+        "n_ranges": 240,
+        "n_below_th": 44,
+        "frac_below_th": 0.18333333333333332,
+        "snr_min_dB": -3.335667657716101,
+        "range_at_snr_min_m": 4300.0,
+        "snr_at_6km_dB": -0.18448997876133433,
+        "snr_at_1km_dB": 46.775881358273836,
+        "snr_at_2km_dB": 40.780270017120216,
+        "snr_at_4km_dB": 20.448854257425694,
+        "crossed": true,
+        "first_below_m": 4250.0,
+        "snr_at_first_below_dB": 7.10700675658228,
+        "stays_below_at_6km": true,
+        "below_intervals_m": [
+          [
+            4250.0,
+            4325.0
+          ],
+          [
+            4550.0,
+            4575.0
+          ],
+          [
+            4700.0,
+            4700.0
+          ],
+          [
+            4775.0,
+            4775.0
+          ],
+          [
+            4850.0,
+            4850.0
+          ],
+          [
+            4900.0,
+            4900.0
+          ],
+          [
+            4950.0,
+            4950.0
+          ],
+          [
+            5025.0,
+            5050.0
+          ],
+          [
+            5225.0,
+            5250.0
+          ],
+          [
+            5300.0,
+            6000.0
+          ]
+        ],
+        "n_intervals": 10,
+        "note": "SNR first drops below 8.68 dB at 4250 m (SNR 7.11 dB) and remains below at 6 km. 44/240 ranges along this depth are below threshold."
+      },
+      "250.0": {
+        "depth_m": 250.0,
+        "n_ranges": 240,
+        "n_below_th": 24,
+        "frac_below_th": 0.1,
+        "snr_min_dB": 1.3909990129284893,
+        "range_at_snr_min_m": 5975.0,
+        "snr_at_6km_dB": 7.6980447759547275,
+        "snr_at_1km_dB": 46.01754734017355,
+        "snr_at_2km_dB": 34.46917419514483,
+        "snr_at_4km_dB": 19.529352827090563,
+        "crossed": true,
+        "first_below_m": 4650.0,
+        "snr_at_first_below_dB": 6.433884661281141,
+        "stays_below_at_6km": true,
+        "below_intervals_m": [
+          [
+            4650.0,
+            4650.0
+          ],
+          [
+            5050.0,
+            5050.0
+          ],
+          [
+            5150.0,
+            5150.0
+          ],
+          [
+            5200.0,
+            5200.0
+          ],
+          [
+            5250.0,
+            5250.0
+          ],
+          [
+            5325.0,
+            5325.0
+          ],
+          [
+            5400.0,
+            5500.0
+          ],
+          [
+            5550.0,
+            5550.0
+          ],
+          [
+            5625.0,
+            5675.0
+          ],
+          [
+            5725.0,
+            5725.0
+          ],
+          [
+            5775.0,
+            5800.0
+          ],
+          [
+            5850.0,
+            5850.0
+          ],
+          [
+            5900.0,
+            6000.0
+          ]
+        ],
+        "n_intervals": 13,
+        "note": "SNR first drops below 8.68 dB at 4650 m (SNR 6.43 dB) and remains below at 6 km. 24/240 ranges along this depth are below threshold."
+      },
+      "500.0": {
+        "depth_m": 500.0,
+        "n_ranges": 240,
+        "n_below_th": 21,
+        "frac_below_th": 0.0875,
+        "snr_min_dB": 2.5757645550786066,
+        "range_at_snr_min_m": 5950.0,
+        "snr_at_6km_dB": 4.394623755148984,
+        "snr_at_1km_dB": 44.7345196429018,
+        "snr_at_2km_dB": 33.95682687351565,
+        "snr_at_4km_dB": 16.927361041303143,
+        "crossed": true,
+        "first_below_m": 5050.0,
+        "snr_at_first_below_dB": 6.037150785627645,
+        "stays_below_at_6km": true,
+        "below_intervals_m": [
+          [
+            5050.0,
+            5050.0
+          ],
+          [
+            5500.0,
+            5500.0
+          ],
+          [
+            5550.0,
+            6000.0
+          ]
+        ],
+        "n_intervals": 3,
+        "note": "SNR first drops below 8.68 dB at 5050 m (SNR 6.04 dB) and remains below at 6 km. 21/240 ranges along this depth are below threshold."
+      }
+    },
+    "bands_zge10": [
+      {
+        "band": "0-1000m",
+        "lo_m": 0.0,
+        "hi_m": 1000.0,
+        "n": 2000,
+        "n_gt_th": 2000,
+        "frac_gt_th": 1.0,
+        "snr_median_dB": 53.279789393430214,
+        "snr_min_dB": 44.7345196429018,
+        "snr_max_dB": 81.34978362218403
+      },
+      {
+        "band": "1000-2000m",
+        "lo_m": 1000.0,
+        "hi_m": 2000.0,
+        "n": 2000,
+        "n_gt_th": 2000,
+        "frac_gt_th": 1.0,
+        "snr_median_dB": 40.12598128250106,
+        "snr_min_dB": 31.358583399258805,
+        "snr_max_dB": 49.96709467658444
+      },
+      {
+        "band": "2000-3000m",
+        "lo_m": 2000.0,
+        "hi_m": 3000.0,
+        "n": 2000,
+        "n_gt_th": 2000,
+        "frac_gt_th": 1.0,
+        "snr_median_dB": 31.260503584673025,
+        "snr_min_dB": 19.414826527341162,
+        "snr_max_dB": 43.122519715001275
+      },
+      {
+        "band": "3000-4000m",
+        "lo_m": 3000.0,
+        "hi_m": 4000.0,
+        "n": 2000,
+        "n_gt_th": 1999,
+        "frac_gt_th": 0.9995,
+        "snr_median_dB": 24.11538559518172,
+        "snr_min_dB": 8.198530729024426,
+        "snr_max_dB": 33.247715491607224
+      },
+      {
+        "band": "4000-5000m",
+        "lo_m": 4000.0,
+        "hi_m": 5000.0,
+        "n": 2000,
+        "n_gt_th": 1885,
+        "frac_gt_th": 0.9425,
+        "snr_median_dB": 16.64171095019016,
+        "snr_min_dB": -7.487539671921226,
+        "snr_max_dB": 24.991518719265244
+      },
+      {
+        "band": "5000-6000m",
+        "lo_m": 5000.0,
+        "hi_m": 6000.0,
+        "n": 2000,
+        "n_gt_th": 718,
+        "frac_gt_th": 0.359,
+        "snr_median_dB": 7.102656379874233,
+        "snr_min_dB": -17.794258913682242,
+        "snr_max_dB": 17.81869637691095
+      }
+    ],
+    "bands_all_z": [
+      {
+        "band": "0-1000m",
+        "lo_m": 0.0,
+        "hi_m": 1000.0,
+        "n": 2040,
+        "n_gt_th": 2008,
+        "frac_gt_th": 0.984313725490196,
+        "snr_median_dB": 53.13154665008374,
+        "snr_min_dB": -39.41899529525277,
+        "snr_max_dB": 81.34978362218403
+      },
+      {
+        "band": "1000-2000m",
+        "lo_m": 1000.0,
+        "hi_m": 2000.0,
+        "n": 2040,
+        "n_gt_th": 2008,
+        "frac_gt_th": 0.984313725490196,
+        "snr_median_dB": 40.00109959789999,
+        "snr_min_dB": -97.32284708329293,
+        "snr_max_dB": 49.96709467658444
+      },
+      {
+        "band": "2000-3000m",
+        "lo_m": 2000.0,
+        "hi_m": 3000.0,
+        "n": 2040,
+        "n_gt_th": 2033,
+        "frac_gt_th": 0.9965686274509804,
+        "snr_median_dB": 31.172537312864783,
+        "snr_min_dB": -59.258373735893244,
+        "snr_max_dB": 43.122519715001275
+      },
+      {
+        "band": "3000-4000m",
+        "lo_m": 3000.0,
+        "hi_m": 4000.0,
+        "n": 2040,
+        "n_gt_th": 2039,
+        "frac_gt_th": 0.9995098039215686,
+        "snr_median_dB": 23.987118592147063,
+        "snr_min_dB": 8.198530729024426,
+        "snr_max_dB": 33.247715491607224
+      },
+      {
+        "band": "4000-5000m",
+        "lo_m": 4000.0,
+        "hi_m": 5000.0,
+        "n": 2040,
+        "n_gt_th": 1906,
+        "frac_gt_th": 0.9343137254901961,
+        "snr_median_dB": 16.50025922064804,
+        "snr_min_dB": -116.29678058581216,
+        "snr_max_dB": 24.991518719265244
+      },
+      {
+        "band": "5000-6000m",
+        "lo_m": 5000.0,
+        "hi_m": 6000.0,
+        "n": 2040,
+        "n_gt_th": 718,
+        "frac_gt_th": 0.3519607843137255,
+        "snr_median_dB": 6.996345701449059,
+        "snr_min_dB": -17.794258913682242,
+        "snr_max_dB": 17.81869637691095
+      }
+    ],
+    "f3_spot": [
+      {
+        "requested_range_m": 4000.0,
+        "requested_depth_m": 50.0,
+        "used_range_m": 4000.0,
+        "used_depth_m": 50.0,
+        "native_range_m": 4000.0,
+        "native_depth_m": 50.0,
+        "recon_TL_dB": 93.59302915885871,
+        "native_TL_dB": 121.8531494140625,
+        "abs_delta_dB": 28.260120255203788,
+        "ptp_dB": 3.640128297858695,
+        "n_arrivals": 32,
+        "fair_slice_ptp_lt_6dB": true
+      },
+      {
+        "requested_range_m": 6000.0,
+        "requested_depth_m": 50.0,
+        "used_range_m": 6000.0,
+        "used_depth_m": 50.0,
+        "native_range_m": 6000.0,
+        "native_depth_m": 50.0,
+        "recon_TL_dB": 106.64313352911577,
+        "native_TL_dB": 129.7490234375,
+        "abs_delta_dB": 23.105889908384228,
+        "ptp_dB": 59.12425879184396,
+        "n_arrivals": 31,
+        "fair_slice_ptp_lt_6dB": false
+      }
+    ],
+    "f3_spot_mean_abs_dB": 25.683005081794008,
+    "tl_50m_6km_dB": 106.64313352911577,
+    "snr_50m_6km_dB": 2.581893558091977
+  }
+}

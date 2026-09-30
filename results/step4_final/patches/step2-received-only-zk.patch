@@ -1,0 +1,231 @@
+--- a/contrib/elqtp/model/elqtp-protocol.h	2026-09-29 01:00:43.000000000 +0800
++++ b/contrib/elqtp/model/elqtp-protocol.h	2026-09-30 12:37:44.420342484 +0800
+@@ -105,6 +105,13 @@
+     double lastZohTime = std::numeric_limits<double>::quiet_NaN ();
+     double firstBroadcastTime = std::numeric_limits<double>::quiet_NaN ();
+     uint64_t nBroadcastRising = 0;
++    // Received-only z_k: set when a packet from j is demodulated at i
++    // (ChannelGate::receptionOk on the j->i link). tick() runs
++    // updatePair only on the next tick after such a reception, with the
++    // SNR sampled at that reception; otherwise both tracks predict only.
++    bool rxPending = false;
++    double zRxPending = std::numeric_limits<double>::quiet_NaN ();
++    uint64_t nRx = 0;
+ };
+ 
+ class ElqtpProtocol {
+@@ -201,6 +208,15 @@
+ 
+     ChannelSample linkSample(uint32_t i, uint32_t j) const;
+ 
++    // Received-only measurement path. Node rx demodulates a packet sent
++    // by tx iff ChannelGate::receptionOk(linkSample(tx, rx)). Returns
++    // whether it was received. broadcastFrom applies that to every rx.
++    bool noteReception(uint32_t rx, uint32_t tx);
++    void broadcastFrom(uint32_t tx);
++    uint64_t receptionCount() const { return receptionCount_; }
++    uint64_t measuredUpdates() const { return measuredUpdates_; }
++    uint64_t silentPredicts() const { return silentPredicts_; }
++
+     // Held filters and N_stab only. Does not call noteBootstrap.
+     bool peekFilter(uint32_t i, uint32_t j, FilterPeek& out) const;
+ 
+@@ -233,6 +249,10 @@
+     uint64_t nanMeasCount_ = 0;
+     double maxAbsInnovation_ = 0.0;
+     double maxAbsTriggerInnovation_ = 0.0;
++    mutable uint64_t receptionCount_ = 0;
++    uint64_t measuredUpdates_ = 0;
++    uint64_t silentPredicts_ = 0;
++    bool noteReceptionImpl(uint32_t rx, uint32_t tx) const;
+ 
+     void checkIndex(uint32_t i) const;
+     NeighborEkf& slot(uint32_t i, uint32_t j);
+--- a/contrib/elqtp/model/elqtp-protocol.cc	2026-09-29 01:00:43.000000000 +0800
++++ b/contrib/elqtp/model/elqtp-protocol.cc	2026-09-30 12:37:44.421199680 +0800
+@@ -209,6 +209,45 @@
+ }
+ 
+ bool
++ElqtpProtocol::noteReceptionImpl(uint32_t rx, uint32_t tx) const
++{
++    if (rx == tx) {
++        return false;
++    }
++    checkIndex(rx);
++    checkIndex(tx);
++    // Same reception condition as a data hop (tx -> rx): valid sample,
++    // not near pressure release, SNR >= threshold.
++    if (!gate_->receptionOk(linkSample(tx, rx))) {
++        return false;
++    }
++    NeighborEkf& s = ekf_[rx][tx];
++    s.rxPending = true;
++    // z_k keeps the EKF's measurement convention for pair (rx, tx)
++    // (same argument order as h / initEkf), sampled at reception time.
++    s.zRxPending = linkSample(rx, tx).snr_db;
++    ++s.nRx;
++    ++receptionCount_;
++    return true;
++}
++
++bool
++ElqtpProtocol::noteReception(uint32_t rx, uint32_t tx)
++{
++    return noteReceptionImpl(rx, tx);
++}
++
++void
++ElqtpProtocol::broadcastFrom(uint32_t tx)
++{
++    for (uint32_t rx = 0; rx < nodes_.size(); ++rx) {
++        if (rx != tx) {
++            noteReceptionImpl(rx, tx);
++        }
++    }
++}
++
++bool
+ ElqtpProtocol::liveInRange(uint32_t i, uint32_t j) const
+ {
+     if (i == j) {
+@@ -251,6 +290,7 @@
+     }
+     ingestBroadcastVelocity(s, i, j, nodes_[j].vx, nodes_[j].vy, nodes_[j].vz);
+     ++bootstrapHelloCount_;
++    noteReceptionImpl(i, j);
+ }
+ 
+ bool
+@@ -759,7 +799,7 @@
+     s.epsilon_k = cfg_.epsilon_0 + cfg_.lambda * std::sqrt(s.S_k);
+ 
+     // SPEC 2.3 addendum: e_k^{trigger} = z_k - h(x_forecast). z_k is the
+-    // raw per-tick ground-truth query. Kalman e_k / S_k / epsilon_k above
++    // SNR sampled at the last reception from j (received-only). Kalman e_k / S_k / epsilon_k above
+     // stay on x_hat for the EKF update and c_pred.
+     const double hForecast = s.xForecast[6];
+     s.eTrigger = z_k - hForecast;
+@@ -867,6 +907,9 @@
+         }
+     }
+     eventHelloCount_ += static_cast<uint64_t>(nodes_.size());
++    for (uint32_t j = 0; j < nodes_.size(); ++j) {
++        broadcastFrom(j);
++    }
+ }
+ 
+ void
+@@ -887,6 +930,9 @@
+         }
+     }
+     energyHelloCount_ += static_cast<uint64_t>(nodes_.size());
++    for (uint32_t j = 0; j < nodes_.size(); ++j) {
++        broadcastFrom(j);
++    }
+ }
+ 
+ double
+@@ -949,6 +995,7 @@
+         }
+         if (rising) {
+             ++eventHelloCount_;
++            broadcastFrom(j);
+         }
+     }
+     for (uint32_t i = 0; i < n; ++i) {
+@@ -977,8 +1024,23 @@
+             }
+             predictPair(i, j, step);
+             predictForecast(i, j, step);
+-            const ChannelSample z = linkSample(i, j);
+-            updatePair(i, j, z.snr_db);
++            // Received-only z_k: correct x_hat and sample the trigger only
++            // if a packet from j reached i since the last tick. Otherwise
++            // both tracks stay predict-only via F_k, and (as for an
++            // out-of-envelope sample) no measurement means no fire.
++            NeighborEkf& s = ekf_[i][j];
++            if (s.rxPending) {
++                const double z_k = s.zRxPending;
++                s.rxPending = false;
++                s.zRxPending = std::numeric_limits<double>::quiet_NaN();
++                ++measuredUpdates_;
++                updatePair(i, j, z_k);
++            } else {
++                ++silentPredicts_;
++                if (cfg_.broadcastMode == BroadcastMode::EventTriggered) {
++                    s.broadcast_k = 0;
++                }
++            }
+         }
+     }
+     simTime_ += step;
+--- a/contrib/elqtp/examples/lqarp-unit-check-common.h	2026-09-29 01:00:43.000000000 +0800
++++ b/contrib/elqtp/examples/lqarp-unit-check-common.h	2026-09-30 12:38:52.393841105 +0800
+@@ -1527,8 +1527,14 @@
+     etrace << std::fixed << std::setprecision (1);
+     etrace << "tick bc_k e_tr x_base x_sup has_base has_sup\n";
+     bool sawFire = false;
++    // Received-only z_k: node 0 only measures node 1 when it demodulates
++    // a packet from node 1. Model node 1 sending one packet per tick that
++    // node 0 decodes (e.g. data traffic); HELLO suppression is separate.
++    bool rxBoth = true;
+     for (int step = 1; step <= 12; ++step)
+       {
++        rxBoth = eBase.noteReception (0, 1) && rxBoth;
++        rxBoth = eSup.noteReception (0, 1) && rxBoth;
+         eBase.tick (1.0);
+         eSup.tick (1.0);
+         const auto &eb = eBase.ekf (0, 1);
+@@ -1555,8 +1561,9 @@
+     const double snrFar = slope.queryLink (0.0, 0.0, 100.0, 800.0, 0.0, 40.0).snr_db;
+     Report ("23c. event-triggered: broadcast_k writes the new pose; a suppressed node keeps x=100",
+             armed && sawFire && baseFar && supNear && baseDroppedE && supKeptE
+-                && snrFar > 8.68,
++                && snrFar > 8.68 && rxBoth,
+             "armed=" + std::string (armed ? "yes" : "no")
++                + " rx_from_1_each_tick=" + std::string (rxBoth ? "yes" : "no")
+                 + " saw Broadcast_k=1=" + std::string (sawFire ? "yes" : "no")
+                 + " x_base=" + F (eBase.ekf (0, 1).x_j_zoh, 1)
+                 + " x_sup=" + F (eSup.ekf (0, 1).x_j_zoh, 1)
+@@ -1565,6 +1572,40 @@
+                 + " snr(800m)=" + F (snrFar, 2)
+                 + "\n        " + etrace.str ());
+ 
++    // 23c'. Received-only z_k: with no packet from node 1 there is no
++    // measurement, so the trigger cannot fire and the hold is not written,
++    // however far node 1 has actually moved. Both tracks only predict.
++    {
++      elqtp::ElqtpProtocol eSilent (slope, ecfg, en);
++      eSilent.setNeighborVelocityZoh (0, 1, 0.0, 0.0, 0.0);
++      const bool armedS = has1 (eSilent.candidateSet (0))
++                          && Close (eSilent.ekf (0, 1).x_j_zoh, 100.0, 1e-9);
++      const uint64_t rx0 = eSilent.receptionCount ();
++      const uint64_t upd0 = eSilent.measuredUpdates ();
++      eSilent.setKinematics (1, 800.0, 0.0, 40.0, 0.0, 0.0, 0.0);
++      bool firedS = false;
++      for (int step = 1; step <= 12; ++step)
++        {
++          eSilent.tick (1.0);
++          if (eSilent.ekf (0, 1).broadcast_k == 1)
++            {
++              firedS = true;
++            }
++        }
++      const bool noRx = eSilent.receptionCount () == rx0;
++      const bool noUpd = eSilent.measuredUpdates () == upd0;
++      const bool holdKept = Close (eSilent.ekf (0, 1).x_j_zoh, 100.0, 1e-9);
++      const bool eZero = eSilent.ekf (0, 1).eTrigger == 0.0;
++      Report ("23c'. received-only z_k: no packet from node 1 means no z_k, no fire, no pose write",
++              armedS && !firedS && noRx && noUpd && holdKept && eZero,
++              "armed=" + std::string (armedS ? "yes" : "no")
++                  + " fired=" + std::string (firedS ? "yes" : "no")
++                  + " receptions=" + std::to_string (eSilent.receptionCount () - rx0)
++                  + " z_updates=" + std::to_string (eSilent.measuredUpdates () - upd0)
++                  + " x_j_zoh=" + F (eSilent.ekf (0, 1).x_j_zoh, 1)
++                  + " e_trigger=" + F (eSilent.ekf (0, 1).eTrigger, 2));
++    }
++
+     // Bootstrap itself suppressed: the pair is never a candidate, which
+     // is not the same as 23c (bootstrap or HELLO happened, then went stale).
+     elqtp::ElqtpProtocol fresh (slope, ecfg, en);

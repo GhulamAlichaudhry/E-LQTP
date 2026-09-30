@@ -1,0 +1,36 @@
+\section{Conclusion}
+\label{sec:conclusion}
+\IEEEPARstart{T}{his} article addressed the control-plane cost of
+keeping link-quality state accurate in a mobile underwater mesh.
+E-LQTP adds a dual-track extended Kalman filter to LQARP so that a
+HELLO fires only when a forecast that receives no measurement update
+diverges from the per-tick channel query. With the trigger on and
+$\beta_1=\beta_2=0$, E-LQTP matches LQARP's packet
+delivery ratio, hop count, end-to-end delay, and energy per data
+bit, while cutting control traffic to $0.33\times$ a
+$5\,\mathrm{s}$ periodic grid under $2\,\mathrm{m/s}$ drift and
+to $0.51\times$ under the Rankine eddy.
+The campaign counts those control bytes in $O_{\mathrm{ctrl}}$.
+Reception is the SNR gate of Section~\ref{sec:design:ns3}, and
+HELLO energy is left out of residual energy, so the reported
+saving is the byte count on the shared live pose.
+The additive reward terms do not improve hops or delay; that
+negative result is reported rather than tuned away, isolating the
+gain to the event-triggered mechanism itself.
+
+A relative-form $c_{\mathrm{pred}}$ and a Scenario~II-only
+$\beta_2$ sweep against sustained AUV--sink range-rate remain
+future work, together with a neighbor table that ages between
+velocity copies and a non-ground-truth channel-estimation
+pipeline for the staleness test.
+
+\section*{Acknowledgment}
+This work was supported in part by the China Postdoctoral Science
+Foundation under Grant 2025M784399; in part by the Heilongjiang
+Postdoctoral Fund under Grant LBH-Z25121; in part by the Fundamental
+Research Funds for the Central Universities under Grant 3072026LJ0801;
+in part by the ``Double First Class'' Discipline Collaborative
+Innovation Achievement Project of Heilongjiang Province under Grant
+LJGXCG2023-066; in part by the Major Scientific and Technological
+Achievements Commercialization Project of Heilongjiang Province under
+Grant ZC2024SH0024.

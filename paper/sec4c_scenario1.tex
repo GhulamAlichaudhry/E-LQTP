@@ -1,0 +1,36 @@
+\subsection{Scenario I: Stationary Identity}
+\label{sec:eval:s1}
+Scenario~I freezes every node
+($v_{\mathrm{cmd}}=v_{\mathrm{drift}}=0$)
+for $T_{\mathrm{sim}}=1600\,\mathrm{s}$ and $N_{\mathrm{gen}}=2160$
+at $N=40$.
+E-LQTP is run in the identity configuration (trigger off,
+$\varepsilon_0$ huge, EKF not ticked) so that any departure from
+LQARP would be a code defect rather than a mobility effect
+\cite{liu2026lqarp}.
+Table~\ref{tab:s1_identity} reports the five-seed means.
+LQARP and identity E-LQTP are bit-identical on every seed: PDR
+$1.000$, hops $1.530\pm 0.068$, delay $3.078\pm 0.071\,\mathrm{s}$,
+$E_{\mathrm{bit}}=8.20\pm 0.37\times 10^{-3}\,\mathrm{J/bit}$,
+$O_{\mathrm{ctrl}}=0$, VOID $=0$.
+Fixed-Periodic records $442.03\,\mathrm{byte/s}$ on this frozen
+field.
+A nominal budget of one $400$-bit HELLO from each of $41$ nodes
+every $5\,\mathrm{s}$ is $410\,\mathrm{byte/s}$.
+The recorded stationary rate exceeds that budget.
+The mobile comparison in Section~\ref{sec:eval:metrics} uses the
+exact grid $413.42\,\mathrm{byte/s}$ ($41$ transmitters $\times$
+$121$ instants on $[0,600]\,\mathrm{s}$).
+A timer still spends that control traffic on a field that cannot
+change, the same class of waste a timer-rebuilt STG or a periodic
+QTAR HELLO incurs on a frozen mesh
+\cite{xu2025stgr,nandyala2023qtar}.
+RLOR-inspired always takes the one-hop sink path
+($\mathrm{hops}=1.000$) because it drops $N_{\mathrm{depth}}$ and
+forwards $\arg\max P_{\mathrm{succ}}$; that is the opportunistic
+construction surveyed in \cite{jiang2023orsurvey}, not a routing
+win claimed against LQARP.
+PDR saturates for all four protocols, which is the intended ceiling
+of a stationary, range-rich column, not a primary comparison.
+
+\input{elqtp_table_s1}

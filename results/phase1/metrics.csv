@@ -1,0 +1,2 @@
+seed,mode,n_nodes,beacons,control_bps,budget_frac,precision,recall,f1,up_n,up_delay,down_n,down_delay,true_edges,disc_edges,frac_multihop,diameter,phy_collisions,hello_rx,snr_drops,bpsk_drops,hold_mae,hold_n
+1,event,12,127,211.667,0.105833,0.993812,0.867035,0.924022,64,13.9531,7,5.85714,33.8636,29.6136,0.663418,4.24091,38,330,343,1,14.2175,296

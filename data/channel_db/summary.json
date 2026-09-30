@@ -1,0 +1,201 @@
+{
+  "created_utc": "2026-09-21T04:47:41Z",
+  "freq_axis": {
+    "f_start_hz": 23000.0,
+    "f_stop_hz": 24999.0,
+    "n": 2000,
+    "delta_f_hz": 1.0,
+    "B_hz": 2000.0,
+    "note": "23000\u201324999 Hz, 2000 bins; not 23000\u201325000 inclusive (that would be 2001)"
+  },
+  "H_eq": {
+    "kappa": 2.0,
+    "thorp": "0.11 f^2/(1+f^2)+44 f^2/(4100+f^2)+2.75e-4 f^2+0.003",
+    "tl_csv_is": "-10 log10(G_bar)  [sonar-equation loss, positive dB]",
+    "prompt_10log10_Gbar_is": "power gain in dB (negative); not stored in TL_dB"
+  },
+  "link_budget": {
+    "SL_dB": 175.0,
+    "DI_dB": 0.0,
+    "SNR_th_dB": 8.68
+  },
+  "noise": {
+    "NL_integrated_dB": 65.77497291279225,
+    "NL_fc_B_dB": 65.76778666517652,
+    "N_fc_upa2_per_hz": 1886.8990718511996,
+    "components_fc_dB": {
+      "turbulence": -24.406337251348177,
+      "shipping": -12.959733963732262,
+      "wave": 32.71523349848116,
+      "thermal": 12.60422483423212
+    },
+    "s_shipping": 0.2,
+    "w_mps": 2.0,
+    "note": "s and w are design assumptions carried from the LQARP/Wenz literature convention. They are NOT derived from WOA23 or GEBCO."
+  },
+  "fading": {
+    "january": {
+      "median_ptp_dB": 35.149763466512965,
+      "max_ptp_dB": 77.27987609156662,
+      "frac_ptp_gt_3dB": 0.9930392156862745
+    },
+    "july": {
+      "median_ptp_dB": 35.150862505857006,
+      "max_ptp_dB": 77.50678296662389,
+      "frac_ptp_gt_3dB": 0.984313725490196
+    },
+    "verdict": "B = 2000 Hz is NOT a flat channel on this grid. Frequency-selective fading exceeds 3 dB peak-to-trough at a large fraction of points because the water-column delay spread (~3 ms) sets a coherence bandwidth of a few hundred hertz. G_bar as a 2 kHz power average is still the right scalar for an LQARP-style budget; a single-tap H(f_c) is not. Finer than 1 Hz sampling is not required."
+  },
+  "january": {
+    "c_src_mps": 1533.55,
+    "n_arrivals": 240789,
+    "n_empty": 51,
+    "n_finite_tl": 10200,
+    "n_nan_tl": 51,
+    "n_neg_tl": 0,
+    "tl_focus_dB": 58.87307234004474,
+    "snr_focus_dB": 50.351954747163006,
+    "native_tl_focus_dB": 68.24769592285156,
+    "f3": {
+      "name": "r>=10m z>=10m (exclude pressure-release surface)",
+      "n": 10000,
+      "mean_abs_dB": 4.748562580341498,
+      "median_abs_dB": 2.571600576098067,
+      "max_abs_dB": 54.481168226690954,
+      "p95_abs_dB": 17.62434661665357,
+      "frac_gt_10dB": 0.1414,
+      "n_gt_10dB": 1414,
+      "mean_signed_dB": -2.93860178499421,
+      "slices": [
+        {
+          "name": "r>=10m all depths",
+          "n": 10200,
+          "mean_abs_dB": 5.842823359980561,
+          "median_abs_dB": 2.5997759824747284,
+          "max_abs_dB": 299.21665051889397,
+          "p95_abs_dB": 20.178697818204938,
+          "frac_gt_10dB": 0.15784313725490196,
+          "n_gt_10dB": 1610,
+          "mean_signed_dB": -1.6960810357607474
+        },
+        {
+          "name": "r>=10m z>=10m (exclude pressure-release surface)",
+          "n": 10000,
+          "mean_abs_dB": 4.748562580341498,
+          "median_abs_dB": 2.571600576098067,
+          "max_abs_dB": 54.481168226690954,
+          "p95_abs_dB": 17.62434661665357,
+          "frac_gt_10dB": 0.1414,
+          "n_gt_10dB": 1414,
+          "mean_signed_dB": -2.93860178499421
+        },
+        {
+          "name": "r>=10m z>=10m native TL in (20,120)",
+          "n": 9998,
+          "mean_abs_dB": 4.744679959994498,
+          "median_abs_dB": 2.571600576098067,
+          "max_abs_dB": 54.481168226690954,
+          "p95_abs_dB": 17.582673739061764,
+          "frac_gt_10dB": 0.1413282656531306,
+          "n_gt_10dB": 1413,
+          "mean_signed_dB": -2.9343613377635562
+        },
+        {
+          "name": "r>=10m z>=10m in-band ptp<6 dB",
+          "n": 21,
+          "mean_abs_dB": 1.2516550811922884,
+          "median_abs_dB": 1.0767375443953178,
+          "max_abs_dB": 3.467728904628821,
+          "p95_abs_dB": 2.9991730918152584,
+          "frac_gt_10dB": 0.0,
+          "n_gt_10dB": 0,
+          "mean_signed_dB": -0.31569265991766265
+        }
+      ],
+      "note": "Raw max |\u0394| is dominated by (1) z=0 pressure-release nulls in H_eq and (2) single-frequency Bellhop interference nulls vs 2 kHz G_bar. The ptp<6 dB slice is the fair apples-to-apples check."
+    },
+    "frac_snr_gt_th": 0.9815686274509804,
+    "n_snr_gt_th": 10012,
+    "n_snr_compared": 10200,
+    "frac_snr_gt_th_zge10": 1.0,
+    "n_snr_gt_th_zge10": 10000,
+    "n_snr_compared_zge10": 10000,
+    "d_p_method": "d_p = tau_p * c(z_src). Bellhop ASCII .arr does not report geometric path length or a ray-integrated slowness. c(z_src) is the full-column WOA23 Mackenzie SSP at 50 m."
+  },
+  "july": {
+    "c_src_mps": 1540.21,
+    "n_arrivals": 242626,
+    "n_empty": 51,
+    "n_finite_tl": 10200,
+    "n_nan_tl": 51,
+    "n_neg_tl": 0,
+    "tl_focus_dB": 62.7667410084979,
+    "snr_focus_dB": 46.45828607870985,
+    "native_tl_focus_dB": 70.95074462890625,
+    "f3": {
+      "name": "r>=10m z>=10m (exclude pressure-release surface)",
+      "n": 10000,
+      "mean_abs_dB": 4.65145642284088,
+      "median_abs_dB": 2.7127375698598435,
+      "max_abs_dB": 36.618349771972476,
+      "p95_abs_dB": 16.105785051407253,
+      "frac_gt_10dB": 0.1405,
+      "n_gt_10dB": 1405,
+      "mean_signed_dB": -2.842911848661278,
+      "slices": [
+        {
+          "name": "r>=10m all depths",
+          "n": 10200,
+          "mean_abs_dB": 5.16288027684807,
+          "median_abs_dB": 2.7425848363625818,
+          "max_abs_dB": 112.22922487850849,
+          "p95_abs_dB": 17.769745261277002,
+          "frac_gt_10dB": 0.15401960784313726,
+          "n_gt_10dB": 1571,
+          "mean_signed_dB": -2.192476734812273
+        },
+        {
+          "name": "r>=10m z>=10m (exclude pressure-release surface)",
+          "n": 10000,
+          "mean_abs_dB": 4.65145642284088,
+          "median_abs_dB": 2.7127375698598435,
+          "max_abs_dB": 36.618349771972476,
+          "p95_abs_dB": 16.105785051407253,
+          "frac_gt_10dB": 0.1405,
+          "n_gt_10dB": 1405,
+          "mean_signed_dB": -2.842911848661278
+        },
+        {
+          "name": "r>=10m z>=10m native TL in (20,120)",
+          "n": 10000,
+          "mean_abs_dB": 4.65145642284088,
+          "median_abs_dB": 2.7127375698598435,
+          "max_abs_dB": 36.618349771972476,
+          "p95_abs_dB": 16.105785051407253,
+          "frac_gt_10dB": 0.1405,
+          "n_gt_10dB": 1405,
+          "mean_signed_dB": -2.842911848661278
+        },
+        {
+          "name": "r>=10m z>=10m in-band ptp<6 dB",
+          "n": 44,
+          "mean_abs_dB": 3.8048793134666083,
+          "median_abs_dB": 2.7694198411679256,
+          "max_abs_dB": 10.822704005823454,
+          "p95_abs_dB": 9.047001940228862,
+          "frac_gt_10dB": 0.022727272727272728,
+          "n_gt_10dB": 1,
+          "mean_signed_dB": -3.155776994694591
+        }
+      ],
+      "note": "Raw max |\u0394| is dominated by (1) z=0 pressure-release nulls in H_eq and (2) single-frequency Bellhop interference nulls vs 2 kHz G_bar. The ptp<6 dB slice is the fair apples-to-apples check."
+    },
+    "frac_snr_gt_th": 0.9845098039215686,
+    "n_snr_gt_th": 10042,
+    "n_snr_compared": 10200,
+    "frac_snr_gt_th_zge10": 1.0,
+    "n_snr_gt_th_zge10": 10000,
+    "n_snr_compared_zge10": 10000,
+    "d_p_method": "d_p = tau_p * c(z_src). Bellhop ASCII .arr does not report geometric path length or a ray-integrated slowness. c(z_src) is the full-column WOA23 Mackenzie SSP at 50 m."
+  }
+}

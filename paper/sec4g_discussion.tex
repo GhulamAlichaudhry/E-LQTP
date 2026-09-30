@@ -1,0 +1,61 @@
+\subsection{Discussion Against Recent Journal Protocols}
+\label{sec:eval:disc}
+The primary claim is a control-plane claim, not a new data-plane
+reward.
+QTAR, SAQR, the hierarchical Q-learning cluster of Yuan
+\emph{et~al.}, ADRP-DQL, CLORP, STGR, and SDN-QLTR all improve
+forwarding by redesigning the Q-update or the candidate set, and
+they keep neighbor state current on a timer
+\cite{nandyala2023qtar,zhang2025saqr,yuan2023qhier,mohanraju2025adrp,liu2024clorP,xu2025stgr,li2024sdnqltr}.
+E-LQTP leaves LQARP's reward untouched \cite{liu2026lqarp} and
+charges a HELLO only when the forecast track diverges from the
+per-tick channel query.
+Scenario~II and Scenario~III match LQARP's hops and delay to three
+figures because both routers read the same live pose and the
+validated weights are $\beta_1=\beta_2=0$, while $O_{\mathrm{ctrl}}$
+falls to $0.33\times$ and $0.51\times$ the $5\,\mathrm{s}$ grid used
+as the periodic baseline in this campaign.
+Those factors are the timing ablation under the shared pose of
+Section~\ref{sec:design:pkt}.
+QTAR, SAQR, and STGR are cited as members of that timer class
+\cite{nandyala2023qtar,zhang2025saqr,xu2025stgr}.
+They were not reimplemented on this site, so the factors above are
+not a claim that their published overhead equals
+$413.42\,\mathrm{byte/s}$.
+QLAR is the design that already adapts a HELLO period, and it does
+so from predicted link lifetime rather than from
+\eqref{eq:etrigger} \cite{li2025qlar}.
+
+Trust-aware and clustered opportunistic designs (He \emph{et~al.},
+RCRP, FHOEEC, LSLPR) and the information-centric push/pull family
+(push-hybrid UNDN, RECAR, Wang--Lu--Gao) likewise treat the beacon
+as a security, void, or naming event
+\cite{he2025trust,zhu2024rcrp,lee2025fho,tian2023lslpr,wang2024push,li2024recar,wang2025reliable,zhao2026trclor}.
+None of those events is the forecast-versus-truth SNR residual of
+Section~III, so their control traffic does not automatically
+collapse when relative geometry is temporarily stable.
+AUV collection and path-planning DQNs
+\cite{wang2024lgdqn,liu2025mdqn,lu2025wper,nandyala2025isolated}
+move the vehicle rather than the HELLO timer; they are complementary
+to E-LQTP, not substitutes.
+The same holds for acoustic--radio hybrid hops
+\cite{jiang2023hybrid}, multi-objective and cross-layer schedules
+\cite{yuan2024multiobj,yuan2024crosslayer}, MARV's value-of-information
+split \cite{wang2024marv}, GMM--HMM--LSTM adaptation and trust
+guidelines \cite{zhu2024gmmhmm,zhu2024trustcomst}, and the Zhoushan
+multipath sea trial \cite{yuan2024multipath}: each changes the
+forwarding objective or the physical path, not the HELLO cadence.
+
+The event-triggered Kalman literature
+\cite{li2026dse,priel2023consensus,sebastian2024eco,deng2023auto,zhong2024tsp,deng2024lcsys}
+already showed that a predicted information pair can replace a
+periodic sample.
+E-LQTP reuses that idea for a routing HELLO on a per-tick Bellhop
+query.
+The $2\,\mathrm{dB}$ cap is this paper's choice, placed below the
+LOON21 Kalman mean absolute errors $4.81$, $3.47$, and
+$3.24\,\mathrm{dB}$ \cite{busacca2024snr}.
+The $\beta$ ablation then shows that folding the same innovation
+into $c_{\mathrm{pred}}$ and $c_{\mathrm{drift}}$ does not buy a
+data-plane gain on this grid---a scoped negative result relative
+to the reward-heavy Q-learning family above.

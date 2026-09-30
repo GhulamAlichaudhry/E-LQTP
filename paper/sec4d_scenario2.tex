@@ -1,0 +1,51 @@
+\subsection{Scenario II: Uniform Current Drift}
+\label{sec:eval:s2}
+\input{elqtp_fig3}
+\input{elqtp_fig4}
+Table~\ref{tab:s2_protocols} and Fig.~\ref{fig:scenario2_protocols}
+compare the four protocols at the reported midpoint
+$\|v_{\mathrm{drift}}\|=2\,\mathrm{m/s}$.
+E-LQTP reproduces LQARP's data plane---PDR $0.9992\pm 0.0019$,
+hops $2.154$ versus $2.153$, delay $4.439\,\mathrm{s}$ versus
+$4.438\,\mathrm{s}$, identical $E_{\mathrm{bit}}$ at the printed
+precision, identical node-exit packet losses
+($0.60\pm 1.34$), VOID $=0$---and cuts control traffic from the
+analytic $413.42\,\mathrm{byte/s}$ grid to
+$135\pm 23\,\mathrm{byte/s}$ ($0.33\times$, never above $163$).
+First-fire is $0.782\pm 0.042$.
+By the definition in Section~\ref{sec:eval:metrics} this is the
+fraction of live AUV--AUV pairs that record at least one rising
+edge.
+The true AUV--AUV range rate is zero once both velocities are known.
+Those pairs still fire because the velocity hold begins at zero, so
+the forecast initially integrates the observer's own drift.
+After the hold is written, the constant-velocity model matches the
+shared current.
+Links to the fixed sink retain a nonzero range rate after that
+write.
+Fixed-Periodic at $\beta_1=\beta_2=0$ is LQARP's data plane plus
+that flat HELLO grid on the shared live pose of
+Section~\ref{sec:design:pkt}, which isolates the timer from the
+reward.
+RLOR-inspired again sits at one hop ($T_{\mathrm{e2e}}=1.845\,\mathrm{s}$)
+because the sink remains in $N_{\mathrm{SNR}}$ for live relays; it
+has no dedicated control plane.
+
+\input{elqtp_table_s2_protocols}
+
+Table~\ref{tab:s2_drift} and Fig.~\ref{fig:scenario2_drift} sweep
+drift magnitude.
+The hop ratio E-LQTP/LQARP is $1.000\times$ at every $v$.
+PDR, delay, and node-exit packet losses match LQARP at every $v$.
+Energy per data bit agrees with LQARP through the digits of
+Table~\ref{tab:s2_protocols}; across the sweep the largest
+relative difference is below $3\times 10^{-4}$.
+$O_{\mathrm{ctrl}}$ over the periodic $413.4\,\mathrm{byte/s}$ is
+$0.05\times$, $0.17\times$, $0.33\times$, $0.52\times$, and
+$0.62\times$ at $0.5$, $1$, $2$, $3$, and $3.5\,\mathrm{m/s}$.
+First-fire rises with drift, $15\%\to 52\%\to 78\%\to 86\%\to 90\%$.
+Panel~(a) of Fig.~\ref{fig:scenario2_drift} is envelope exits, not
+PDR: the two protocols lose the same relays.
+Even at $3.5\,\mathrm{m/s}$ E-LQTP stays under the periodic budget.
+
+\input{elqtp_table_s2_drift}

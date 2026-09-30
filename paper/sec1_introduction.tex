@@ -1,0 +1,253 @@
+\section{Introduction}
+\label{sec:intro}
+\IEEEPARstart{T}{he} Internet of Underwater Things (IoUT) deploys
+acoustic multi-hop meshes for environmental observation, resource
+exploration, and maritime awareness
+\cite{gupta2024uwsn,gola2023taxonomy,saleem2024ai,jiang2023orsurvey}.
+Underwater wireless sensor networks (UWSNs) must route under scarce
+bandwidth, long delay, and a time-varying multipath channel
+\cite{gupta2024uwsn,saleem2024ai,zhu2024trustcomst}.
+An increasingly important case is the \emph{mobile} UWSN, in which
+autonomous underwater vehicles (AUVs) and unmanned surface vehicles
+(USVs) assist monitoring, adaptive sampling, and mobile relay meshes
+\cite{gola2023taxonomy,wang2024lgdqn,liu2025mdqn,lu2025wper}.
+There the static or moored-relay assumption common in prior routing
+work---including LQARP---breaks down, because relative motion
+continuously reshapes geometry and instantaneous link quality
+\cite{liu2026lqarp,xu2025stgr}.
+
+Routing under mobility is not new, yet two threads remain poorly
+aligned with the control-plane cost of keeping link-quality state
+accurate while vehicles move.
+First, Q-learning and multi-agent reinforcement-learning UWSN
+protocols typically assume that neighbor and link state can be
+refreshed by periodic beaconing, or they omit an explicit
+relative-motion model that would tell a node \emph{when} advertised
+link state has become stale
+\cite{nandyala2023qtar,zhang2025saqr,liu2024clorP,xu2025stgr,mohanraju2025adrp}.
+Periodic HELLO traffic then consumes scarce acoustic bandwidth even
+while the channel is temporarily stable.
+Second, event-triggered Kalman filtering now schedules filter packets
+for IoUT target tracking and remote estimation
+\cite{li2026dse,priel2023consensus,sebastian2024eco,deng2023auto},
+Kalman SNR prediction is used to adapt a modem
+\cite{busacca2024snr}, and event beacons appear in underwater named
+data networking \cite{wang2024push,li2024recar}.
+Those designs schedule tracking packets, modem updates, or
+named-data events.
+The subsections below identify which of them, if any, already fire a
+routing HELLO from an SNR forecast that is withheld from the
+per-tick channel query.
+Motivated by these challenges, we review existing
+reinforcement-learning underwater routing and event-triggered
+estimation, and identify why neither, on its own, resolves that
+control-overhead cost.
+
+\subsection{Related Work}
+E-LQTP inherits LQARP's multipath channel model, candidate-set
+construction, and Bellhop/Aqua-Sim integration unmodified, so this
+section does not reopen the simulation-tool argument treated in that
+work \cite{liu2026lqarp}.
+The subsections that follow isolate the gaps that mobility introduces
+on top of that foundation.
+
+\subsubsection{Reinforcement-Learning UWSN Routing}
+Nandyala, Kim, and Cho propose QTAR, a Q-learning topology-aware
+protocol that selects a next-forwarder from a topology-constrained
+candidate set and uses implicit cut-vertex recognition to avoid
+energy-wasting detours \cite{nandyala2023qtar}.
+Zhang, Chen, and Xie later add service-aware rewards and a holding
+time for opportunistic forwarding (SAQR) \cite{zhang2025saqr}.
+Yuan \emph{et~al.} nest Q-learning inside unequal clusters
+\cite{yuan2023qhier}, and Wang \emph{et~al.} accelerate Q-table
+convergence with a depth-aware opportunistic reward
+\cite{wang2023rldepth,wang2024qacc}.
+Mohanraju and Lokam replace the tabular update with a deep
+Q-network that scores residual energy, depth, and node degree
+(ADRP-DQL) \cite{mohanraju2025adrp}.
+Wang \emph{et~al.} further split the reward by value of information
+so that urgent and delay-tolerant packets share the same MARL
+forwarder (MARV) \cite{wang2024marv}.
+Liu \emph{et~al.} design CLORP, coupling multi-agent reinforcement
+learning with opportunistic forwarding and an adaptive learning rate
+\cite{liu2024clorP}.
+Xu \emph{et~al.} introduce STGR for multi-UUV meshes: a distributed
+spatial-temporal graph records neighbor relations, link quality, and
+connectivity duration over periodic intervals, and Q-learning then
+selects a forwarder on that graph \cite{xu2025stgr}.
+He \emph{et~al.} fold a trust score into the same opportunistic
+Q-learning loop so that malicious or unstable relays are down-ranked
+\cite{he2025trust}.
+Li \emph{et~al.} assist the Q-update from an SDN controller
+(SDN-QLTR) \cite{li2024sdnqltr}.
+LQARP itself folds Bellhop SNR, residual energy, delay, and neighbor
+count into a Q-learning reward on a stationary Western Pacific mesh
+\cite{liu2026lqarp}.
+Its data plane is the parent of E-LQTP; it does not address when a
+mobile node must re-advertise that reward state.
+Li, Wu, Zhu, and Ren come closest to the control rule studied here.
+Their Q-learning link-aware protocol predicts neighbor motion with an
+extended Kalman filter and sets the HELLO period to a fraction of the
+shortest predicted link expiration time,
+$T_H(N_i)=\tau\min_j T_{\mathrm{LET}}(N_i,N_j)$ with
+$\tau\in(0,1)$ \cite{li2025qlar}.
+High relative motion shortens the period and low relative motion
+lengthens it, and the same expiration time enters the reward through
+an entropy-weight combination.
+That rule already withholds some beacon traffic while a
+geometrically predicted link is expected to survive.
+It remains a periodic timer scaled by link lifetime, and it spends
+the predicted lifetime inside the reward.
+It does not compare an SNR forecast, withheld from measurement
+updates since the last velocity write, with a channel query taken
+every tick.
+In the other protocols above, neighbor perception remains a periodic
+exchange or a timer-rebuilt graph.
+
+\subsubsection{Mobility-Aware and AUV-Assisted Collection}
+Wang \emph{et~al.} plan cooperative multi-AUV collection with
+local--global deep Q-learning and a separate emergency multi-hop
+route \cite{wang2024lgdqn}.
+Liu \emph{et~al.} and Lu and Zuo treat the AUV as a path-planning
+agent whose reward includes ocean current and communication capacity
+\cite{liu2025mdqn,lu2025wper}.
+Nandyala and Cho dispatch an AUV to prevent isolated sub-networks
+once isolation is declared \cite{nandyala2025isolated}.
+Jiang \emph{et~al.} opportunistically switch between acoustic and
+radio hops in a cooperative surface--subsurface mesh
+\cite{jiang2023hybrid}.
+Yuan \emph{et~al.} jointly optimize multi-objective routes and a
+centralized cross-layer schedule of power, links, and next hops
+\cite{yuan2024multiobj,yuan2024crosslayer}.
+In all of these designs the vehicle is a collector, a repair asset,
+or a radio relay---not a source of estimated relative motion that
+could gate neighbor broadcasts before advertised SNR goes stale.
+
+\subsubsection{Opportunistic, Clustered, and Information-Centric Forwarding}
+Jiang, Han, and Lin survey opportunistic IoUT routing and note that
+candidate-set maintenance is still a periodic control cost
+\cite{jiang2023orsurvey}.
+Zhu \emph{et~al.} cluster relays and predict voids with a Markov
+model (RCRP) \cite{zhu2024rcrp}, later adding a GMM--HMM--LSTM
+adaptive route \cite{zhu2024gmmhmm}; a companion COMST article
+gives trust-management guidelines for the same setting
+\cite{zhu2024trustcomst}.
+Lee \emph{et~al.} form energy-efficient clusters with a fire-hawk
+optimizer and still emit periodic HELLO packets during neighbor
+discovery \cite{lee2025fho}.
+Wang \emph{et~al.} replace a passive interest with an actively
+forwarded beacon when a critical event occurs in underwater named
+data networking \cite{wang2024push}.
+Li \emph{et~al.} avoid collisions among those NDN paths (RECAR)
+\cite{li2024recar}, and Wang, Lu, and Gao cache push and pull
+modes for information-centric underwater IoT
+\cite{wang2025reliable}.
+Zhao \emph{et~al.} add time-reversal opportunistic forwarding
+\cite{zhao2026trclor}.
+Tian \emph{et~al.} hide source location behind layered candidates
+\cite{tian2023lslpr}, and Yuan \emph{et~al.} validate a
+source-based disjoint multipath protocol in Zhoushan sea trials
+\cite{yuan2024multipath}.
+Those beacons and candidate sets are application-level or
+path-diversity events, not a routing HELLO tied to a
+relative-motion residual.
+
+\subsubsection{Event-Triggered Estimation and Channel Prediction}
+Priel and Zelazo develop event-triggered consensus Kalman filtering
+for time-varying networks with intermittent observations
+\cite{priel2023consensus}.
+Sebasti\'{a}n \emph{et~al.} certify an event-triggered distributed
+Kalman filter under unknown correlations \cite{sebastian2024eco}.
+Deng and Xiong infer the remote state when the trigger decision
+itself is hidden \cite{deng2023auto,deng2024lcsys}, and Zhong
+\emph{et~al.} schedule multiple sensors over packet-dropping links
+\cite{zhong2024tsp}.
+Closest in venue and in the use of a predicted state as the trigger
+reference, Li~\emph{et~al.} design two media-specific event triggers
+for consensus Kalman filtering over a hybrid IoUT
+\cite{li2026dse}.
+When a surface node does not transmit, neighbors propagate the last
+broadcast through the Kalman predict step, yielding a predicted
+information pair against which the next innovation is tested.
+That construction is the nearest cousin of the forecast track in
+Section~III: both ask what a neighbor still believes after a missed
+transmission.
+Li~\emph{et~al.} reset the predicted information pair when a packet
+arrives.
+The forecast in Section~III is reset when the local broadcast flag
+is high, by copying the neighbor's current odometry, and the copy is
+not a demodulated packet.
+The scheduled object in \cite{li2026dse} remains a filter packet for
+AUV \emph{tracking}, rather than a HELLO that refreshes advertised
+link quality for Q-learning forwarding.
+
+A related physical-layer thread predicts SNR itself rather than
+scheduling a packet.
+Busacca~\emph{et~al.} compare $N$-state Markov and hidden-Markov
+models with a scalar Kalman filter on NATO LOON21 traces
+\cite{busacca2024snr}.
+On those fixed, shallow links the Kalman mean absolute SNR error is
+$4.81\,\mathrm{dB}$ on the 11~November 2021 traces,
+$3.47\,\mathrm{dB}$ when that model is tested on 14~November, and
+$3.24\,\mathrm{dB}$ when it is tested on 18~November.
+The $2\,\mathrm{dB}$ cap in Section~III is a design choice of this
+paper, placed below those three fixed-link errors.
+Busacca~\emph{et~al.} use the filter to adapt a constellation;
+they do not prescribe a HELLO threshold.
+The dual-track EKF below is a staleness detector for HELLO, not an
+SNR-RMSE competitor.
+
+Overall, two issues remain open.
+First, the reinforcement-learning and opportunistic protocols
+reviewed above, other than QLAR, keep link state current by periodic
+beaconing or by a timer-rebuilt graph
+\cite{nandyala2023qtar,xu2025stgr,liu2026lqarp,zhu2024rcrp}.
+QLAR does test predicted link lifetime, and it uses that lifetime
+both to scale a periodic HELLO and to shape the reward
+\cite{li2025qlar}.
+Second, event-triggered Kalman filtering schedules filter packets
+for IoUT tracking and remote estimation
+\cite{li2026dse,sebastian2024eco,zhong2024tsp}, Kalman SNR
+prediction adapts a modem \cite{busacca2024snr}, and event beacons
+appear in UNDN \cite{wang2024push}.
+None of those three threads schedules a routing HELLO from the
+divergence between an SNR forecast that receives no measurement
+update and a channel measurement taken at every tick.
+
+\subsection{Contributions}
+The contributions of this article are summarized as follows.
+
+\begin{enumerate}
+\item To answer the two gaps jointly, we design a dual-track
+relative-motion estimator---a measurement-corrected track and a
+forecast track that receives no measurement update---so that an event trigger can be
+computed even though the channel-quality measurement is available
+every tick.
+Its innovation, gated by a persistence condition and a
+variance-capped threshold, decides when a node broadcasts the
+velocity copy that resets the forecast.
+The resulting Event-Triggered Link-Quality and Topology Prediction
+protocol (E-LQTP) replaces periodic HELLO traffic with that
+motion-aware copy.
+
+\item We investigate whether the same relative-motion estimate can
+directly inform the Q-learning reward through a predictive
+link-quality term and a drift-aware forwarding term, and we
+characterize---rather than tune away---the conditions under which
+this does \emph{not} improve routing: a bit-error-rate floor that
+creates a scale mismatch with an additive prediction penalty, and a
+radial-velocity sign persistence shorter than one hop's transit
+time.
+This is reported as a scoped, evidence-based negative result.
+\end{enumerate}
+
+\subsection{Paper Organization}
+The rest of this article is organized as follows.
+Section~II introduces the extended system model of a mobile UWSN
+under uniform current drift and Rankine-vortex eddy motion.
+Section~III details the design of E-LQTP, including the dual-track
+extended Kalman filter, the persistence-gated event trigger, and the
+scoped Q-learning reward terms.
+Section~IV presents simulation results on the Western Pacific site
+for both mobile scenarios.
+Section~V concludes.

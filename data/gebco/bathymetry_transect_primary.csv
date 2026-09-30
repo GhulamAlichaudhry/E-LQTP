@@ -1,0 +1,51 @@
+# GEBCO_2026 15 arc-second, CEDA OPeNDAP subset of 17.5-22.5N 121.5-126.5E
+# GEBCO Bathymetric Compilation Group 2026 (2026). The GEBCO_2026 Grid - a continuous terrain model for oceans and land at 15 arc-second intervals. NERC EDS British Oceanographic Data Centre NOC. doi:10.5285/4f68d5c7-45eb-f999-e063-7086abc036fa
+# Origin: 20.125N 124.125E (WOA23 primary grid cell)
+# Main azimuth: 90 deg true (east)
+# range_m is horizontal distance, not depth.
+# GEBCO native elevation is metres, positive UP (ocean is negative).
+# bottom_depth_m = -elevation (positive DOWN).
+# Values bilinearly interpolated from the 15-arc-second grid; spacing ~435-463 m.
+# Built 2026-09-21T04:08:37Z
+range_m,bottom_depth_m
+0,5524.25
+50,5523.96
+100,5523.68
+150,5523.39
+200,5523.1
+250,5523
+300,5523
+350,5523
+400,5523
+450,5523
+500,5523
+550,5523
+600,5523
+650,5523
+700,5523.05
+750,5523.11
+800,5523.17
+850,5523.23
+900,5523.28
+950,5523.34
+1000,5523.4
+1050,5523.46
+1100,5523.52
+1150,5523.64
+1200,5523.75
+1250,5523.87
+1300,5523.98
+1350,5524.1
+1400,5524.21
+1450,5524.33
+1500,5524.44
+1550,5524.56
+1600,5524.67
+1650,5524.79
+1700,5524.9
+1750,5525.02
+1800,5525.13
+1850,5525.25
+1900,5525.36
+1950,5525.48
+2000,5525.55

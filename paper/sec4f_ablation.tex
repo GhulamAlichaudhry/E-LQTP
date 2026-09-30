@@ -1,0 +1,23 @@
+\subsection{Reward Ablation}
+\label{sec:eval:beta}
+\input{elqtp_fig6}
+Table~\ref{tab:beta_sweep} and Fig.~\ref{fig:reward_ablation} sweep
+$\beta_1$ at $\beta_2=0$ and $\beta_2$ at $\beta_1=0$ on
+Scenario~III.
+At $\beta_1=10^{-6}$ mean hops fall to $2.021\pm 0.158$ against
+LQARP's $2.046\pm 0.187$ ($0.988\times$); that dip sits inside
+LQARP's between-seed band and is not read as a routing gain.
+Once $\beta_1$ leaves the blend-scale range, hops, delay, and
+energy rise together, reaching $1.14\times$ hops and
+$1.18\times$ delay at $\beta_1=10^{-3}$.
+The $\beta_2$ column stays within $0.998\times$--$1.056\times$
+LQARP hops with no monotonic trend.
+No tested weight improves hops, delay, or energy relative to
+LQARP's between-seed band.
+A Scenario~II-specific $\beta_2$ sweep against the sustained
+AUV--sink range-rate of uniform drift remains future work.
+The validated operating point is therefore $\beta_1=\beta_2=0$:
+the control-plane gain is the event trigger, and the reward
+modifiers are a documented negative result.
+
+\input{elqtp_table_beta}

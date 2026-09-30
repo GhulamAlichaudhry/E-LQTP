@@ -1,0 +1,6 @@
+station,requested_lat,requested_lon,grid_lat,grid_lon,ilat,ilon,offset_km,land_snap,note
+primary,20,124,20.125,124.125,10,10,19.027,0,requested 20.0N 124.0E
+corner_sw,18,122,18.125,122.375,2,3,42.039,1,SW corner of analysis box; nearest cell was land-masked  snapped to nearest ocean cell in the box
+corner_se,18,126,18.125,125.875,2,17,19.136,0,SE corner of analysis box
+corner_nw,22,122,21.875,122.125,17,2,18.908,0,NW corner of analysis box
+corner_ne,22,126,21.875,125.875,17,17,18.908,0,NE corner of analysis box

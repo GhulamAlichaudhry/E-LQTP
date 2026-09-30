@@ -1,0 +1,26 @@
+% IEEE IoT-J: one paragraph, 150--250 words, no citations, no displayed math.
+\begin{abstract}
+Mobile underwater wireless sensor networks must keep link quality
+current as vehicles move, yet a fixed neighbor-broadcast timer spends
+scarce acoustic airtime while the channel is temporarily stable and
+can still miss the instants at which a link-quality forecast has
+diverged from the channel. This article presents Event-Triggered
+Link-Quality and Topology Prediction (E-LQTP), an extension of the
+link-quality-aware routing protocol LQARP. A dual-track extended
+Kalman filter maintains a measurement-corrected relative-motion
+estimate and a forecast of the same state that receives no
+measurement update. Their innovation, gated by a persistence test and
+a variance cap, emits a HELLO only when that forecast diverges from a
+per-tick channel query. E-LQTP inherits LQARP's multipath channel
+model, depth-progressive candidate set, and Bellhop integration; the
+Q-learning reward is left unchanged at the validated operating point.
+On the same Western Pacific site, with forty relays over six hundred
+seconds and five seeds, every protocol reads the same live pose.
+E-LQTP then matches LQARP's packet delivery, hops, delay, and energy
+per data bit, while cutting control traffic to one-third of a
+five-second HELLO grid under two-metre-per-second current drift and
+to about one-half under a Rankine eddy. Additive predictive reward
+terms do not improve the data plane. The control-plane gain is the
+event-triggered HELLO under that shared pose, with the reward left
+unchanged.
+\end{abstract}

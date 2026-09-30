@@ -1,0 +1,3 @@
+trace runs compared: 210
+SWEEP mismatches vs dataset runs: 1
+('iii', 2.0, 'elqtp-energy', 20260923)

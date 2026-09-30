@@ -1,0 +1,34 @@
+# ns-3 + Aqua-Sim-NG build tree (recreate with scripts/install-ns3-aqua-sim.sh)
+opt/
+cmake-cache/
+.ns3*
+
+# Python
+__pycache__/
+*.pyc
+
+# LaTeX build products
+paper/*.aux
+paper/*.log
+paper/*.out
+paper/*.bbl
+paper/*.blg
+paper/*.toc
+paper/*.synctex.gz
+
+# Raw per-run simulator output. Regenerate with the scripts in scripts/;
+# runs are deterministic for a fixed command line. The aggregate CSVs and
+# the sweep_lines.txt files under results/ are the primary record.
+results/**/runs/
+results/**/*.tar.gz
+
+# Bellhop intermediate products (regenerate with scripts/run_bellhop_wp.py)
+data/bellhop/**/*.prt
+data/bellhop/**/*.shd
+data/bellhop/**/*.arr
+data/bellhop/**/*.ray
+data/bellhop/**/*.log
+
+# Misc
+*.pcap
+agent-tools/

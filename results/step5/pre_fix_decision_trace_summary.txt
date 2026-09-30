@@ -1,0 +1,29 @@
+== periodic.dec.txt: decisions=1830 sink_in_set=1119 sink_chosen=666 (59.5%)
+   chosen: sink Q strictly highest: 574
+   passed over: relay Q > sink Q: 453
+   sink only candidate: 56
+   chosen: Q tie -> lowest id: 36
+   sink Q class: {'0': 82, '>0': 1037}
+   relay Q class: {'0': 232, '<0': 4823, '>0': 1718}
+   relay c_ene sign: {'0': 232, '<0': 5046, '>0': 1495}  relay R sign: {'0': 232, '<0': 5046, '>0': 1495}
+   c_nei sink mean=1  relay median=54.6 max=1.78e+08
+== elqtp-energy.dec.txt: decisions=1151 sink_in_set=669 sink_chosen=669 (100.0%)
+   chosen: NaN Q in set -> lowest-id tie-break (sink=0): 588
+   sink only candidate: 45
+   chosen: Q tie -> lowest id: 36
+   sink Q class: {'0': 37, 'nan': 632}
+   relay Q class: {'0': 232, 'nan': 3524}
+   relay c_ene sign: {'0': 232, 'nan': 3524}  relay R sign: {'0': 232, 'nan': 3524}
+   c_nei sink mean=1  relay median=54.6 max=6.57e+07
+== periodic.dec.txt
+   passed-over n=453: relay beats sink on c_nei 100.0%, on c_ene 0.0%, on c_del 0.0%
+   median ratio relay/sink: c_nei 403, c_ene 0.214, c_del 0.277
+== elqtp-energy.dec.txt
+Traceback (most recent call last):
+  File "/home/claude/repo/ghulam-ali-aquans3-c338cae/scripts/dec_analyze.py", line 59, in <module>
+    print("==", p.split("/")[-1]); passed_over_terms(p)
+                                   ^^^^^^^^^^^^^^^^^^^^
+  File "/home/claude/repo/ghulam-ali-aquans3-c338cae/scripts/dec_analyze.py", line 55, in passed_over_terms
+    print(f"   passed-over n={n}: relay beats sink on c_nei {nei_wins/n:.1%}, on c_ene {ene_wins/n:.1%}, on c_del {del_wins/n:.1%}")
+                                                             ~~~~~~~~^~
+ZeroDivisionError: division by zero

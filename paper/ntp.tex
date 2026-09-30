@@ -1,0 +1,15 @@
+\noindent\textbf{Note to Practitioners:}
+A mobile AUV mesh that copies a fixed HELLO timer spends acoustic
+airtime on a schedule that ignores whether a link-quality forecast
+has diverged from the channel.
+E-LQTP keeps LQARP's Bellhop lookup, depth-progressive candidate
+set, and Q-learning reward, and fires a $400$-bit HELLO only on a
+rising edge of a persistence-gated dual-track innovation.
+On the Western Pacific site ($N=40$), with every protocol reading
+the same live pose, the validated point (trigger on,
+$\beta_1=\beta_2=0$) matches LQARP's data plane while cutting
+control traffic to $0.33\times$ a $5\,\mathrm{s}$ grid under
+$2\,\mathrm{m/s}$ drift and to $0.51\times$ under a Rankine eddy.
+Leave the reward weights at zero.
+Energy per bit follows LQARP and excludes HELLO joules; those joules
+are reported as control overhead.

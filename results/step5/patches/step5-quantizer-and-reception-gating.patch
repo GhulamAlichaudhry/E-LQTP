@@ -1,0 +1,190 @@
+--- a/contrib/elqtp/model/elqtp-protocol.h	2026-09-30 12:59:45.646267815 +0800
++++ b/contrib/elqtp/model/elqtp-protocol.h	2026-09-30 12:59:45.666433414 +0800
+@@ -52,6 +52,10 @@
+     // quantizer over [0, E_ini]. Addressing is a separate field.
+     int energyQuantBits = 0;
+     int energyAddrBits = 8;
++    // Step 5: a HELLO / energy beacon from j writes i's hold for j only if
++    // i demodulates it (ChannelGate::receptionOk on j->i). false restores
++    // the pre-Step-5 network-wide write (diagnostic A/B only).
++    bool helloRxGate = true;
+ };
+ 
+ struct ElqtpReward {
+@@ -253,6 +257,7 @@
+     uint64_t measuredUpdates_ = 0;
+     uint64_t silentPredicts_ = 0;
+     bool noteReceptionImpl(uint32_t rx, uint32_t tx) const;
++    bool helloReaches(uint32_t rx, uint32_t tx) const;
+ 
+     void checkIndex(uint32_t i) const;
+     NeighborEkf& slot(uint32_t i, uint32_t j);
+--- a/contrib/elqtp/model/elqtp-protocol.cc	2026-09-30 12:59:45.646234777 +0800
++++ b/contrib/elqtp/model/elqtp-protocol.cc	2026-09-30 12:59:45.667248504 +0800
+@@ -232,6 +232,16 @@
+ }
+ 
+ bool
++ElqtpProtocol::helloReaches(uint32_t rx, uint32_t tx) const
++{
++    if (!cfg_.helloRxGate) {
++        return true;
++    }
++    // Same reception condition as a data hop and as noteReceptionImpl.
++    return gate_->receptionOk(linkSample(tx, rx));
++}
++
++bool
+ ElqtpProtocol::noteReception(uint32_t rx, uint32_t tx)
+ {
+     return noteReceptionImpl(rx, tx);
+@@ -868,7 +878,7 @@
+     // this after the update stops the filter from blending the write
+     // back toward the stale EKF velocity on the same tick.
+     if (cfg_.broadcastMode == BroadcastMode::EventTriggered && s.broadcast_k == 1
+-        && !helloSuppressed_[j]) {
++        && !helloSuppressed_[j] && helloReaches(i, j)) {
+         ingestBroadcastVelocity(s, i, j, nodes_[j].vx, nodes_[j].vy, nodes_[j].vz);
+     }
+ }
+@@ -900,6 +910,11 @@
+                 continue;
+             }
+             NeighborEkf& s = ekf_[i][j];
++            // j's HELLO refreshes i's hold only if i demodulates it.
++            if (!helloReaches(i, j)) {
++                s.broadcast_k = 0;
++                continue;
++            }
+             s.broadcast_k = 1;
+             if (!helloSuppressed_[j]) {
+                 ingestBroadcastVelocity(s, i, j, nodes_[j].vx, nodes_[j].vy, nodes_[j].vz);
+@@ -923,7 +938,7 @@
+                 continue;
+             }
+             NeighborEkf& s = ekf_[i][j];
+-            if (!s.zohHeard) {
++            if (!s.zohHeard || !helloReaches(i, j)) {
+                 continue;
+             }
+             s.energy_j_zoh = quantizeEnergy(nodes_[j].energy);
+@@ -953,7 +968,12 @@
+     if (e > eIni) {
+         e = eIni;
+     }
+-    const double levels = static_cast<double>((1u << static_cast<unsigned>(bits)) - 1u);
++    // 2^bits - 1 in double: exact for bits <= 53. (1u << 32) is undefined
++    // behaviour and gave levels = 0, i.e. NaN, at the 32-bit design point.
++    if (bits > 53) {
++        throw std::invalid_argument("energyQuantBits must be <= 53");
++    }
++    const double levels = std::ldexp(1.0, bits) - 1.0;
+     const double code = std::round(e / eIni * levels);
+     return code * eIni / levels;
+ }
+--- a/contrib/elqtp/examples/lqarp-unit-check-common.h	2026-09-30 12:59:45.645741441 +0800
++++ b/contrib/elqtp/examples/lqarp-unit-check-common.h	2026-09-30 13:00:09.700358056 +0800
+@@ -1606,6 +1606,60 @@
+                   + " e_trigger=" + F (eSilent.ekf (0, 1).eTrigger, 2));
+     }
+ 
++    // 23e. Step 5: the energy beacon's 32-bit quantizer must be finite.
++    // (1u << 32) was undefined behaviour -> levels 0 -> NaN residual.
++    {
++      elqtp::ElqtpConfig qc = ecfg;
++      qc.energyRefreshS = 5.0;
++      qc.W = 5;
++      qc.rho = 0.6;
++      bool allOk = true;
++      std::string detail;
++      for (int bits : {8, 16, 31, 32})
++        {
++          qc.energyQuantBits = bits;
++          elqtp::ElqtpProtocol pq (slope, qc, en);
++          (void) pq.candidateSet (0); // bootstrap 0<-1
++          pq.setEnergy (1, 43.215);
++          for (int k = 0; k < 5; ++k)
++            {
++              pq.tick (1.0);
++            }
++          const double held = pq.ekf (0, 1).energy_j_zoh;
++          const double tol = ecfg.eIni / (std::ldexp (1.0, bits) - 1.0);
++          const bool ok = std::isfinite (held) && std::fabs (held - 43.215) <= tol;
++          allOk = allOk && ok;
++          detail += " bits=" + std::to_string (bits) + ":held=" + F (held, 6)
++                    + (ok ? "" : "(BAD)");
++        }
++      Report ("23e. energy beacon quantizer is finite and within one step at 8/16/31/32 bits",
++              allOk, detail);
++    }
++
++    // 23f. Step 5: a Fixed-Periodic HELLO writes i's hold for j only if i
++    // demodulates it. Node 2 is far outside the SNR gate of node 0.
++    {
++      elqtp::ElqtpConfig pc = ecfg;
++      pc.broadcastMode = elqtp::BroadcastMode::FixedPeriodic;
++      std::vector<LqarpNode> pn (3);
++      pn[0] = {0, 0.0, 0.0, 100.0, 100.0};
++      pn[1] = {1, 100.0, 0.0, 40.0, 90.0};
++      pn[2] = {2, 5000.0, 0.0, 40.0, 90.0};
++      elqtp::ElqtpProtocol gated (slope, pc, pn);
++      pc.helloRxGate = false;
++      elqtp::ElqtpProtocol flood (slope, pc, pn);
++      const double snr2 = slope.queryLink (5000.0, 0.0, 40.0, 0.0, 0.0, 100.0).snr_db;
++      const bool near = gated.zohHeard (0, 1);
++      const bool farGated = gated.zohHeard (0, 2);
++      const bool farFlood = flood.zohHeard (0, 2);
++      Report ("23f. periodic HELLO is reception-gated: in-range neighbour written, out-of-SNR node not",
++              near && !farGated && farFlood && !(snr2 > 8.68),
++              "near_heard=" + std::string (near ? "yes" : "no")
++                  + " far_heard_gated=" + std::string (farGated ? "yes" : "no")
++                  + " far_heard_ungated=" + std::string (farFlood ? "yes" : "no")
++                  + " snr(5000m)=" + F (snr2, 1));
++    }
++
+     // Bootstrap itself suppressed: the pair is never a candidate, which
+     // is not the same as 23c (bootstrap or HELLO happened, then went stale).
+     elqtp::ElqtpProtocol fresh (slope, ecfg, en);
+--- a/contrib/elqtp/examples/scenario-i-lqarp.cc	2026-09-30 12:59:45.645914428 +0800
++++ b/contrib/elqtp/examples/scenario-i-lqarp.cc	2026-09-30 12:59:45.669386313 +0800
+@@ -684,6 +684,8 @@
+   bool geoCensus = false;
+   // Opt-in: one DEC line per primary forwarding decision with every
+   // candidate's Q / R / c_ene / c_del / c_nei (read after learnFrom).
++  // Step 5: reception-gate every HELLO / beacon hold write (default on).
++  bool helloRxGate = true;
+   bool decisionTrace = false;
+   std::ostringstream decTrace;
+   double geoEveryS = 60.0;
+@@ -1383,6 +1385,7 @@
+     {
+       elqtp::ElqtpConfig ec;
+       static_cast<elqtp::LqarpConfig &> (ec) = cfg;
++      ec.helloRxGate = helloRxGate;
+       if (isScenarioII () || isScenarioIII ())
+         {
+           // Steps 60–67: validated default is beta_1=beta_2=0
+@@ -1424,6 +1427,7 @@
+     {
+       elqtp::ElqtpConfig ec;
+       static_cast<elqtp::LqarpConfig &> (ec) = cfg;
++      ec.helloRxGate = helloRxGate;
+       ec.beta_1 = std::isfinite (beta1) ? beta1 : 0.0;
+       ec.beta_2 = std::isfinite (beta2) ? beta2 : 0.0;
+       if (std::isfinite (epsilon0))
+@@ -1447,6 +1451,7 @@
+     {
+       elqtp::ElqtpConfig ec;
+       static_cast<elqtp::LqarpConfig &> (ec) = cfg;
++      ec.helloRxGate = helloRxGate;
+       // Same reward betas as E-LQTP so the ablation isolates
+       // Broadcast_k timing (T_ctrl grid vs rising-edge), not the
+       // c_pred / c_drift weights (SPEC Part 4).
+@@ -5371,6 +5376,7 @@
+                 "Steps 57/59/61/63: eddy kinematics, radial v_rel, Kalman e_k trend, then exit",
+                 pipe.diagKinematics);
+   cmd.AddValue ("rRange", "r_range (m) for all protocols; NaN = R* (SNR-gate crossing)", pipe.rRangeOverride);
++  cmd.AddValue ("helloRxGate", "Gate HELLO/beacon hold writes on reception (Step 5)", pipe.helloRxGate);
+   cmd.AddValue ("decisionTrace", "Per-decision candidate Q/reward dump (diagnostic)", pipe.decisionTrace);
+   cmd.AddValue ("geoCensus", "Hop-distance census every geoEveryS (separate run)", pipe.geoCensus);
+   cmd.AddValue ("geoEveryS", "Census period (s)", pipe.geoEveryS);

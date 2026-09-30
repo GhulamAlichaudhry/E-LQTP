@@ -1,0 +1,187 @@
+--- a/contrib/elqtp/model/channel-gate.h	2026-09-30 13:53:00.652613041 +0800
++++ b/contrib/elqtp/model/channel-gate.h	2026-09-30 13:53:00.703613644 +0800
+@@ -75,6 +75,13 @@
+     // nearPressureRelease still fail.
+     bool sampleFailsCandidateSnr(const ChannelSample& sample) const;
+ 
++    // True iff the query produced a channel value at all: it landed inside the
++    // Bellhop envelope and yielded a finite SNR. Strictly weaker than
++    // sampleFailsCandidateSnr — there is no threshold comparison here. SPEC
++    // Part 1.2 defines N_SNR as { s_j : SNR(s_i,s_j) > SNR_threshold }, which
++    // presupposes that SNR is defined; this is that precondition.
++    bool sampleHasDefinedSnr(const ChannelSample& sample) const;
++
+     // Reception condition (SPEC 1.2, binary): RECEPTION iff SNR >= th
+     // and the sample is usable; INVALID otherwise.
+     bool receptionOk(const ChannelSample& sample) const;
+--- a/contrib/elqtp/model/channel-gate.cc	2026-09-30 13:53:00.652596564 +0800
++++ b/contrib/elqtp/model/channel-gate.cc	2026-09-30 13:53:00.703951099 +0800
+@@ -89,6 +89,13 @@
+ }
+ 
+ bool
++ChannelGate::sampleHasDefinedSnr(const ChannelSample& sample) const
++{
++    return sample.valid && !sample.nearPressureRelease
++           && std::isfinite(sample.snr_db);
++}
++
++bool
+ ChannelGate::receptionOk(const ChannelSample& sample) const
+ {
+     return !sampleFailsLink(sample);
+--- a/contrib/elqtp/model/lqarp-protocol.cc	2026-09-30 13:53:00.653192785 +0800
++++ b/contrib/elqtp/model/lqarp-protocol.cc	2026-09-30 13:53:00.704290288 +0800
+@@ -189,7 +189,19 @@
+     const ChannelSample sample = gate_->queryLink(a.x, a.y, a.queryDepthM(),
+                                                   h.x_j_zoh, h.y_j_zoh,
+                                                   h.query_z_j_zoh);
+-    return !gate_->sampleFailsCandidateSnr(sample);
++    if (gate_->sampleFailsCandidateSnr(sample)) {
++        return false;
++    }
++    // Step 7: the reward path reads the LIVE sample (linkSample), so a pair
++    // whose live query has no defined SNR — it has drifted outside the Bellhop
++    // envelope since its last HELLO — is not in N_SNR under SPEC Part 1.2 and
++    // must not reach the reward as a candidate. Only channel *definedness* is
++    // tested against the live pose; the SNR_threshold comparison stays on the
++    // held sample above, which is what the staleness model is about.
++    if (!gate_->sampleHasDefinedSnr(linkSample(i, j))) {
++        return false;
++    }
++    return true;
+ }
+ 
+ bool
+--- a/contrib/elqtp/model/elqtp-protocol.cc	2026-09-30 13:53:00.652629669 +0800
++++ b/contrib/elqtp/model/elqtp-protocol.cc	2026-09-30 14:15:19.693535125 +0800
+@@ -338,7 +338,19 @@
+     const ChannelSample sample = gate_->queryLink(a.x, a.y, a.queryDepthM(),
+                                                   s.x_j_zoh, s.y_j_zoh,
+                                                   s.query_z_j_zoh);
+-    return !gate_->sampleFailsCandidateSnr(sample);
++    if (gate_->sampleFailsCandidateSnr(sample)) {
++        return false;
++    }
++    // Step 7: the reward path reads the LIVE sample (linkSample), so a pair
++    // whose live query has no defined SNR — it has drifted outside the Bellhop
++    // envelope since its last HELLO — is not in N_SNR under SPEC Part 1.2 and
++    // must not reach the reward as a candidate. Only channel *definedness* is
++    // tested against the live pose; the SNR_threshold comparison stays on the
++    // held sample above, which is what the staleness model is about.
++    if (!gate_->sampleHasDefinedSnr(linkSample(i, j))) {
++        return false;
++    }
++    return true;
+ }
+ 
+ bool
+--- a/contrib/elqtp/examples/lqarp-unit-check-common.h	2026-09-30 13:53:00.651546169 +0800
++++ b/contrib/elqtp/examples/lqarp-unit-check-common.h	2026-09-30 13:53:46.251653842 +0800
+@@ -171,6 +171,45 @@
+   double rStarM_;
+ };
+ 
++// Valid inside maxRange, out-of-envelope beyond it (valid=false, snr=NaN),
++// mimicking BellhopDataLoader past the 6 km grid edge.
++class EnvelopeGate : public elqtp::ChannelGate
++{
++public:
++  EnvelopeGate (double snr0Db, double slopeDbPerM, double rStarM, double maxRangeM)
++      : snr0Db_ (snr0Db), slopeDbPerM_ (slopeDbPerM), rStarM_ (rStarM),
++        maxRangeM_ (maxRangeM)
++  {
++    setSnrThresholdDb (elqtp::ChannelGate::kDefaultSnrThresholdDb);
++  }
++  elqtp::ChannelSample queryLink (double txX, double txY, double txZ,
++                                  double rxX, double rxY, double rxZ) const override
++  {
++    (void) txZ; (void) rxZ;
++    return atRange (horizontalRangeM (txX, txY, rxX, rxY));
++  }
++  elqtp::ChannelSample queryRangeDepth (double rangeM, double receiverZ) const override
++  {
++    (void) receiverZ; return atRange (rangeM);
++  }
++  double rangeAtSnrThreshold () const override { return rStarM_; }
++
++private:
++  elqtp::ChannelSample atRange (double rangeM) const
++  {
++    elqtp::ChannelSample s;             // default: valid=false, snr=NaN
++    if (!(rangeM > 0.0) || rangeM > maxRangeM_)
++      {
++        return s;
++      }
++    s.snr_db = snr0Db_ - slopeDbPerM_ * rangeM;
++    s.tl_db = 0.0;
++    s.valid = true;
++    return s;
++  }
++  double snr0Db_, slopeDbPerM_, rStarM_, maxRangeM_;
++};
++
+ bool
+ Contains (const std::vector<uint32_t> &I, uint32_t id)
+ {
+@@ -1660,6 +1699,60 @@
+                   + " snr(5000m)=" + F (snr2, 1));
+     }
+ 
++    // 23g. Step 7: a pair admitted on its held pose but whose LIVE sample is
++    // outside the Bellhop envelope must leave the candidate set, because the
++    // reward reads that live sample and c_lin is non-finite there (which the
++    // reward turns into R = +inf, the most attractive score available).
++    {
++      EnvelopeGate env (50.0, 0.04, 400.0, 6000.0);
++      LqarpConfig ec2;
++      ec2.rRangeM = 400.0;
++      ec2.eIni = 100.0;
++      std::vector<LqarpNode> n2 (2);
++      n2[0] = {0, 0.0, 0.0, 100.0, 100.0};
++      n2[1] = {1, 100.0, 0.0, 40.0, 90.0};
++
++      // The live sample out there really is non-finite in c_lin: that is the
++      // pathology the guard removes, asserted rather than assumed.
++      const elqtp::ChannelSample far = env.queryLink (0.0, 0.0, 100.0, 9000.0, 0.0, 40.0);
++      const double cLinFar = elqtp::cLin (far.snr_db, 400, 2);
++      const bool pathology = !far.valid && !std::isfinite (cLinFar);
++
++      LqarpProtocol lq (env, ec2, n2);
++      const bool lqIn = Contains (lq.candidateSet (0), 1);   // bootstrap at x=100
++      lq.setKinematics (1, 9000.0, 0.0, 40.0, 0.0, 0.0, 0.0);
++      const bool lqHeldStillPasses = lq.inNRange (0, 1);     // held pose unchanged
++      const bool lqOut = !Contains (lq.candidateSet (0), 1);
++      lq.learnFrom (0);
++      const bool lqQFinite = std::isfinite (lq.qValue (0, 1));
++
++      elqtp::ElqtpConfig ec3;
++      static_cast<LqarpConfig &> (ec3) = ec2;
++      ec3.beta_1 = 0.0;
++      ec3.beta_2 = 0.0;
++      elqtp::ElqtpProtocol el (env, ec3, n2);
++      const bool elIn = Contains (el.candidateSet (0), 1);
++      el.setKinematics (1, 9000.0, 0.0, 40.0, 0.0, 0.0, 0.0);
++      const bool elHeldStillPasses = el.inNRange (0, 1);
++      const bool elOut = !Contains (el.candidateSet (0), 1);
++      el.learnFrom (0);
++      const bool elQFinite = std::isfinite (el.qValue (0, 1));
++
++      Report ("23g. live out-of-envelope pair leaves the candidate set (LQARP and E-LQTP); Q stays finite",
++              pathology && lqIn && lqHeldStillPasses && lqOut && lqQFinite
++                  && elIn && elHeldStillPasses && elOut && elQFinite,
++              "live_sample_valid=" + std::string (far.valid ? "yes" : "no")
++                  + " c_lin(live)=" + F (cLinFar, 3)
++                  + " | LQARP in_set_before=" + std::string (lqIn ? "yes" : "no")
++                  + " held_still_in_range=" + std::string (lqHeldStillPasses ? "yes" : "no")
++                  + " dropped_after=" + std::string (lqOut ? "yes" : "no")
++                  + " Q_finite=" + std::string (lqQFinite ? "yes" : "no")
++                  + " | E-LQTP in_set_before=" + std::string (elIn ? "yes" : "no")
++                  + " held_still_in_range=" + std::string (elHeldStillPasses ? "yes" : "no")
++                  + " dropped_after=" + std::string (elOut ? "yes" : "no")
++                  + " Q_finite=" + std::string (elQFinite ? "yes" : "no"));
++    }
++
+     // Bootstrap itself suppressed: the pair is never a candidate, which
+     // is not the same as 23c (bootstrap or HELLO happened, then went stale).
+     elqtp::ElqtpProtocol fresh (slope, ecfg, en);

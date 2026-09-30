@@ -1,0 +1,65 @@
+====================================================================================================
+1. NON-FINITE Q IN DECISION TRACES  (decisions with a non-finite-Q candidate / of those, chosen)
+====================================================================================================
+sc  variant                         decisions (S6->S7)    Step 6 inf    Step 7 inf  S7 inf chosen
+iii elqtp                               16883 -> 16653           251             0              0
+iii elqtp-energy                        10379 -> 10139           245             0              0
+iii elqtp-energy-trigoff                10212 -> 10005           277             0              0
+iii lqarp                               15988 -> 15789           220             0              0
+iii periodic                            10767 -> 10575           303             0              0
+
+Step 6 total decisions with a non-finite-Q candidate: 1296
+Step 7 total decisions with a non-finite-Q candidate: 0
+Step 7 across ALL scenarios and variants: ZERO non-finite Q
+
+====================================================================================================
+2. SCENARIO I / II UNTOUCHED, SCENARIO III CHANGED  (per-row, all numeric fields)
+====================================================================================================
+  campaign         scenario i    rows=  25  IDENTICAL
+  campaign         scenario ii   rows= 125  IDENTICAL
+  campaign         scenario iii  rows=  25  8/25 rows changed
+  tctrl_sweep      scenario i    rows=  25  IDENTICAL
+  tctrl_sweep      scenario ii   rows= 125  IDENTICAL
+  tctrl_sweep      scenario iii  rows=  25  10/25 rows changed
+  trigger_off      scenario i    rows=   5  IDENTICAL
+  trigger_off      scenario ii   rows=  25  IDENTICAL
+  trigger_off      scenario iii  rows=   5  2/5 rows changed
+  decision_trace   scenario i    rows=  30  IDENTICAL
+  decision_trace   scenario ii   rows= 150  IDENTICAL
+  decision_trace   scenario iii  rows=  30  9/30 rows changed
+
+====================================================================================================
+3. SCENARIO III HEADLINE, STEP 6 -> STEP 7
+====================================================================================================
+variant                                        PDR                hops             T_e2e          O_ctrl   O_ene         O_total
+lqarp                               0.9917->0.9941          4.69->4.63        6.58->6.49        0.0->0.0    0.00        0.0->0.0
+elqtp                               0.9903->0.9927          5.00->4.93        7.07->6.97      63.6->63.7    0.00      63.6->63.7
+elqtp-energy                        0.9918->0.9986          3.06->3.00        4.51->4.42    188.1->188.3   26.65    214.7->215.0
+elqtp-energy-trigoff                0.9912->0.9978          3.02->2.97        4.43->4.37      59.8->59.8   26.65      86.4->86.4
+periodic                            0.9901->0.9969          3.16->3.11        4.66->4.60    413.4->413.4    0.00    413.4->413.4
+rlor                                0.9966->0.9966          1.56->1.56        2.29->2.29        0.0->0.0    0.00        0.0->0.0
+periodic-T5                         0.9901->0.9969          3.16->3.11        4.66->4.60    413.4->413.4    0.00    413.4->413.4
+periodic-T10                        0.9897->0.9978          3.37->3.30        4.97->4.86    208.4->208.4    0.00    208.4->208.4
+periodic-T20                        0.9899->0.9980          3.56->3.50        5.23->5.14    106.0->106.0    0.00    106.0->106.0
+periodic-T40                        0.9922->0.9960          3.58->3.54        5.26->5.21      54.7->54.7    0.00      54.7->54.7
+periodic-T60                        0.9961->0.9989          4.03->3.92        5.86->5.68      37.6->37.6    0.00      37.6->37.6
+
+Scenario III, Step 7 values with dispersion (five seeds, mean +/- sample s.d.):
+  lqarp                      PDR 0.9941 +/- 0.0117 | hops 4.63 +/- 1.68 | T_e2e 6.49 | O_ctrl 0.0 | O_ene 0.00 | O_total 0.0
+  elqtp                      PDR 0.9927 +/- 0.0149 | hops 4.93 +/- 2.10 | T_e2e 6.97 | O_ctrl 63.7 | O_ene 0.00 | O_total 63.7
+  elqtp-energy               PDR 0.9986 +/- 0.0014 | hops 3.00 +/- 0.36 | T_e2e 4.42 | O_ctrl 188.3 | O_ene 26.65 | O_total 215.0
+  elqtp-energy-trigoff       PDR 0.9978 +/- 0.0029 | hops 2.97 +/- 0.32 | T_e2e 4.37 | O_ctrl 59.8 | O_ene 26.65 | O_total 86.4
+  periodic                   PDR 0.9969 +/- 0.0054 | hops 3.11 +/- 0.30 | T_e2e 4.60 | O_ctrl 413.4 | O_ene 0.00 | O_total 413.4
+  rlor                       PDR 0.9966 +/- 0.0068 | hops 1.56 +/- 0.16 | T_e2e 2.29 | O_ctrl 0.0 | O_ene 0.00 | O_total 0.0
+
+====================================================================================================
+4. SCENARIO III VERDICT CHECKS ON CORRECTED DATA
+====================================================================================================
+  trigger on  vs off : PDR 0.9986 vs 0.9978 (s.d. 0.0014 / 0.0029) | hops 3.00 vs 2.97 | T_e2e 4.42 vs 4.37
+  trigger share of O_total: 60%  (215.0 -> 86.4 B/s)
+  Fixed-Periodic T= 5s : PDR 0.9969 +/- 0.0054 | hops 3.11 | O_total 413.4 B/s
+  Fixed-Periodic T=10s : PDR 0.9978 +/- 0.0028 | hops 3.30 | O_total 208.4 B/s
+  Fixed-Periodic T=20s : PDR 0.9980 +/- 0.0029 | hops 3.50 | O_total 106.0 B/s
+  Fixed-Periodic T=40s : PDR 0.9960 +/- 0.0074 | hops 3.54 | O_total 54.7 B/s
+  Fixed-Periodic T=60s : PDR 0.9989 +/- 0.0018 | hops 3.92 | O_total 37.6 B/s
+  E-LQTP+energy O_total 215.0 B/s; Periodic break-even T_ctrl = 9.4 s; cheaper than E-LQTP+energy at every T >= 20 s: True

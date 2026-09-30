@@ -1,0 +1,31 @@
+--- a/contrib/elqtp/examples/scenario-i-lqarp.cc	2026-09-30 12:12:07.771618949 +0800
++++ b/contrib/elqtp/examples/scenario-i-lqarp.cc	2026-09-30 12:12:07.794508452 +0800
+@@ -665,6 +665,8 @@
+   double beta1 = std::numeric_limits<double>::quiet_NaN ();
+   double beta2 = std::numeric_limits<double>::quiet_NaN ();
+   double epsilon0 = std::numeric_limits<double>::quiet_NaN ();
++  // Fixed-Periodic control period override (s). NaN keeps ElqtpConfig::T_ctrl (5 s).
++  double tCtrl = std::numeric_limits<double>::quiet_NaN ();
+   // Energy beacon: residual quantized to this many bits, plus an 8-bit sender id.
+   int energyQuantBits = 8;
+   int energyAddrBits = 8;
+@@ -1435,6 +1437,11 @@
+           ec.epsilon_0 = epsilon0;
+         }
+       ec.broadcastMode = elqtp::BroadcastMode::FixedPeriodic;
++      if (std::isfinite (tCtrl))
++        {
++          NS_ABORT_MSG_IF (!(tCtrl > 0.0), "--tCtrl must be > 0");
++          ec.T_ctrl = tCtrl;
++        }
+       proto = std::make_unique<ElqtpFwd> (*gate, ec, ln, "periodic", true);
+       std::cout << "Fixed-Periodic: beta_1=" << ec.beta_1 << " beta_2=" << ec.beta_2
+                 << " epsilon_0=" << ec.epsilon_0 << " T_ctrl=" << ec.T_ctrl
+@@ -5228,6 +5235,7 @@
+   cmd.AddValue ("diagKinematics",
+                 "Steps 57/59/61/63: eddy kinematics, radial v_rel, Kalman e_k trend, then exit",
+                 pipe.diagKinematics);
++  cmd.AddValue ("tCtrl", "Fixed-Periodic control period T_ctrl (s); NaN = default 5 s", pipe.tCtrl);
+   cmd.AddValue ("out", "Report path", pipe.outPath);
+   cmd.Parse (argc, argv);
+ 

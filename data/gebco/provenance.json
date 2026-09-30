@@ -1,0 +1,125 @@
+{
+  "product": "GEBCO_2026 15 arc-second ice-surface elevation grid",
+  "citation": "GEBCO Bathymetric Compilation Group 2026 (2026). The GEBCO_2026 Grid - a continuous terrain model for oceans and land at 15 arc-second intervals. NERC EDS British Oceanographic Data Centre NOC. doi:10.5285/4f68d5c7-45eb-f999-e063-7086abc036fa",
+  "doi": "https://doi.org/10.5285/4f68d5c7-45eb-f999-e063-7086abc036fa",
+  "portal": "https://www.gebco.net/data_and_products/gridded_bathymetry_data/",
+  "opendap": "https://dap.ceda.ac.uk/thredds/dodsC/bodc/gebco/global/gebco_2026/ice_surface_elevation/netcdf/GEBCO_2026.nc",
+  "sign_convention": {
+    "gebco_native": "elevation, metres, positive up, relative to mean sea level (ocean negative)",
+    "csv_bottom_depth_m": "positive down, equal to -elevation"
+  },
+  "subset": {
+    "lat": [
+      17.5,
+      22.5
+    ],
+    "lon": [
+      121.5,
+      126.5
+    ]
+  },
+  "origin": {
+    "lat": 20.125,
+    "lon": 124.125,
+    "note": "WOA23 primary grid cell"
+  },
+  "main_transect": {
+    "azimuth_deg_true": 90.0,
+    "azimuth_name": "east",
+    "range_m": 2000.0,
+    "sample_step_m": 50.0,
+    "interpolation": "bilinear on GEBCO 15-arc-second cell centres"
+  },
+  "origin_gebco_elevation_m": -5524.249999999983,
+  "origin_bottom_depth_m": 5524.249999999983,
+  "transect_2km_stats_by_azimuth": {
+    "0": {
+      "n": 41,
+      "min_m": 5510.4702250466225,
+      "max_m": 5524.249999999983,
+      "mean_m": 5521.403925204443,
+      "ptp_m": 13.779774953360175,
+      "origin_m": 5524.249999999983,
+      "end_m": 5510.4702250466225
+    },
+    "90": {
+      "n": 41,
+      "min_m": 5522.999999999999,
+      "max_m": 5525.545240137244,
+      "mean_m": 5523.852777371053,
+      "ptp_m": 2.545240137244946,
+      "origin_m": 5524.249999999983,
+      "end_m": 5525.545240137244
+    },
+    "180": {
+      "n": 41,
+      "min_m": 5524.249999999983,
+      "max_m": 5527.91790728972,
+      "mean_m": 5525.91560040847,
+      "ptp_m": 3.6679072897368314,
+      "origin_m": 5524.249999999983,
+      "end_m": 5527.91790728972
+    },
+    "270": {
+      "n": 41,
+      "min_m": 5524.249999999983,
+      "max_m": 5527.462853773553,
+      "mean_m": 5526.089797175043,
+      "ptp_m": 3.212853773570714,
+      "origin_m": 5524.249999999983,
+      "end_m": 5526.6357204117285
+    }
+  },
+  "transect_10km_stats_by_azimuth_context_only": {
+    "0": {
+      "n": 51,
+      "min_m": 5342.45792553369,
+      "max_m": 5611.589536448622,
+      "mean_m": 5494.98471583096,
+      "ptp_m": 269.131610914932,
+      "origin_m": 5524.249999999983,
+      "end_m": 5611.589536448622
+    },
+    "90": {
+      "n": 51,
+      "min_m": 5191.003001722468,
+      "max_m": 5527.019939965025,
+      "mean_m": 5437.177759140322,
+      "ptp_m": 336.01693824255653,
+      "origin_m": 5524.249999999983,
+      "end_m": 5495.036234997182
+    },
+    "180": {
+      "n": 51,
+      "min_m": 5524.249999999983,
+      "max_m": 5529.964143102868,
+      "mean_m": 5527.5094081817915,
+      "ptp_m": 5.714143102884918,
+      "origin_m": 5524.249999999983,
+      "end_m": 5527.410463551394
+    },
+    "270": {
+      "n": 51,
+      "min_m": 5516.038593482228,
+      "max_m": 5529.500000000001,
+      "mean_m": 5526.638835637202,
+      "ptp_m": 13.461406517772957,
+      "origin_m": 5524.249999999983,
+      "end_m": 5529.0475986275615
+    }
+  },
+  "box_stats": {
+    "n_cells": 1442401,
+    "n_ocean_cells": 1404640,
+    "n_land_or_zero_cells": 37761,
+    "ocean_depth_min_m": 1.0,
+    "ocean_depth_max_m": 6573.0,
+    "note": "Full 5x5 deg box includes Luzon/Taiwan shelves and the Philippine Sea basin. That variation is NOT present on the 2 km primary transect."
+  },
+  "ns3_500m_verdict": {
+    "flat_500_m_matches_seafloor": false,
+    "reason": "At the primary cell GEBCO bottom depth is 5524 m. Over the requested 2000 m NEWS transects the seafloor stays near that value (peak-to-peak of a few metres to tens of metres, not a shelf or seamount). A 500 m ns-3 lid is therefore a truncated mid-water slab about 5 km above the real bottom, not a representation of GEBCO bathymetry. Locally the 2 km patch is almost flat, but the depth number 500 m is not."
+  },
+  "built_utc": "2026-09-21T04:08:37Z",
+  "subset_nc": "data/gebco/raw/gebco_2026_wp_17p5-22p5N_121p5-126p5E.nc"
+}

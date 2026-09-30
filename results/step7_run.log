@@ -1,0 +1,13 @@
+binary=/home/claude/repo/ghulam-ali-aquans3-c338cae/opt/ns-allinone-3.41/ns-3.41/build/contrib/elqtp/ns3.41-scenario-i-lqarp-optimized
+jobs=595
+[100/595] failures=0
+[200/595] failures=0
+[300/595] failures=0
+[400/595] failures=0
+[500/595] failures=0
+campaign: 175 rows
+tctrl_sweep: 175 rows
+trigger_off: 35 rows
+decision_trace: 210 rows
+decision_trace SWEEP mismatches: 1
+total ok=595 failures=0

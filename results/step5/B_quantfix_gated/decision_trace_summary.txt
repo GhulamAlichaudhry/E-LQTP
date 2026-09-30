@@ -1,0 +1,36 @@
+== all_periodic.txt: decisions=10743 sink_in_set=7319 sink_chosen=3590 (49.1%)
+   passed over: relay Q > sink Q: 3729
+   chosen: sink Q strictly highest: 2883
+   sink only candidate: 535
+   chosen: Q tie -> lowest id: 172
+   sink Q class: {'0': 477, '>0': 6842}
+   relay Q class: {'0': 1464, '<0': 37642, '>0': 19324}
+   relay c_ene sign: {'0': 1464, '<0': 38816, '>0': 18150}  relay R sign: {'0': 1464, '<0': 38816, '>0': 18150}
+   c_nei sink mean=1  relay median=148 max=1.96e+11
+== all_trigoff.txt: decisions=10285 sink_in_set=7042 sink_chosen=3578 (50.8%)
+   passed over: relay Q > sink Q: 3464
+   chosen: sink Q strictly highest: 2823
+   sink only candidate: 583
+   chosen: Q tie -> lowest id: 172
+   sink Q class: {'0': 448, '>0': 6594}
+   relay Q class: {'0': 1464, '<0': 33195, '>0': 16646}
+   relay c_ene sign: {'0': 1464, '<0': 34570, '>0': 15271}  relay R sign: {'0': 1464, '<0': 34570, '>0': 15271}
+   c_nei sink mean=1  relay median=148 max=1.96e+11
+== all_lqarp.txt: decisions=16660 sink_in_set=13934 sink_chosen=3526 (25.3%)
+   passed over: relay Q > sink Q: 10408
+   chosen: Q tie -> lowest id: 2238
+   sink only candidate: 1182
+   chosen: sink Q strictly highest: 106
+   sink Q class: {'0': 8793, '<0': 2898, '>0': 2243}
+   relay Q class: {'0': 30411, '>0': 43312, '<0': 59}
+   relay c_ene sign: {'0': 50748, '>0': 23034}  relay R sign: {'0': 50748, '>0': 23034}
+   c_nei sink mean=1  relay median=54.6 max=1.96e+11
+== all_periodic.txt
+   passed-over n=3729: relay beats sink on c_nei 100.0%, on c_ene 0.0%, on c_del 0.0%
+   median ratio relay/sink: c_nei 8.1e+03, c_ene 0.164, c_del 0.194
+== all_trigoff.txt
+   passed-over n=3464: relay beats sink on c_nei 100.0%, on c_ene 0.0%, on c_del 0.0%
+   median ratio relay/sink: c_nei 2.98e+03, c_ene 0.146, c_del 0.194
+== all_lqarp.txt
+   passed-over n=10408: relay beats sink on c_nei 93.3%, on c_ene 27.2%, on c_del 0.0%
+   median ratio relay/sink: c_nei 148, c_ene 1, c_del 0.253

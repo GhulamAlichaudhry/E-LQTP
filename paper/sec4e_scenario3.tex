@@ -1,0 +1,33 @@
+\subsection{Scenario III: Rankine Eddy}
+\label{sec:eval:s3}
+\input{elqtp_fig5}
+Table~\ref{tab:s3_protocols} and Fig.~\ref{fig:scenario3_protocols}
+repeat the four-protocol comparison under the eddy.
+E-LQTP again matches LQARP (PDR $0.9989\pm 0.0018$, hops
+$2.050/2.046=1.002\times$, delay $4.167\,\mathrm{s}$ versus
+$4.146\,\mathrm{s}$, energy $1.101\times 10^{-2}$ versus
+$1.099\times 10^{-2}\,\mathrm{J/bit}$, node-exit packet losses
+$0.80\pm 1.30$ for both, VOID $=0$) at
+$211\pm 34\,\mathrm{byte/s}$ versus
+$413.42\,\mathrm{byte/s}$ ($0.51\times$).
+First-fire is $0.708\pm 0.059$; mean exits are $6.40\pm 1.14$ of
+$40$, identical across protocols.
+The leftover $0.2\%$ hop difference is $N_{\mathrm{stab}}$ with the
+trigger on.
+A separate five-seed run with $\beta_1=\beta_2=1$ together, outside
+the one-at-a-time sweep of Table~\ref{tab:beta_sweep}, produced
+$3.250\pm 0.141$ hops against LQARP's $2.046\pm 0.187$
+($1.59\times$).
+That increase is the scale-mismatched $c_{\mathrm{pred}}$ at an
+$O(1)$ weight.
+The point is reported only as a diagnostic.
+
+\input{elqtp_table_s3_protocols}
+
+The pair-level trace of Fig.~\ref{fig:trigger_trace} is
+Scenario~III pair $(1,2)$.
+The three rising edges at $348$, $483$, and $512\,\mathrm{s}$ are
+that pair's HELLOs, not the network-wide count.
+The network-wide count is $O_{\mathrm{ctrl}}$: the forecast track
+is allowed to drift, and a HELLO is charged only on a rising edge
+\cite{li2026dse,priel2023consensus}.

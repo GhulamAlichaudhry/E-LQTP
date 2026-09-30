@@ -1,0 +1,919 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="515.52pt" height="216pt" viewBox="0 0 515.52 216" xmlns="http://www.w3.org/2000/svg" version="1.1">
+ <metadata>
+  <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+   <cc:Work>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+    <dc:date>2026-09-28T04:46:46.346485</dc:date>
+    <dc:format>image/svg+xml</dc:format>
+    <dc:creator>
+     <cc:Agent>
+      <dc:title>Matplotlib v3.11.2, https://matplotlib.org/</dc:title>
+     </cc:Agent>
+    </dc:creator>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <defs>
+  <style type="text/css">*{stroke-linejoin: round; stroke-linecap: butt}</style>
+ </defs>
+ <g id="figure_1">
+  <g id="patch_1">
+   <path d="M 0 216 
+L 515.52 216 
+L 515.52 0 
+L 0 0 
+z
+" style="fill: #ffffff"/>
+  </g>
+  <g id="axes_1">
+   <g id="text_1">
+    <text style="font-size: 11px; font-family: 'TeX Gyre Termes', 'Liberation Serif', 'Times New Roman', serif; text-anchor: start; fill: #1a1a1a" x="4.32" y="24.485" transform="rotate(-0 4.32 24.485)">(a)</text>
+   </g>
+   <g id="patch_2">
+    <path d="M 22.896 30.24 
+L 125.424 30.24 
+Q 128.16 30.24 128.16 27.504 
+L 128.16 14.976 
+Q 128.16 12.24 125.424 12.24 
+L 22.896 12.24 
+Q 20.16 12.24 20.16 14.976 
+L 20.16 27.504 
+Q 20.16 30.24 22.896 30.24 
+z
+" style="fill: #0f4c81; stroke: #0f4c81; stroke-width: 0.9; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_3">
+    <path d="M 149.616 30.24 
+L 252.144 30.24 
+Q 254.88 30.24 254.88 27.504 
+L 254.88 14.976 
+Q 254.88 12.24 252.144 12.24 
+L 149.616 12.24 
+Q 146.88 12.24 146.88 14.976 
+L 146.88 27.504 
+Q 146.88 30.24 149.616 30.24 
+z
+" style="fill: #009e73; stroke: #009e73; stroke-width: 0.9; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_4">
+    <path d="M 276.336 30.24 
+L 378.864 30.24 
+Q 381.6 30.24 381.6 27.504 
+L 381.6 14.976 
+Q 381.6 12.24 378.864 12.24 
+L 276.336 12.24 
+Q 273.6 12.24 273.6 14.976 
+L 273.6 27.504 
+Q 273.6 30.24 276.336 30.24 
+z
+" style="fill: #d55e00; stroke: #d55e00; stroke-width: 0.9; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_5">
+    <path d="M 403.056 30.24 
+L 505.584 30.24 
+Q 508.32 30.24 508.32 27.504 
+L 508.32 14.976 
+Q 508.32 12.24 505.584 12.24 
+L 403.056 12.24 
+Q 400.32 12.24 400.32 14.976 
+L 400.32 27.504 
+Q 400.32 30.24 403.056 30.24 
+z
+" style="fill: #d55e00; stroke: #d55e00; stroke-width: 0.9; stroke-linejoin: miter"/>
+   </g>
+   <g id="text_2">
+    <text style="font-size: 11px; font-family: 'TeX Gyre Termes', 'Liberation Serif', 'Times New Roman', serif; text-anchor: start; fill: #1a1a1a" x="4.32" y="154.085" transform="rotate(-0 4.32 154.085)">(b)</text>
+   </g>
+   <g id="patch_6">
+    <path d="M 22.896 159.84 
+L 505.584 159.84 
+Q 508.32 159.84 508.32 157.104 
+L 508.32 144.576 
+Q 508.32 141.84 505.584 141.84 
+L 22.896 141.84 
+Q 20.16 141.84 20.16 144.576 
+L 20.16 157.104 
+Q 20.16 159.84 22.896 159.84 
+z
+" style="fill: #7f7f7f; stroke: #7f7f7f; stroke-width: 0.9; stroke-linejoin: miter"/>
+   </g>
+   <g id="text_3">
+    <text style="font-size: 10px; font-family: 'TeX Gyre Termes', 'Liberation Serif', 'Times New Roman', serif; text-anchor: middle; fill: #ffffff" x="74.16" y="24.19" transform="rotate(-0 74.16 24.19)">SENSE</text>
+   </g>
+   <g id="text_4">
+    <text style="font-size: 10px; font-family: 'TeX Gyre Termes', 'Liberation Serif', 'Times New Roman', serif; text-anchor: middle; fill: #ffffff" x="200.88" y="24.19" transform="rotate(-0 200.88 24.19)">ESTIMATE</text>
+   </g>
+   <g id="text_5">
+    <text style="font-size: 10px; font-family: 'TeX Gyre Termes', 'Liberation Serif', 'Times New Roman', serif; text-anchor: middle; fill: #ffffff" x="327.6" y="24.19" transform="rotate(-0 327.6 24.19)">TRIGGER</text>
+   </g>
+   <g id="text_6">
+    <text style="font-size: 10px; font-family: 'TeX Gyre Termes', 'Liberation Serif', 'Times New Roman', serif; text-anchor: middle; fill: #ffffff" x="454.32" y="24.19" transform="rotate(-0 454.32 24.19)">CONTROL</text>
+   </g>
+   <g id="text_7">
+    <text style="font-size: 10px; font-family: 'TeX Gyre Termes', 'Liberation Serif', 'Times New Roman', serif; text-anchor: middle; fill: #ffffff" x="264.24" y="153.785313" transform="rotate(-0 264.24 153.785313)">FORWARD  —  inherited LQARP Q-learning</text>
+   </g>
+   <g id="patch_7">
+    <path d="M 22.896 82.08 
+L 125.424 82.08 
+Q 128.16 82.08 128.16 79.344 
+L 128.16 38.736 
+Q 128.16 36 125.424 36 
+L 22.896 36 
+Q 20.16 36 20.16 38.736 
+L 20.16 79.344 
+Q 20.16 82.08 22.896 82.08 
+z
+" style="fill: #ffffff; stroke: #0f4c81; stroke-width: 0.85; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_8">
+    <path d="M 22.896 135.36 
+L 125.424 135.36 
+Q 128.16 135.36 128.16 132.624 
+L 128.16 92.016 
+Q 128.16 89.28 125.424 89.28 
+L 22.896 89.28 
+Q 20.16 89.28 20.16 92.016 
+L 20.16 132.624 
+Q 20.16 135.36 22.896 135.36 
+z
+" style="fill: #ffffff; stroke: #0f4c81; stroke-width: 0.85; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_9">
+    <path d="M 149.616 82.08 
+L 252.144 82.08 
+Q 254.88 82.08 254.88 79.344 
+L 254.88 38.736 
+Q 254.88 36 252.144 36 
+L 149.616 36 
+Q 146.88 36 146.88 38.736 
+L 146.88 79.344 
+Q 146.88 82.08 149.616 82.08 
+z
+" style="fill: #ffffff; stroke: #009e73; stroke-width: 0.85; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_10">
+    <path d="M 149.616 135.36 
+L 252.144 135.36 
+Q 254.88 135.36 254.88 132.624 
+L 254.88 92.016 
+Q 254.88 89.28 252.144 89.28 
+L 149.616 89.28 
+Q 146.88 89.28 146.88 92.016 
+L 146.88 132.624 
+Q 146.88 135.36 149.616 135.36 
+z
+" style="fill: #ffffff; stroke-dasharray: 2.55,1.87; stroke-dashoffset: 0; stroke: #009e73; stroke-width: 0.85; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_11">
+    <path d="M 276.336 66 
+L 378.864 66 
+Q 381.6 66 381.6 63.264 
+L 381.6 38.736 
+Q 381.6 36 378.864 36 
+L 276.336 36 
+Q 273.6 36 273.6 38.736 
+L 273.6 63.264 
+Q 273.6 66 276.336 66 
+z
+" style="fill: #ffffff; stroke: #d55e00; stroke-width: 0.85; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_12">
+    <path d="M 276.336 100.68 
+L 378.864 100.68 
+Q 381.6 100.68 381.6 97.944 
+L 381.6 73.416 
+Q 381.6 70.68 378.864 70.68 
+L 276.336 70.68 
+Q 273.6 70.68 273.6 73.416 
+L 273.6 97.944 
+Q 273.6 100.68 276.336 100.68 
+z
+" style="fill: #ffffff; stroke: #d55e00; stroke-width: 0.85; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_13">
+    <path d="M 276.336 135.36 
+L 378.864 135.36 
+Q 381.6 135.36 381.6 132.624 
+L 381.6 108.096 
+Q 381.6 105.36 378.864 105.36 
+L 276.336 105.36 
+Q 273.6 105.36 273.6 108.096 
+L 273.6 132.624 
+Q 273.6 135.36 276.336 135.36 
+z
+" style="fill: #ffffff; stroke: #d55e00; stroke-width: 0.85; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_14">
+    <path d="M 454.32 37.44 
+L 488.88 50.4 
+L 454.32 63.36 
+L 419.76 50.4 
+z
+" style="fill: #ffffff; stroke: #d55e00; stroke-width: 0.9; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_15">
+    <path d="M 403.056 98.46 
+L 505.584 98.46 
+Q 508.32 98.46 508.32 95.724 
+L 508.32 68.976 
+Q 508.32 66.24 505.584 66.24 
+L 403.056 66.24 
+Q 400.32 66.24 400.32 68.976 
+L 400.32 95.724 
+Q 400.32 98.46 403.056 98.46 
+z
+" style="fill: #ffffff; stroke: #d55e00; stroke-width: 0.85; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_16">
+    <path d="M 403.056 135.36 
+L 505.584 135.36 
+Q 508.32 135.36 508.32 132.624 
+L 508.32 105.876 
+Q 508.32 103.14 505.584 103.14 
+L 403.056 103.14 
+Q 400.32 103.14 400.32 105.876 
+L 400.32 132.624 
+Q 400.32 135.36 403.056 135.36 
+z
+" style="fill: #ffffff; stroke: #d55e00; stroke-width: 0.85; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_17">
+    <path d="M 22.896 197.28 
+L 129.744 197.28 
+Q 132.48 197.28 132.48 194.544 
+L 132.48 166.896 
+Q 132.48 164.16 129.744 164.16 
+L 22.896 164.16 
+Q 20.16 164.16 20.16 166.896 
+L 20.16 194.544 
+Q 20.16 197.28 22.896 197.28 
+z
+" style="fill: #ffffff; stroke: #7f7f7f; stroke-width: 0.85; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_18">
+    <path d="M 148.176 197.28 
+L 255.024 197.28 
+Q 257.76 197.28 257.76 194.544 
+L 257.76 166.896 
+Q 257.76 164.16 255.024 164.16 
+L 148.176 164.16 
+Q 145.44 164.16 145.44 166.896 
+L 145.44 194.544 
+Q 145.44 197.28 148.176 197.28 
+z
+" style="fill: #ffffff; stroke: #7f7f7f; stroke-width: 0.85; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_19">
+    <path d="M 273.456 197.28 
+L 380.304 197.28 
+Q 383.04 197.28 383.04 194.544 
+L 383.04 166.896 
+Q 383.04 164.16 380.304 164.16 
+L 273.456 164.16 
+Q 270.72 164.16 270.72 166.896 
+L 270.72 194.544 
+Q 270.72 197.28 273.456 197.28 
+z
+" style="fill: #ffffff; stroke: #7f7f7f; stroke-width: 0.85; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_20">
+    <path d="M 398.736 197.28 
+L 505.584 197.28 
+Q 508.32 197.28 508.32 194.544 
+L 508.32 166.896 
+Q 508.32 164.16 505.584 164.16 
+L 398.736 164.16 
+Q 396 164.16 396 166.896 
+L 396 194.544 
+Q 396 197.28 398.736 197.28 
+z
+" style="fill: #ffffff; stroke: #7f7f7f; stroke-width: 0.85; stroke-linejoin: miter"/>
+   </g>
+   <g id="text_8">
+    <text style="font-size: 9.5px; font-family: 'TeX Gyre Termes', 'Liberation Serif', 'Times New Roman', serif; text-anchor: middle; fill: #0f4c81" x="74.16" y="56.2625" transform="rotate(-0 74.16 56.2625)">Poses</text>
+   </g>
+   <g id="text_9">
+    <!-- $(p_i,\dot{p}_i)$; ZOH $\dot{p}_j$ -->
+    <g style="fill: #1a1a1a" transform="translate(45.28 65.96425)">
+     <text>
+      <tspan x="0" y="-0.46875" style="font-size: 9.5px; font-family: 'TeX Gyre Termes'; fill: #1a1a1a">(</tspan>
+      <tspan x="3.163513" y="-0.46875" style="font-size: 9.5px; font-family: 'TeX Gyre Termes'; fill: #1a1a1a">p</tspan>
+      <tspan x="9.976295" y="-0.46875" style="font-size: 9.5px; font-family: 'TeX Gyre Termes'; fill: #1a1a1a">,</tspan>
+      <tspan x="13.8295" y="-0.46875" style="font-size: 9.5px; font-family: 'TeX Gyre Termes'; fill: #1a1a1a">p</tspan>
+      <tspan x="18.610754" y="-0.90625" style="font-size: 9.5px; font-family: 'TeX Gyre Termes'; fill: #1a1a1a">̇</tspan>
+      <tspan x="20.717204" y="-0.46875" style="font-size: 9.5px; font-family: 'TeX Gyre Termes'; fill: #1a1a1a">)</tspan>
+      <tspan x="23.880717" y="-0.46875" style="font-size: 9.5px; font-family: 'TeX Gyre Termes'; fill: #1a1a1a">;</tspan>
+      <tspan x="26.521724" y="-0.46875" style="font-size: 9.5px; font-family: 'TeX Gyre Termes'; fill: #1a1a1a"> </tspan>
+      <tspan x="28.896724" y="-0.46875" style="font-size: 9.5px; font-family: 'TeX Gyre Termes'; fill: #1a1a1a">Z</tspan>
+      <tspan x="34.701243" y="-0.46875" style="font-size: 9.5px; font-family: 'TeX Gyre Termes'; fill: #1a1a1a">O</tspan>
+      <tspan x="41.560267" y="-0.46875" style="font-size: 9.5px; font-family: 'TeX Gyre Termes'; fill: #1a1a1a">H</tspan>
+      <tspan x="48.419291" y="-0.46875" style="font-size: 9.5px; font-family: 'TeX Gyre Termes'; fill: #1a1a1a"> </tspan>
+      <tspan x="50.794291" y="-0.46875" style="font-size: 9.5px; font-family: 'TeX Gyre Termes'; fill: #1a1a1a">p</tspan>
+      <tspan x="55.575545" y="-0.90625" style="font-size: 9.5px; font-family: 'TeX Gyre Termes'; fill: #1a1a1a">̇</tspan>
+      <tspan x="7.913528" y="0.815625" style="font-size: 6.65px; font-family: 'TeX Gyre Termes'; fill: #1a1a1a">i</tspan>
+      <tspan x="18.654437" y="2.7875" style="font-size: 6.65px; font-family: 'TeX Gyre Termes'; fill: #1a1a1a">i</tspan>
+      <tspan x="55.619229" y="2.7875" style="font-size: 6.65px; font-family: 'TeX Gyre Termes'; fill: #1a1a1a">j</tspan>
+     </text>
+    </g>
+   </g>
+   <g id="text_10">
+    <text style="font-size: 9.5px; font-family: 'TeX Gyre Termes', 'Liberation Serif', 'Times New Roman', serif; text-anchor: middle; fill: #0f4c81" x="68.76" y="103.9625" transform="rotate(-0 68.76 103.9625)">Bellhop query</text>
+   </g>
+   <g id="text_11">
+    <!-- $z_k\leftarrow\mathrm{SNR}(p_i,p_j)$ -->
+    <g style="fill: #1a1a1a" transform="translate(37.505 114.66175)">
+     <text>
+      <tspan x="0" y="-0.578125" style="font-size: 9.5px; font-family: 'TeX Gyre Termes'; fill: #1a1a1a">z</tspan>
+      <tspan x="9.235295" y="-0.578125" style="font-size: 9.5px; font-family: 'TeX Gyre Termes'; fill: #1a1a1a">←</tspan>
+      <tspan x="20.21353" y="-0.578125" style="font-size: 9.5px; font-family: 'TeX Gyre Termes'; fill: #1a1a1a">S</tspan>
+      <tspan x="25.495543" y="-0.578125" style="font-size: 9.5px; font-family: 'TeX Gyre Termes'; fill: #1a1a1a">N</tspan>
+      <tspan x="32.354567" y="-0.578125" style="font-size: 9.5px; font-family: 'TeX Gyre Termes'; fill: #1a1a1a">R</tspan>
+      <tspan x="38.691084" y="-0.578125" style="font-size: 9.5px; font-family: 'TeX Gyre Termes'; fill: #1a1a1a">(</tspan>
+      <tspan x="41.854597" y="-0.578125" style="font-size: 9.5px; font-family: 'TeX Gyre Termes'; fill: #1a1a1a">p</tspan>
+      <tspan x="48.66738" y="-0.578125" style="font-size: 9.5px; font-family: 'TeX Gyre Termes'; fill: #1a1a1a">,</tspan>
+      <tspan x="52.520584" y="-0.578125" style="font-size: 9.5px; font-family: 'TeX Gyre Termes'; fill: #1a1a1a">p</tspan>
+      <tspan x="59.333366" y="-0.578125" style="font-size: 9.5px; font-family: 'TeX Gyre Termes'; fill: #1a1a1a">)</tspan>
+      <tspan x="4.218018" y="0.70625" style="font-size: 6.65px; font-family: 'TeX Gyre Termes'; fill: #1a1a1a">k</tspan>
+      <tspan x="46.604613" y="0.70625" style="font-size: 6.65px; font-family: 'TeX Gyre Termes'; fill: #1a1a1a">i</tspan>
+      <tspan x="57.270599" y="0.70625" style="font-size: 6.65px; font-family: 'TeX Gyre Termes'; fill: #1a1a1a">j</tspan>
+     </text>
+    </g>
+   </g>
+   <g id="text_12">
+    <!-- every $dt=1\,\mathrm{s}$ -->
+    <g style="fill: #1a1a1a" transform="translate(44.2975 126.15425)">
+     <text>
+      <tspan x="0" y="-0.515625" style="font-size: 9.5px; font-family: 'TeX Gyre Termes'; fill: #1a1a1a">e</tspan>
+      <tspan x="4.218018" y="-0.515625" style="font-size: 9.5px; font-family: 'TeX Gyre Termes'; fill: #1a1a1a">v</tspan>
+      <tspan x="8.968033" y="-0.515625" style="font-size: 9.5px; font-family: 'TeX Gyre Termes'; fill: #1a1a1a">e</tspan>
+      <tspan x="13.18605" y="-0.515625" style="font-size: 9.5px; font-family: 'TeX Gyre Termes'; fill: #1a1a1a">r</tspan>
+      <tspan x="16.349564" y="-0.515625" style="font-size: 9.5px; font-family: 'TeX Gyre Termes'; fill: #1a1a1a">y</tspan>
+      <tspan x="21.099579" y="-0.515625" style="font-size: 9.5px; font-family: 'TeX Gyre Termes'; fill: #1a1a1a"> </tspan>
+      <tspan x="23.474579" y="-0.515625" style="font-size: 9.5px; font-family: 'TeX Gyre Termes'; fill: #1a1a1a">d</tspan>
+      <tspan x="28.224594" y="-0.515625" style="font-size: 9.5px; font-family: 'TeX Gyre Termes'; fill: #1a1a1a">t</tspan>
+      <tspan x="32.343805" y="-0.515625" style="font-size: 9.5px; font-family: 'TeX Gyre Termes'; fill: #1a1a1a">=</tspan>
+      <tspan x="39.180026" y="-0.515625" style="font-size: 9.5px; font-family: 'TeX Gyre Termes'; fill: #1a1a1a">1</tspan>
+      <tspan x="45.161903" y="-0.515625" style="font-size: 9.5px; font-family: 'TeX Gyre Termes'; fill: #1a1a1a">s</tspan>
+     </text>
+    </g>
+   </g>
+   <g id="text_13">
+    <text style="font-size: 8px; font-family: 'TeX Gyre Termes', 'Liberation Serif', 'Times New Roman', serif; text-anchor: end; fill: #5a5a5a" x="124.56" y="131.032" transform="rotate(-0 124.56 131.032)">(1)</text>
+   </g>
+   <g id="text_14">
+    <text style="font-size: 9.5px; font-family: 'TeX Gyre Termes', 'Liberation Serif', 'Times New Roman', serif; text-anchor: middle; fill: #009e73" x="195.48" y="56.2625" transform="rotate(-0 195.48 56.2625)">Corrected EKF</text>
+   </g>
+   <g id="text_15">
+    <!-- $(\hat{x},P)$  predict / update -->
+    <g style="fill: #1a1a1a" transform="translate(153.4425 67.29425)">
+     <text>
+      <tspan x="0" y="-0.9375" style="font-size: 9.5px; font-family: 'TeX Gyre Termes'; fill: #1a1a1a">(</tspan>
+      <tspan x="3.163513" y="-0.9375" style="font-size: 9.5px; font-family: 'TeX Gyre Termes'; fill: #1a1a1a">x</tspan>
+      <tspan x="7.913528" y="-0.9375" style="font-size: 9.5px; font-family: 'TeX Gyre Termes'; fill: #1a1a1a">,</tspan>
+      <tspan x="7.929142" y="-1.59375" style="font-size: 9.5px; font-family: 'TeX Gyre Termes'; fill: #1a1a1a">̂</tspan>
+      <tspan x="11.766733" y="-0.9375" style="font-size: 9.5px; font-family: 'TeX Gyre Termes'; fill: #1a1a1a">P</tspan>
+      <tspan x="17.048746" y="-0.9375" style="font-size: 9.5px; font-family: 'TeX Gyre Termes'; fill: #1a1a1a">)</tspan>
+      <tspan x="20.212259" y="-0.9375" style="font-size: 9.5px; font-family: 'TeX Gyre Termes'; fill: #1a1a1a"> </tspan>
+      <tspan x="22.587259" y="-0.9375" style="font-size: 9.5px; font-family: 'TeX Gyre Termes'; fill: #1a1a1a"> </tspan>
+      <tspan x="24.962259" y="-0.9375" style="font-size: 9.5px; font-family: 'TeX Gyre Termes'; fill: #1a1a1a">p</tspan>
+      <tspan x="29.712274" y="-0.9375" style="font-size: 9.5px; font-family: 'TeX Gyre Termes'; fill: #1a1a1a">r</tspan>
+      <tspan x="32.875787" y="-0.9375" style="font-size: 9.5px; font-family: 'TeX Gyre Termes'; fill: #1a1a1a">e</tspan>
+      <tspan x="37.093805" y="-0.9375" style="font-size: 9.5px; font-family: 'TeX Gyre Termes'; fill: #1a1a1a">d</tspan>
+      <tspan x="41.84382" y="-0.9375" style="font-size: 9.5px; font-family: 'TeX Gyre Termes'; fill: #1a1a1a">i</tspan>
+      <tspan x="44.484827" y="-0.9375" style="font-size: 9.5px; font-family: 'TeX Gyre Termes'; fill: #1a1a1a">c</tspan>
+      <tspan x="48.702844" y="-0.9375" style="font-size: 9.5px; font-family: 'TeX Gyre Termes'; fill: #1a1a1a">t</tspan>
+      <tspan x="51.343851" y="-0.9375" style="font-size: 9.5px; font-family: 'TeX Gyre Termes'; fill: #1a1a1a"> </tspan>
+      <tspan x="53.718851" y="-0.9375" style="font-size: 9.5px; font-family: 'TeX Gyre Termes'; fill: #1a1a1a">/</tspan>
+      <tspan x="56.359857" y="-0.9375" style="font-size: 9.5px; font-family: 'TeX Gyre Termes'; fill: #1a1a1a"> </tspan>
+      <tspan x="58.734857" y="-0.9375" style="font-size: 9.5px; font-family: 'TeX Gyre Termes'; fill: #1a1a1a">u</tspan>
+      <tspan x="63.484872" y="-0.9375" style="font-size: 9.5px; font-family: 'TeX Gyre Termes'; fill: #1a1a1a">p</tspan>
+      <tspan x="68.234888" y="-0.9375" style="font-size: 9.5px; font-family: 'TeX Gyre Termes'; fill: #1a1a1a">d</tspan>
+      <tspan x="72.984903" y="-0.9375" style="font-size: 9.5px; font-family: 'TeX Gyre Termes'; fill: #1a1a1a">a</tspan>
+      <tspan x="77.202921" y="-0.9375" style="font-size: 9.5px; font-family: 'TeX Gyre Termes'; fill: #1a1a1a">t</tspan>
+      <tspan x="79.843927" y="-0.9375" style="font-size: 9.5px; font-family: 'TeX Gyre Termes'; fill: #1a1a1a">e</tspan>
+     </text>
+    </g>
+   </g>
+   <g id="text_16">
+    <text style="font-size: 8px; font-family: 'TeX Gyre Termes', 'Liberation Serif', 'Times New Roman', serif; text-anchor: end; fill: #5a5a5a" x="251.28" y="77.752" transform="rotate(-0 251.28 77.752)">(12)</text>
+   </g>
+   <g id="text_17">
+    <text style="font-size: 9.5px; font-family: 'TeX Gyre Termes', 'Liberation Serif', 'Times New Roman', serif; text-anchor: middle; fill: #009e73" x="195.48" y="109.5425" transform="rotate(-0 195.48 109.5425)">Forecast</text>
+   </g>
+   <g id="text_18">
+    <!-- $(x^{\mathrm{fc}},P^{\mathrm{fc}})$  predict only -->
+    <g style="fill: #1a1a1a" transform="translate(154.2975 120.655)">
+     <text>
+      <tspan x="0" y="-0.464063" style="font-size: 9.5px; font-family: 'TeX Gyre Termes'; fill: #1a1a1a">(</tspan>
+      <tspan x="3.163513" y="-0.464063" style="font-size: 9.5px; font-family: 'TeX Gyre Termes'; fill: #1a1a1a">x</tspan>
+      <tspan x="13.644298" y="-0.464063" style="font-size: 9.5px; font-family: 'TeX Gyre Termes'; fill: #1a1a1a">,</tspan>
+      <tspan x="17.497502" y="-0.464063" style="font-size: 9.5px; font-family: 'TeX Gyre Termes'; fill: #1a1a1a">P</tspan>
+      <tspan x="28.790285" y="-0.464063" style="font-size: 9.5px; font-family: 'TeX Gyre Termes'; fill: #1a1a1a">)</tspan>
+      <tspan x="31.953798" y="-0.464063" style="font-size: 9.5px; font-family: 'TeX Gyre Termes'; fill: #1a1a1a"> </tspan>
+      <tspan x="34.328798" y="-0.464063" style="font-size: 9.5px; font-family: 'TeX Gyre Termes'; fill: #1a1a1a"> </tspan>
+      <tspan x="36.703798" y="-0.464063" style="font-size: 9.5px; font-family: 'TeX Gyre Termes'; fill: #1a1a1a">p</tspan>
+      <tspan x="41.453813" y="-0.464063" style="font-size: 9.5px; font-family: 'TeX Gyre Termes'; fill: #1a1a1a">r</tspan>
+      <tspan x="44.617326" y="-0.464063" style="font-size: 9.5px; font-family: 'TeX Gyre Termes'; fill: #1a1a1a">e</tspan>
+      <tspan x="48.835344" y="-0.464063" style="font-size: 9.5px; font-family: 'TeX Gyre Termes'; fill: #1a1a1a">d</tspan>
+      <tspan x="53.585359" y="-0.464063" style="font-size: 9.5px; font-family: 'TeX Gyre Termes'; fill: #1a1a1a">i</tspan>
+      <tspan x="56.226366" y="-0.464063" style="font-size: 9.5px; font-family: 'TeX Gyre Termes'; fill: #1a1a1a">c</tspan>
+      <tspan x="60.444383" y="-0.464063" style="font-size: 9.5px; font-family: 'TeX Gyre Termes'; fill: #1a1a1a">t</tspan>
+      <tspan x="63.08539" y="-0.464063" style="font-size: 9.5px; font-family: 'TeX Gyre Termes'; fill: #1a1a1a"> </tspan>
+      <tspan x="65.46039" y="-0.464063" style="font-size: 9.5px; font-family: 'TeX Gyre Termes'; fill: #1a1a1a">o</tspan>
+      <tspan x="70.210405" y="-0.464063" style="font-size: 9.5px; font-family: 'TeX Gyre Termes'; fill: #1a1a1a">n</tspan>
+      <tspan x="74.96042" y="-0.464063" style="font-size: 9.5px; font-family: 'TeX Gyre Termes'; fill: #1a1a1a">l</tspan>
+      <tspan x="77.601427" y="-0.464063" style="font-size: 9.5px; font-family: 'TeX Gyre Termes'; fill: #1a1a1a">y</tspan>
+      <tspan x="8.263164" y="-3.460938" style="font-size: 6.65px; font-family: 'TeX Gyre Termes'; fill: #1a1a1a">f</tspan>
+      <tspan x="10.477623" y="-3.460938" style="font-size: 6.65px; font-family: 'TeX Gyre Termes'; fill: #1a1a1a">c</tspan>
+      <tspan x="23.409151" y="-3.460938" style="font-size: 6.65px; font-family: 'TeX Gyre Termes'; fill: #1a1a1a">f</tspan>
+      <tspan x="25.62361" y="-3.460938" style="font-size: 6.65px; font-family: 'TeX Gyre Termes'; fill: #1a1a1a">c</tspan>
+     </text>
+    </g>
+   </g>
+   <g id="text_19">
+    <text style="font-size: 8px; font-family: 'TeX Gyre Termes', 'Liberation Serif', 'Times New Roman', serif; text-anchor: end; fill: #5a5a5a" x="251.28" y="131.032" transform="rotate(-0 251.28 131.032)">(12)</text>
+   </g>
+   <g id="text_20">
+    <!-- $e_k^{\mathrm{tr}}$ -->
+    <g style="fill: #d55e00" transform="translate(317.735 47.43875)">
+     <text>
+      <tspan x="0" y="-0.659375" style="font-size: 9.5px; font-family: 'TeX Gyre Termes'; fill: #d55e00">e</tspan>
+      <tspan x="4.218018" y="2.829687" style="font-size: 6.65px; font-family: 'TeX Gyre Termes'; fill: #d55e00">k</tspan>
+      <tspan x="4.580778" y="-4.15" style="font-size: 6.65px; font-family: 'TeX Gyre Termes'; fill: #d55e00">t</tspan>
+      <tspan x="6.429483" y="-4.15" style="font-size: 6.65px; font-family: 'TeX Gyre Termes'; fill: #d55e00">r</tspan>
+     </text>
+    </g>
+   </g>
+   <g id="text_21">
+    <!-- $z_k-\mathrm{SNR}(x^{\mathrm{fc}})$ -->
+    <g style="fill: #1a1a1a" transform="translate(296.5025 59.34925)">
+     <text>
+      <tspan x="0" y="-0.464063" style="font-size: 9.5px; font-family: 'TeX Gyre Termes'; fill: #1a1a1a">z</tspan>
+      <tspan x="9.235295" y="-0.464063" style="font-size: 9.5px; font-family: 'TeX Gyre Termes'; fill: #1a1a1a">−</tspan>
+      <tspan x="16.071516" y="-0.464063" style="font-size: 9.5px; font-family: 'TeX Gyre Termes'; fill: #1a1a1a">S</tspan>
+      <tspan x="21.353529" y="-0.464063" style="font-size: 9.5px; font-family: 'TeX Gyre Termes'; fill: #1a1a1a">N</tspan>
+      <tspan x="28.212553" y="-0.464063" style="font-size: 9.5px; font-family: 'TeX Gyre Termes'; fill: #1a1a1a">R</tspan>
+      <tspan x="34.549071" y="-0.464063" style="font-size: 9.5px; font-family: 'TeX Gyre Termes'; fill: #1a1a1a">(</tspan>
+      <tspan x="37.712584" y="-0.464063" style="font-size: 9.5px; font-family: 'TeX Gyre Termes'; fill: #1a1a1a">x</tspan>
+      <tspan x="48.193369" y="-0.464063" style="font-size: 9.5px; font-family: 'TeX Gyre Termes'; fill: #1a1a1a">)</tspan>
+      <tspan x="4.218018" y="0.820312" style="font-size: 6.65px; font-family: 'TeX Gyre Termes'; fill: #1a1a1a">k</tspan>
+      <tspan x="42.812235" y="-3.460938" style="font-size: 6.65px; font-family: 'TeX Gyre Termes'; fill: #1a1a1a">f</tspan>
+      <tspan x="45.026694" y="-3.460938" style="font-size: 6.65px; font-family: 'TeX Gyre Termes'; fill: #1a1a1a">c</tspan>
+     </text>
+    </g>
+   </g>
+   <g id="text_22">
+    <text style="font-size: 8px; font-family: 'TeX Gyre Termes', 'Liberation Serif', 'Times New Roman', serif; text-anchor: end; fill: #5a5a5a" x="378" y="61.672" transform="rotate(-0 378 61.672)">(13)</text>
+   </g>
+   <g id="text_23">
+    <text style="font-size: 9.5px; font-family: 'TeX Gyre Termes', 'Liberation Serif', 'Times New Roman', serif; text-anchor: middle; fill: #d55e00" x="322.2" y="82.9025" transform="rotate(-0 322.2 82.9025)">Variance-capped</text>
+   </g>
+   <g id="text_24">
+    <!-- threshold $\varepsilon_k^{\mathrm{tr}}$ -->
+    <g style="fill: #1a1a1a" transform="translate(298.6875 93.22175)">
+     <text>
+      <tspan x="0" y="-0.659375" style="font-size: 9.5px; font-family: 'TeX Gyre Termes'; fill: #1a1a1a">t</tspan>
+      <tspan x="2.641006" y="-0.659375" style="font-size: 9.5px; font-family: 'TeX Gyre Termes'; fill: #1a1a1a">h</tspan>
+      <tspan x="7.391022" y="-0.659375" style="font-size: 9.5px; font-family: 'TeX Gyre Termes'; fill: #1a1a1a">r</tspan>
+      <tspan x="10.554535" y="-0.659375" style="font-size: 9.5px; font-family: 'TeX Gyre Termes'; fill: #1a1a1a">e</tspan>
+      <tspan x="14.772552" y="-0.659375" style="font-size: 9.5px; font-family: 'TeX Gyre Termes'; fill: #1a1a1a">s</tspan>
+      <tspan x="18.468063" y="-0.659375" style="font-size: 9.5px; font-family: 'TeX Gyre Termes'; fill: #1a1a1a">h</tspan>
+      <tspan x="23.218079" y="-0.659375" style="font-size: 9.5px; font-family: 'TeX Gyre Termes'; fill: #1a1a1a">o</tspan>
+      <tspan x="27.968094" y="-0.659375" style="font-size: 9.5px; font-family: 'TeX Gyre Termes'; fill: #1a1a1a">l</tspan>
+      <tspan x="30.6091" y="-0.659375" style="font-size: 9.5px; font-family: 'TeX Gyre Termes'; fill: #1a1a1a">d</tspan>
+      <tspan x="35.359116" y="-0.659375" style="font-size: 9.5px; font-family: 'TeX Gyre Termes'; fill: #1a1a1a"> </tspan>
+      <tspan x="37.734116" y="-0.659375" style="font-size: 9.5px; font-family: 'TeX Gyre Termes'; fill: #1a1a1a">ε</tspan>
+      <tspan x="42.322632" y="2.829687" style="font-size: 6.65px; font-family: 'TeX Gyre Termes'; fill: #1a1a1a">k</tspan>
+      <tspan x="42.681017" y="-4.15" style="font-size: 6.65px; font-family: 'TeX Gyre Termes'; fill: #1a1a1a">t</tspan>
+      <tspan x="44.529722" y="-4.15" style="font-size: 6.65px; font-family: 'TeX Gyre Termes'; fill: #1a1a1a">r</tspan>
+     </text>
+    </g>
+   </g>
+   <g id="text_25">
+    <text style="font-size: 8px; font-family: 'TeX Gyre Termes', 'Liberation Serif', 'Times New Roman', serif; text-anchor: end; fill: #5a5a5a" x="378" y="96.352" transform="rotate(-0 378 96.352)">(14)</text>
+   </g>
+   <g id="text_26">
+    <text style="font-size: 9.5px; font-family: 'TeX Gyre Termes', 'Liberation Serif', 'Times New Roman', serif; text-anchor: middle; fill: #d55e00" x="322.2" y="115.5625" transform="rotate(-0 322.2 115.5625)">Persistence</text>
+   </g>
+   <g id="text_27">
+    <!-- $W=5$, $\rho=0.6$ -->
+    <g style="fill: #1a1a1a" transform="translate(295.885 122.93925)">
+     <text>
+      <tspan x="0" y="-0.46875" style="font-size: 9.5px; font-family: 'TeX Gyre Termes'; fill: #1a1a1a">W</tspan>
+      <tspan x="10.446237" y="-0.46875" style="font-size: 9.5px; font-family: 'TeX Gyre Termes'; fill: #1a1a1a">=</tspan>
+      <tspan x="17.282458" y="-0.46875" style="font-size: 9.5px; font-family: 'TeX Gyre Termes'; fill: #1a1a1a">5</tspan>
+      <tspan x="22.032474" y="-0.46875" style="font-size: 9.5px; font-family: 'TeX Gyre Termes'; fill: #1a1a1a">,</tspan>
+      <tspan x="24.407474" y="-0.46875" style="font-size: 9.5px; font-family: 'TeX Gyre Termes'; fill: #1a1a1a"> </tspan>
+      <tspan x="26.782474" y="-0.46875" style="font-size: 9.5px; font-family: 'TeX Gyre Termes'; fill: #1a1a1a">ρ</tspan>
+      <tspan x="33.827695" y="-0.46875" style="font-size: 9.5px; font-family: 'TeX Gyre Termes'; fill: #1a1a1a">=</tspan>
+      <tspan x="40.663916" y="-0.46875" style="font-size: 9.5px; font-family: 'TeX Gyre Termes'; fill: #1a1a1a">0</tspan>
+      <tspan x="45.413931" y="-0.46875" style="font-size: 9.5px; font-family: 'TeX Gyre Termes'; fill: #1a1a1a">.</tspan>
+      <tspan x="47.788931" y="-0.46875" style="font-size: 9.5px; font-family: 'TeX Gyre Termes'; fill: #1a1a1a">6</tspan>
+     </text>
+    </g>
+   </g>
+   <g id="text_28">
+    <!-- $|e_k^{\mathrm{tr}}|\geq\varepsilon_k^{\mathrm{tr}}$ -->
+    <g style="fill: #1a1a1a" transform="translate(307.095 129.92175)">
+     <text>
+      <tspan x="0" y="-0.659375" style="font-size: 9.5px; font-family: 'TeX Gyre Termes'; fill: #1a1a1a">|</tspan>
+      <tspan x="1.900009" y="-0.659375" style="font-size: 9.5px; font-family: 'TeX Gyre Termes'; fill: #1a1a1a">e</tspan>
+      <tspan x="10.758013" y="-0.659375" style="font-size: 9.5px; font-family: 'TeX Gyre Termes'; fill: #1a1a1a">|</tspan>
+      <tspan x="14.136227" y="-0.659375" style="font-size: 9.5px; font-family: 'TeX Gyre Termes'; fill: #1a1a1a">≥</tspan>
+      <tspan x="20.972448" y="-0.659375" style="font-size: 9.5px; font-family: 'TeX Gyre Termes'; fill: #1a1a1a">ε</tspan>
+      <tspan x="6.118027" y="2.829687" style="font-size: 6.65px; font-family: 'TeX Gyre Termes'; fill: #1a1a1a">k</tspan>
+      <tspan x="6.480787" y="-4.15" style="font-size: 6.65px; font-family: 'TeX Gyre Termes'; fill: #1a1a1a">t</tspan>
+      <tspan x="8.329492" y="-4.15" style="font-size: 6.65px; font-family: 'TeX Gyre Termes'; fill: #1a1a1a">r</tspan>
+      <tspan x="25.560964" y="2.829687" style="font-size: 6.65px; font-family: 'TeX Gyre Termes'; fill: #1a1a1a">k</tspan>
+      <tspan x="25.91935" y="-4.15" style="font-size: 6.65px; font-family: 'TeX Gyre Termes'; fill: #1a1a1a">t</tspan>
+      <tspan x="27.768054" y="-4.15" style="font-size: 6.65px; font-family: 'TeX Gyre Termes'; fill: #1a1a1a">r</tspan>
+     </text>
+    </g>
+   </g>
+   <g id="text_29">
+    <text style="font-size: 8px; font-family: 'TeX Gyre Termes', 'Liberation Serif', 'Times New Roman', serif; text-anchor: end; fill: #5a5a5a" x="378" y="131.032" transform="rotate(-0 378 131.032)">(15)</text>
+   </g>
+   <g id="text_30">
+    <!-- $0\to 1$? -->
+    <g style="fill: #1a1a1a" transform="translate(441.21 49.3445)">
+     <text>
+      <tspan x="0" y="-0.578125" style="font-size: 9.5px; font-family: 'TeX Gyre Termes'; fill: #1a1a1a">0</tspan>
+      <tspan x="6.22822" y="-0.578125" style="font-size: 9.5px; font-family: 'TeX Gyre Termes'; fill: #1a1a1a">→</tspan>
+      <tspan x="17.206454" y="-0.578125" style="font-size: 9.5px; font-family: 'TeX Gyre Termes'; fill: #1a1a1a">1</tspan>
+      <tspan x="21.95647" y="-0.578125" style="font-size: 9.5px; font-family: 'TeX Gyre Termes'; fill: #1a1a1a">?</tspan>
+     </text>
+    </g>
+   </g>
+   <g id="text_31">
+    <text style="font-size: 8.5px; font-family: 'TeX Gyre Termes', 'Liberation Serif', 'Times New Roman', serif; text-anchor: middle; fill: #5a5a5a" x="454.32" y="56.545383" transform="rotate(-0 454.32 56.545383)">rising edge</text>
+   </g>
+   <g id="text_32">
+    <text style="font-size: 9.5px; font-family: 'TeX Gyre Termes', 'Liberation Serif', 'Times New Roman', serif; text-anchor: middle; fill: #d55e00" x="454.32" y="79.5725" transform="rotate(-0 454.32 79.5725)">No</text>
+   </g>
+   <g id="text_33">
+    <text style="font-size: 9.5px; font-family: 'TeX Gyre Termes', 'Liberation Serif', 'Times New Roman', serif; text-anchor: middle; fill: #1a1a1a" x="454.32" y="90.6185" transform="rotate(-0 454.32 90.6185)">remain silent</text>
+   </g>
+   <g id="text_34">
+    <text style="font-size: 9.5px; font-family: 'TeX Gyre Termes', 'Liberation Serif', 'Times New Roman', serif; text-anchor: middle; fill: #d55e00" x="454.32" y="116.4725" transform="rotate(-0 454.32 116.4725)">Yes</text>
+   </g>
+   <g id="text_35">
+    <!-- $j$ broadcasts once -->
+    <g style="fill: #1a1a1a" transform="translate(421.5925 127.50425)">
+     <text>
+      <tspan x="0" y="-0.515625" style="font-size: 9.5px; font-family: 'TeX Gyre Termes'; fill: #1a1a1a">j</tspan>
+      <tspan x="2.641006" y="-0.515625" style="font-size: 9.5px; font-family: 'TeX Gyre Termes'; fill: #1a1a1a"> </tspan>
+      <tspan x="5.016006" y="-0.515625" style="font-size: 9.5px; font-family: 'TeX Gyre Termes'; fill: #1a1a1a">b</tspan>
+      <tspan x="9.766022" y="-0.515625" style="font-size: 9.5px; font-family: 'TeX Gyre Termes'; fill: #1a1a1a">r</tspan>
+      <tspan x="12.929535" y="-0.515625" style="font-size: 9.5px; font-family: 'TeX Gyre Termes'; fill: #1a1a1a">o</tspan>
+      <tspan x="17.67955" y="-0.515625" style="font-size: 9.5px; font-family: 'TeX Gyre Termes'; fill: #1a1a1a">a</tspan>
+      <tspan x="21.897568" y="-0.515625" style="font-size: 9.5px; font-family: 'TeX Gyre Termes'; fill: #1a1a1a">d</tspan>
+      <tspan x="26.647583" y="-0.515625" style="font-size: 9.5px; font-family: 'TeX Gyre Termes'; fill: #1a1a1a">c</tspan>
+      <tspan x="30.865601" y="-0.515625" style="font-size: 9.5px; font-family: 'TeX Gyre Termes'; fill: #1a1a1a">a</tspan>
+      <tspan x="35.083618" y="-0.515625" style="font-size: 9.5px; font-family: 'TeX Gyre Termes'; fill: #1a1a1a">s</tspan>
+      <tspan x="38.779129" y="-0.515625" style="font-size: 9.5px; font-family: 'TeX Gyre Termes'; fill: #1a1a1a">t</tspan>
+      <tspan x="41.420135" y="-0.515625" style="font-size: 9.5px; font-family: 'TeX Gyre Termes'; fill: #1a1a1a">s</tspan>
+      <tspan x="45.115646" y="-0.515625" style="font-size: 9.5px; font-family: 'TeX Gyre Termes'; fill: #1a1a1a"> </tspan>
+      <tspan x="47.490646" y="-0.515625" style="font-size: 9.5px; font-family: 'TeX Gyre Termes'; fill: #1a1a1a">o</tspan>
+      <tspan x="52.240662" y="-0.515625" style="font-size: 9.5px; font-family: 'TeX Gyre Termes'; fill: #1a1a1a">n</tspan>
+      <tspan x="56.990677" y="-0.515625" style="font-size: 9.5px; font-family: 'TeX Gyre Termes'; fill: #1a1a1a">c</tspan>
+      <tspan x="61.208694" y="-0.515625" style="font-size: 9.5px; font-family: 'TeX Gyre Termes'; fill: #1a1a1a">e</tspan>
+     </text>
+    </g>
+   </g>
+   <g id="text_36">
+    <!-- $I_{\mathrm{ELQTP}}$ -->
+    <g style="fill: #7f7f7f" transform="translate(58.855 174.62125)">
+     <text>
+      <tspan x="0" y="-0.71875" style="font-size: 9.5px; font-family: 'TeX Gyre Termes'; fill: #7f7f7f">I</tspan>
+      <tspan x="3.163513" y="0.565625" style="font-size: 6.65px; font-family: 'TeX Gyre Termes'; fill: #7f7f7f">E</tspan>
+      <tspan x="7.226677" y="0.565625" style="font-size: 6.65px; font-family: 'TeX Gyre Termes'; fill: #7f7f7f">L</tspan>
+      <tspan x="11.289841" y="0.565625" style="font-size: 6.65px; font-family: 'TeX Gyre Termes'; fill: #7f7f7f">Q</tspan>
+      <tspan x="16.091158" y="0.565625" style="font-size: 6.65px; font-family: 'TeX Gyre Termes'; fill: #7f7f7f">T</tspan>
+      <tspan x="20.154321" y="0.565625" style="font-size: 6.65px; font-family: 'TeX Gyre Termes'; fill: #7f7f7f">P</tspan>
+     </text>
+    </g>
+   </g>
+   <g id="text_37">
+    <!-- $N_{\mathrm{range}}\cap N_{\mathrm{SNR}}$ -->
+    <g style="fill: #1a1a1a" transform="translate(45.3175 183.06175)">
+     <text>
+      <tspan x="0" y="-0.71875" style="font-size: 9.5px; font-family: 'TeX Gyre Termes'; fill: #1a1a1a">N</tspan>
+      <tspan x="31.126349" y="-0.71875" style="font-size: 9.5px; font-family: 'TeX Gyre Termes'; fill: #1a1a1a">N</tspan>
+      <tspan x="6.859024" y="0.565625" style="font-size: 6.65px; font-family: 'TeX Gyre Termes'; fill: #1a1a1a">r</tspan>
+      <tspan x="9.073483" y="0.565625" style="font-size: 6.65px; font-family: 'TeX Gyre Termes'; fill: #1a1a1a">a</tspan>
+      <tspan x="12.026096" y="0.565625" style="font-size: 6.65px; font-family: 'TeX Gyre Termes'; fill: #1a1a1a">n</tspan>
+      <tspan x="15.351106" y="0.565625" style="font-size: 6.65px; font-family: 'TeX Gyre Termes'; fill: #1a1a1a">g</tspan>
+      <tspan x="18.676117" y="0.565625" style="font-size: 6.65px; font-family: 'TeX Gyre Termes'; fill: #1a1a1a">e</tspan>
+      <tspan x="37.985373" y="0.565625" style="font-size: 6.65px; font-family: 'TeX Gyre Termes'; fill: #1a1a1a">S</tspan>
+      <tspan x="41.682782" y="0.565625" style="font-size: 6.65px; font-family: 'TeX Gyre Termes'; fill: #1a1a1a">N</tspan>
+      <tspan x="46.484099" y="0.565625" style="font-size: 6.65px; font-family: 'TeX Gyre Termes'; fill: #1a1a1a">R</tspan>
+      <tspan x="23.320996" y="-0.71875" style="font-size: 9.5px; font-family: 'cmsy10'; fill: #1a1a1a">\</tspan>
+     </text>
+    </g>
+   </g>
+   <g id="text_38">
+    <!-- $N_{\mathrm{depth}}\cap N_{\mathrm{stab}}$ -->
+    <g style="fill: #1a1a1a" transform="translate(46.4575 191.70175)">
+     <text>
+      <tspan x="0" y="-0.71875" style="font-size: 9.5px; font-family: 'TeX Gyre Termes'; fill: #1a1a1a">N</tspan>
+      <tspan x="31.132993" y="-0.71875" style="font-size: 9.5px; font-family: 'TeX Gyre Termes'; fill: #1a1a1a">N</tspan>
+      <tspan x="6.859024" y="0.565625" style="font-size: 6.65px; font-family: 'TeX Gyre Termes'; fill: #1a1a1a">d</tspan>
+      <tspan x="10.184035" y="0.565625" style="font-size: 6.65px; font-family: 'TeX Gyre Termes'; fill: #1a1a1a">e</tspan>
+      <tspan x="13.136647" y="0.565625" style="font-size: 6.65px; font-family: 'TeX Gyre Termes'; fill: #1a1a1a">p</tspan>
+      <tspan x="16.461658" y="0.565625" style="font-size: 6.65px; font-family: 'TeX Gyre Termes'; fill: #1a1a1a">t</tspan>
+      <tspan x="18.310362" y="0.565625" style="font-size: 6.65px; font-family: 'TeX Gyre Termes'; fill: #1a1a1a">h</tspan>
+      <tspan x="37.992017" y="0.565625" style="font-size: 6.65px; font-family: 'TeX Gyre Termes'; fill: #1a1a1a">s</tspan>
+      <tspan x="40.578874" y="0.565625" style="font-size: 6.65px; font-family: 'TeX Gyre Termes'; fill: #1a1a1a">t</tspan>
+      <tspan x="42.427579" y="0.565625" style="font-size: 6.65px; font-family: 'TeX Gyre Termes'; fill: #1a1a1a">a</tspan>
+      <tspan x="45.380191" y="0.565625" style="font-size: 6.65px; font-family: 'TeX Gyre Termes'; fill: #1a1a1a">b</tspan>
+      <tspan x="23.32764" y="-0.71875" style="font-size: 9.5px; font-family: 'cmsy10'; fill: #1a1a1a">\</tspan>
+     </text>
+    </g>
+   </g>
+   <g id="text_39">
+    <text style="font-size: 8px; font-family: 'TeX Gyre Termes', 'Liberation Serif', 'Times New Roman', serif; text-anchor: end; fill: #5a5a5a" x="128.88" y="192.952" transform="rotate(-0 128.88 192.952)">(19)</text>
+   </g>
+   <g id="text_40">
+    <!-- Reward $R$ -->
+    <g style="fill: #7f7f7f" transform="translate(175.7275 177.9425)">
+     <text>
+      <tspan x="0" y="-0.578125" style="font-weight: 700; font-size: 9.5px; font-family: 'TeX Gyre Termes'; fill: #7f7f7f">R</tspan>
+      <tspan x="6.859024" y="-0.578125" style="font-weight: 700; font-size: 9.5px; font-family: 'TeX Gyre Termes'; fill: #7f7f7f">e</tspan>
+      <tspan x="11.077042" y="-0.578125" style="font-weight: 700; font-size: 9.5px; font-family: 'TeX Gyre Termes'; fill: #7f7f7f">w</tspan>
+      <tspan x="17.936066" y="-0.578125" style="font-weight: 700; font-size: 9.5px; font-family: 'TeX Gyre Termes'; fill: #7f7f7f">a</tspan>
+      <tspan x="22.686081" y="-0.578125" style="font-weight: 700; font-size: 9.5px; font-family: 'TeX Gyre Termes'; fill: #7f7f7f">r</tspan>
+      <tspan x="26.904099" y="-0.578125" style="font-weight: 700; font-size: 9.5px; font-family: 'TeX Gyre Termes'; fill: #7f7f7f">d</tspan>
+      <tspan x="32.186111" y="-0.578125" style="font-weight: 700; font-size: 9.5px; font-family: 'TeX Gyre Termes'; fill: #7f7f7f"> </tspan>
+      <tspan x="34.561111" y="-0.578125" style="font-size: 9.5px; font-family: 'TeX Gyre Termes'; fill: #7f7f7f">R</tspan>
+     </text>
+    </g>
+   </g>
+   <g id="text_41">
+    <!-- $\beta_1=\beta_2=0$ -->
+    <g style="fill: #1a1a1a" transform="translate(176.915 188.87925)">
+     <text>
+      <tspan x="0" y="-0.578125" style="font-size: 9.5px; font-family: 'TeX Gyre Termes'; fill: #1a1a1a">β</tspan>
+      <tspan x="10.052296" y="-0.578125" style="font-size: 9.5px; font-family: 'TeX Gyre Termes'; fill: #1a1a1a">=</tspan>
+      <tspan x="16.888518" y="-0.578125" style="font-size: 9.5px; font-family: 'TeX Gyre Termes'; fill: #1a1a1a">β</tspan>
+      <tspan x="26.940814" y="-0.578125" style="font-size: 9.5px; font-family: 'TeX Gyre Termes'; fill: #1a1a1a">=</tspan>
+      <tspan x="33.777036" y="-0.578125" style="font-size: 9.5px; font-family: 'TeX Gyre Termes'; fill: #1a1a1a">0</tspan>
+      <tspan x="5.035019" y="0.70625" style="font-size: 6.65px; font-family: 'TeX Gyre Termes'; fill: #1a1a1a">1</tspan>
+      <tspan x="21.923537" y="0.70625" style="font-size: 6.65px; font-family: 'TeX Gyre Termes'; fill: #1a1a1a">2</tspan>
+     </text>
+    </g>
+   </g>
+   <g id="text_42">
+    <text style="font-size: 8px; font-family: 'TeX Gyre Termes', 'Liberation Serif', 'Times New Roman', serif; text-anchor: end; fill: #5a5a5a" x="254.16" y="192.952" transform="rotate(-0 254.16 192.952)">(18)</text>
+   </g>
+   <g id="text_43">
+    <text style="font-size: 9.5px; font-family: 'TeX Gyre Termes', 'Liberation Serif', 'Times New Roman', serif; text-anchor: middle; fill: #7f7f7f" x="321.48" y="177.9425" transform="rotate(-0 321.48 177.9425)">TD Q-update</text>
+   </g>
+   <g id="text_44">
+    <!-- over $I_{\mathrm{ELQTP}}$ -->
+    <g style="fill: #1a1a1a" transform="translate(299.7725 188.78425)">
+     <text>
+      <tspan x="0" y="-0.71875" style="font-size: 9.5px; font-family: 'TeX Gyre Termes'; fill: #1a1a1a">o</tspan>
+      <tspan x="4.750015" y="-0.71875" style="font-size: 9.5px; font-family: 'TeX Gyre Termes'; fill: #1a1a1a">v</tspan>
+      <tspan x="9.500031" y="-0.71875" style="font-size: 9.5px; font-family: 'TeX Gyre Termes'; fill: #1a1a1a">e</tspan>
+      <tspan x="13.718048" y="-0.71875" style="font-size: 9.5px; font-family: 'TeX Gyre Termes'; fill: #1a1a1a">r</tspan>
+      <tspan x="16.881561" y="-0.71875" style="font-size: 9.5px; font-family: 'TeX Gyre Termes'; fill: #1a1a1a"> </tspan>
+      <tspan x="19.256561" y="-0.71875" style="font-size: 9.5px; font-family: 'TeX Gyre Termes'; fill: #1a1a1a">I</tspan>
+      <tspan x="22.420074" y="0.565625" style="font-size: 6.65px; font-family: 'TeX Gyre Termes'; fill: #1a1a1a">E</tspan>
+      <tspan x="26.483238" y="0.565625" style="font-size: 6.65px; font-family: 'TeX Gyre Termes'; fill: #1a1a1a">L</tspan>
+      <tspan x="30.546402" y="0.565625" style="font-size: 6.65px; font-family: 'TeX Gyre Termes'; fill: #1a1a1a">Q</tspan>
+      <tspan x="35.347719" y="0.565625" style="font-size: 6.65px; font-family: 'TeX Gyre Termes'; fill: #1a1a1a">T</tspan>
+      <tspan x="39.410883" y="0.565625" style="font-size: 6.65px; font-family: 'TeX Gyre Termes'; fill: #1a1a1a">P</tspan>
+     </text>
+    </g>
+   </g>
+   <g id="text_45">
+    <text style="font-size: 8px; font-family: 'TeX Gyre Termes', 'Liberation Serif', 'Times New Roman', serif; text-anchor: end; fill: #5a5a5a" x="379.44" y="192.952" transform="rotate(-0 379.44 192.952)">(6)</text>
+   </g>
+   <g id="text_46">
+    <text style="font-size: 9.5px; font-family: 'TeX Gyre Termes', 'Liberation Serif', 'Times New Roman', serif; text-anchor: middle; fill: #7f7f7f" x="452.16" y="177.9425" transform="rotate(-0 452.16 177.9425)">Next hop</text>
+   </g>
+   <g id="text_47">
+    <!-- $\arg\max Q$ -->
+    <g style="fill: #1a1a1a" transform="translate(433.2075 188.97425)">
+     <text>
+      <tspan x="0" y="-0.578125" style="font-size: 9.5px; font-family: 'TeX Gyre Termes'; fill: #1a1a1a">a</tspan>
+      <tspan x="4.218018" y="-0.578125" style="font-size: 9.5px; font-family: 'TeX Gyre Termes'; fill: #1a1a1a">r</tspan>
+      <tspan x="7.381531" y="-0.578125" style="font-size: 9.5px; font-family: 'TeX Gyre Termes'; fill: #1a1a1a">g</tspan>
+      <tspan x="13.363408" y="-0.578125" style="font-size: 9.5px; font-family: 'TeX Gyre Termes'; fill: #1a1a1a">m</tspan>
+      <tspan x="20.754429" y="-0.578125" style="font-size: 9.5px; font-family: 'TeX Gyre Termes'; fill: #1a1a1a">a</tspan>
+      <tspan x="24.972447" y="-0.578125" style="font-size: 9.5px; font-family: 'TeX Gyre Termes'; fill: #1a1a1a">x</tspan>
+      <tspan x="30.954324" y="-0.578125" style="font-size: 9.5px; font-family: 'TeX Gyre Termes'; fill: #1a1a1a">Q</tspan>
+     </text>
+    </g>
+   </g>
+   <g id="text_48">
+    <text style="font-size: 8.5px; font-family: 'TeX Gyre Termes', 'Liberation Serif', 'Times New Roman', serif; text-anchor: middle; fill: #5a5a5a" x="200.88" y="88.085367" transform="rotate(-0 200.88 88.085367)">shared predict (12)</text>
+   </g>
+   <g id="patch_21">
+    <path d="M 129.879844 21.24 
+Q 137.421737 21.24 143.677892 21.24 
+" style="fill: none; stroke: #2c2c2c; stroke-width: 1.15; stroke-linecap: round"/>
+    <path d="M 138.877892 18.84 
+L 143.677892 21.24 
+L 138.877892 23.64 
+z
+" style="fill: #2c2c2c; stroke: #2c2c2c; stroke-width: 1.15; stroke-linecap: round"/>
+   </g>
+   <g id="patch_22">
+    <path d="M 256.599844 21.24 
+Q 264.141737 21.24 270.397892 21.24 
+" style="fill: none; stroke: #2c2c2c; stroke-width: 1.15; stroke-linecap: round"/>
+    <path d="M 265.597892 18.84 
+L 270.397892 21.24 
+L 265.597892 23.64 
+z
+" style="fill: #2c2c2c; stroke: #2c2c2c; stroke-width: 1.15; stroke-linecap: round"/>
+   </g>
+   <g id="patch_23">
+    <path d="M 383.319844 21.24 
+Q 390.861737 21.24 397.117892 21.24 
+" style="fill: none; stroke: #2c2c2c; stroke-width: 1.15; stroke-linecap: round"/>
+    <path d="M 392.317892 18.84 
+L 397.117892 21.24 
+L 392.317892 23.64 
+z
+" style="fill: #2c2c2c; stroke: #2c2c2c; stroke-width: 1.15; stroke-linecap: round"/>
+   </g>
+   <g id="patch_24">
+    <path d="M 74.16 83.081953 
+Q 74.16 85.580238 74.16 86.792784 
+" style="fill: none; stroke: #0f4c81; stroke-width: 1.15; stroke-linecap: round"/>
+    <path d="M 76.56 81.992784 
+L 74.16 86.792784 
+L 71.76 81.992784 
+z
+" style="fill: #0f4c81; stroke: #0f4c81; stroke-width: 1.15; stroke-linecap: round"/>
+   </g>
+   <g id="patch_25">
+    <path d="M 454.32 64.358438 
+Q 454.32 64.698368 454.32 63.75256 
+" style="fill: none; stroke: #d55e00; stroke-width: 1.15; stroke-linecap: round"/>
+    <path d="M 456.72 58.95256 
+L 454.32 63.75256 
+L 451.92 58.95256 
+z
+" style="fill: #d55e00; stroke: #d55e00; stroke-width: 1.15; stroke-linecap: round"/>
+   </g>
+   <g id="patch_26">
+    <path d="M 454.32 99.460898 
+Q 454.32 100.702236 454.32 100.657834 
+" style="fill: none; stroke: #d55e00; stroke-width: 1.15; stroke-linecap: round"/>
+    <path d="M 456.72 95.857834 
+L 454.32 100.657834 
+L 451.92 95.857834 
+z
+" style="fill: #d55e00; stroke: #d55e00; stroke-width: 1.15; stroke-linecap: round"/>
+   </g>
+   <g id="patch_27">
+    <path d="M 129.160898 59.04 
+Q 137.421305 59.04 144.395972 59.04 
+" style="fill: none; stroke: #2c2c2c; stroke-width: 1.15; stroke-linecap: round"/>
+    <path d="M 139.595972 56.64 
+L 144.395972 59.04 
+L 139.595972 61.44 
+z
+" style="fill: #2c2c2c; stroke: #2c2c2c; stroke-width: 1.15; stroke-linecap: round"/>
+   </g>
+   <g id="patch_28">
+    <path d="M 255.880898 59.04 
+Q 264.141305 59.04 271.115972 59.04 
+" style="fill: none; stroke: #2c2c2c; stroke-width: 1.15; stroke-linecap: round"/>
+    <path d="M 266.315972 56.64 
+L 271.115972 59.04 
+L 266.315972 61.44 
+z
+" style="fill: #2c2c2c; stroke: #2c2c2c; stroke-width: 1.15; stroke-linecap: round"/>
+   </g>
+   <g id="patch_29">
+    <path d="M 382.601514 50.984253 
+Q 400.579744 50.701576 417.272394 50.439113 
+" style="fill: none; stroke: #2c2c2c; stroke-width: 1.15; stroke-linecap: round"/>
+    <path d="M 412.435256 48.114872 
+L 417.272394 50.439113 
+L 412.510718 52.914279 
+z
+" style="fill: #2c2c2c; stroke: #2c2c2c; stroke-width: 1.15; stroke-linecap: round"/>
+   </g>
+   <g id="patch_30">
+    <path d="M 134.198438 180.72 
+Q 138.859418 180.72 142.234659 180.72 
+" style="fill: none; stroke: #7f7f7f; stroke-width: 1.15; stroke-linecap: round"/>
+    <path d="M 137.434659 178.32 
+L 142.234659 180.72 
+L 137.434659 183.12 
+z
+" style="fill: #7f7f7f; stroke: #7f7f7f; stroke-width: 1.15; stroke-linecap: round"/>
+   </g>
+   <g id="patch_31">
+    <path d="M 259.478438 180.72 
+Q 264.139418 180.72 267.514659 180.72 
+" style="fill: none; stroke: #7f7f7f; stroke-width: 1.15; stroke-linecap: round"/>
+    <path d="M 262.714659 178.32 
+L 267.514659 180.72 
+L 262.714659 183.12 
+z
+" style="fill: #7f7f7f; stroke: #7f7f7f; stroke-width: 1.15; stroke-linecap: round"/>
+   </g>
+   <g id="patch_32">
+    <path d="M 384.758438 180.72 
+Q 389.419418 180.72 392.794659 180.72 
+" style="fill: none; stroke: #7f7f7f; stroke-width: 1.15; stroke-linecap: round"/>
+    <path d="M 387.994659 178.32 
+L 392.794659 180.72 
+L 387.994659 183.12 
+z
+" style="fill: #7f7f7f; stroke: #7f7f7f; stroke-width: 1.15; stroke-linecap: round"/>
+   </g>
+  </g>
+  <g id="legend_1">
+   <g id="line2d_1">
+    <path d="M 3.545586 203.522266 
+L 12.045586 203.522266 
+L 20.545586 203.522266 
+" style="fill: none; stroke: #000000; stroke-opacity: 0; stroke-width: 1.5; stroke-linecap: square"/>
+    <defs>
+     <path id="ma587b14d0b" d="M -4 4 
+L 4 4 
+L 4 -4 
+L -4 -4 
+z
+" style="stroke: #0f4c81; stroke-linejoin: miter"/>
+    </defs>
+    <g>
+     <use xlink:href="#ma587b14d0b" x="12.045586" y="203.522266" style="fill: #0f4c81; stroke: #0f4c81; stroke-linejoin: miter"/>
+    </g>
+   </g>
+   <g id="text_49">
+    <text style="font-size: 8.5px; font-family: 'TeX Gyre Termes', 'Liberation Serif', 'Times New Roman', serif; text-anchor: start" x="23.520586" y="206.497266" transform="rotate(-0 23.520586 206.497266)">Sense  —  new estimator</text>
+   </g>
+   <g id="line2d_2">
+    <path d="M 116.818711 203.522266 
+L 125.318711 203.522266 
+L 133.818711 203.522266 
+" style="fill: none; stroke: #000000; stroke-opacity: 0; stroke-width: 1.5; stroke-linecap: square"/>
+    <defs>
+     <path id="mc70aca120d" d="M -4 4 
+L 4 4 
+L 4 -4 
+L -4 -4 
+z
+" style="stroke: #009e73; stroke-linejoin: miter"/>
+    </defs>
+    <g>
+     <use xlink:href="#mc70aca120d" x="125.318711" y="203.522266" style="fill: #009e73; stroke: #009e73; stroke-linejoin: miter"/>
+    </g>
+   </g>
+   <g id="text_50">
+    <text style="font-size: 8.5px; font-family: 'TeX Gyre Termes', 'Liberation Serif', 'Times New Roman', serif; text-anchor: start" x="136.793711" y="206.497266" transform="rotate(-0 136.793711 206.497266)">Estimate  —  new estimator</text>
+   </g>
+   <g id="line2d_3">
+    <path d="M 239.882773 203.522266 
+L 248.382773 203.522266 
+L 256.882773 203.522266 
+" style="fill: none; stroke: #000000; stroke-opacity: 0; stroke-width: 1.5; stroke-linecap: square"/>
+    <defs>
+     <path id="m11a895f93f" d="M -4 4 
+L 4 4 
+L 4 -4 
+L -4 -4 
+z
+" style="stroke: #d55e00; stroke-linejoin: miter"/>
+    </defs>
+    <g>
+     <use xlink:href="#m11a895f93f" x="248.382773" y="203.522266" style="fill: #d55e00; stroke: #d55e00; stroke-linejoin: miter"/>
+    </g>
+   </g>
+   <g id="text_51">
+    <text style="font-size: 8.5px; font-family: 'TeX Gyre Termes', 'Liberation Serif', 'Times New Roman', serif; text-anchor: start" x="259.857773" y="206.497266" transform="rotate(-0 259.857773 206.497266)">Trigger / Control  —  event trigger</text>
+   </g>
+   <g id="line2d_4">
+    <path d="M 386.038945 203.522266 
+L 394.538945 203.522266 
+L 403.038945 203.522266 
+" style="fill: none; stroke: #000000; stroke-opacity: 0; stroke-width: 1.5; stroke-linecap: square"/>
+    <defs>
+     <path id="m05e8aa6350" d="M -4 4 
+L 4 4 
+L 4 -4 
+L -4 -4 
+z
+" style="stroke: #7f7f7f; stroke-linejoin: miter"/>
+    </defs>
+    <g>
+     <use xlink:href="#m05e8aa6350" x="394.538945" y="203.522266" style="fill: #7f7f7f; stroke: #7f7f7f; stroke-linejoin: miter"/>
+    </g>
+   </g>
+   <g id="text_52">
+    <text style="font-size: 8.5px; font-family: 'TeX Gyre Termes', 'Liberation Serif', 'Times New Roman', serif; text-anchor: start" x="406.013945" y="206.497266" transform="rotate(-0 406.013945 206.497266)">Forward  —  inherited LQARP</text>
+   </g>
+  </g>
+ </g>
+</svg>

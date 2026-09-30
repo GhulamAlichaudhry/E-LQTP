@@ -1,0 +1,20 @@
+% Scenario I stationary identity. Single-column: four short rows.
+
+\begin{table}[!t]
+\caption{Scenario~I identity ($N=40$, $T_{\mathrm{sim}}=1600\,\mathrm{s}$,
+five seeds). E-LQTP trigger off; PDR $=1.000$, VOID $=0$.}
+\label{tab:s1_identity}
+\centering
+\scriptsize
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{lcccc}
+\hline
+Protocol & Hops & $T_{\mathrm{e2e}}$ (s) & $E_{\mathrm{bit}}$ & $O_{\mathrm{ctrl}}$ \\
+\hline
+LQARP & $1.530\pm 0.068$ & $3.078\pm 0.071$ & $8.20\pm 0.37\times 10^{-3}$ & $0$ \\
+E-LQTP & $1.530\pm 0.068$ & $3.078\pm 0.071$ & $8.20\pm 0.37\times 10^{-3}$ & $0$ \\
+RLOR-insp. & $1.000\pm 0$ & $1.887\pm 0.108$ & $5.36\times 10^{-3}$ & $0$ \\
+Periodic & $1.546\pm 0.039$ & $3.119\pm 0.188$ & $8.29\pm 0.21\times 10^{-3}$ & $442.03$ \\
+\hline
+\end{tabular}}
+\end{table}

@@ -1,0 +1,207 @@
+--- a/contrib/elqtp/examples/scenario-i-lqarp.cc	2026-09-29 01:00:43.000000000 +0800
++++ b/contrib/elqtp/examples/scenario-i-lqarp.cc	2026-09-30 12:41:17.455691312 +0800
+@@ -120,6 +120,11 @@
+   virtual uint64_t energyHelloCount () const { return 0; }
+   virtual int energyBeaconBits () const { return 0; }
+   virtual void tick (double dt) = 0;
++  // Data hop tx -> rx was demodulated (received-only z_k feed).
++  virtual void noteDataReception (uint32_t /*rx*/, uint32_t /*tx*/) {}
++  virtual uint64_t receptionCount () const { return 0; }
++  virtual uint64_t measuredUpdates () const { return 0; }
++  virtual uint64_t silentPredicts () const { return 0; }
+   virtual bool wantsTick () const = 0;
+   virtual bool hopMathFinite (uint32_t i, uint32_t j) const = 0;
+   virtual void setKinematics (uint32_t i, double x, double y, double z,
+@@ -263,6 +268,10 @@
+   int energyBeaconBits () const override { return p_.energyBeaconBits (); }
+   void tick (double dt) override { p_.tick (dt); }
+   bool wantsTick () const override { return tick_; }
++  void noteDataReception (uint32_t rx, uint32_t tx) override { p_.noteReception (rx, tx); }
++  uint64_t receptionCount () const override { return p_.receptionCount (); }
++  uint64_t measuredUpdates () const override { return p_.measuredUpdates (); }
++  uint64_t silentPredicts () const override { return p_.silentPredicts (); }
+   bool hopMathFinite (uint32_t i, uint32_t j) const override
+   {
+     const auto rw = p_.reward (i, j);
+@@ -665,6 +674,17 @@
+   double beta1 = std::numeric_limits<double>::quiet_NaN ();
+   double beta2 = std::numeric_limits<double>::quiet_NaN ();
+   double epsilon0 = std::numeric_limits<double>::quiet_NaN ();
++  // Fixed-Periodic control period override (s). NaN keeps ElqtpConfig::T_ctrl (5 s).
++  double tCtrl = std::numeric_limits<double>::quiet_NaN ();
++  // Communication range r_range override (m) for every protocol. NaN keeps
++  // ChannelGate::rangeAtSnrThreshold() (R*, the SNR-gate crossing).
++  double rRangeOverride = std::numeric_limits<double>::quiet_NaN ();
++  // Opt-in hop-distance census (live candidate graph BFS to the sink every
++  // geoEveryS). It calls SyncPoses, so it is a separate measurement run.
++  bool geoCensus = false;
++  double geoEveryS = 60.0;
++  uint64_t geoN = 0, geo1 = 0, geo2 = 0, geo3p = 0, geoUnreach = 0, geoOutsideR = 0;
++  uint64_t geoRange1 = 0, geoRange2 = 0, geoRange3p = 0, geoRangeUnreach = 0;
+   // Energy beacon: residual quantized to this many bits, plus an 8-bit sender id.
+   int energyQuantBits = 8;
+   int energyAddrBits = 8;
+@@ -970,6 +990,8 @@
+   void OnArrive (Pkt pkt);
+   void Forward (Pkt pkt);
+   int LiveBfsHops (uint32_t src) const;
++  int BfsHopsTo (uint32_t src, bool requireDepth) const;
++  void GeoCensus ();
+   void NoteHopDiag (Pkt &pkt, const std::vector<uint32_t> &actions, int nh, bool detour);
+   void NoteHopDiagDelivery (const Pkt &pkt);
+   void WriteHopDiag (std::ostringstream &oss) const;
+@@ -1309,6 +1331,11 @@
+ 
+   elqtp::LqarpConfig cfg;
+   cfg.packetBits = energy.packetBits;
++  if (std::isfinite (rRangeOverride))
++    {
++      NS_ABORT_MSG_IF (!(rRangeOverride > 0.0), "--rRange must be > 0");
++      cfg.rRangeM = rRangeOverride;
++    }
+   cfg.eIni = elqtp::kDefaultEiniJ;
+   std::vector<elqtp::LqarpNode> ln (nNodes ());
+   for (uint32_t i = 0; i < nNodes (); ++i)
+@@ -1435,6 +1462,11 @@
+           ec.epsilon_0 = epsilon0;
+         }
+       ec.broadcastMode = elqtp::BroadcastMode::FixedPeriodic;
++      if (std::isfinite (tCtrl))
++        {
++          NS_ABORT_MSG_IF (!(tCtrl > 0.0), "--tCtrl must be > 0");
++          ec.T_ctrl = tCtrl;
++        }
+       proto = std::make_unique<ElqtpFwd> (*gate, ec, ln, "periodic", true);
+       std::cout << "Fixed-Periodic: beta_1=" << ec.beta_1 << " beta_2=" << ec.beta_2
+                 << " epsilon_0=" << ec.epsilon_0 << " T_ctrl=" << ec.T_ctrl
+@@ -1562,6 +1594,13 @@
+         }
+     }
+   Simulator::Schedule (Seconds (tSim + drainS), &Pipeline::FailInflight, this);
++  if (geoCensus && geoEveryS > 0.0)
++    {
++      for (double t = 0.0; t < tSim + 1e-12; t += geoEveryS)
++        {
++          Simulator::Schedule (Seconds (t), &Pipeline::GeoCensus, this);
++        }
++    }
+   const bool needTick = (proto && proto->wantsTick () && tickDt > 0.0) || isMobile ();
+   if (needTick && tickDt > 0.0)
+     {
+@@ -1633,6 +1672,69 @@
+ }
+ 
+ int
++Pipeline::BfsHopsTo (uint32_t src, bool requireDepth) const
++{
++  if (src == sinkId)
++    {
++      return 0;
++    }
++  const uint32_t n = nNodes ();
++  std::vector<int> dist (n, -1);
++  std::vector<uint32_t> q;
++  dist[src] = 0;
++  q.push_back (src);
++  for (size_t head = 0; head < q.size (); ++head)
++    {
++      const uint32_t u = q[head];
++      for (uint32_t v = 0; v < n; ++v)
++        {
++          if (dist[v] >= 0 || !liveGeometricPass (u, v, requireDepth))
++            {
++              continue;
++            }
++          dist[v] = dist[u] + 1;
++          if (v == sinkId)
++            {
++              return dist[v];
++            }
++          q.push_back (v);
++        }
++    }
++  return -1;
++}
++
++void
++Pipeline::GeoCensus ()
++{
++  SweepExits ();
++  SyncPoses ();
++  if (!proto)
++    {
++      return;
++    }
++  const elqtp::LqarpNode &s = proto->nodes ()[sinkId];
++  for (uint32_t i = 1; i <= nAuv; ++i)
++    {
++      if (!nodeAlive (i))
++        {
++          continue;
++        }
++      ++geoN;
++      const elqtp::LqarpNode &a = proto->nodes ()[i];
++      if (!(elqtp::ChannelGate::distance3D (a.x, a.y, a.z, s.x, s.y, s.z) < proto->rRangeM ()))
++        {
++          ++geoOutsideR;
++        }
++      // Routing graph: the protocol's own live filter (depth-progressive
++      // except RLOR). Range graph: N_range ∩ N_SNR only.
++      const int h = BfsHopsTo (i, candidateUsesDepth ());
++      if (h == 1) ++geo1; else if (h == 2) ++geo2; else if (h >= 3) ++geo3p; else ++geoUnreach;
++      const int g = BfsHopsTo (i, false);
++      if (g == 1) ++geoRange1; else if (g == 2) ++geoRange2; else if (g >= 3) ++geoRange3p; else ++geoRangeUnreach;
++    }
++}
++
++int
+ Pipeline::LiveBfsHops (uint32_t src) const
+ {
+   if (src == sinkId)
+@@ -2307,6 +2409,7 @@
+     {
+       ++nStaleAdmitOk;
+     }
++  proto->noteDataReception (static_cast<uint32_t> (nh), pkt.at);
+ 
+   const double eRx = energy.eRxJ ();
+   proto->setEnergy (static_cast<uint32_t> (nh),
+@@ -2963,6 +3066,16 @@
+                                  ? std::numeric_limits<double>::quiet_NaN ()
+                                  : static_cast<double> (heardLive)
+                                        / static_cast<double> (livePairs);
++    if (geoCensus)
++      {
++        oss << "HOPGEO proto=" << proto->name () << " seed=" << seed
++            << " r_range=" << proto->rRangeM () << " samples=" << geoN
++            << " outside_r=" << geoOutsideR
++            << " route_1=" << geo1 << " route_2=" << geo2 << " route_3p=" << geo3p
++            << " route_unreach=" << geoUnreach
++            << " range_1=" << geoRange1 << " range_2=" << geoRange2
++            << " range_3p=" << geoRange3p << " range_unreach=" << geoRangeUnreach << "\n";
++      }
+     oss << "SWEEP proto=" << proto->name () << " seed=" << seed
+         << " N=" << nAuv << " drift=" << (isMobile () ? driftSpeed : 0.0)
+         << " azimuth=" << (isScenarioII () ? driftAzimuthRad : 0.0)
+@@ -2989,6 +3102,10 @@
+         << " energy_addr_bits=" << energyAddrBits
+         << " O_ene=" << oEne
+         << " O_total=" << oTotal
++        << " r_range=" << proto->rRangeM ()
++        << " rx_events=" << proto->receptionCount ()
++        << " z_updates=" << proto->measuredUpdates ()
++        << " z_silent=" << proto->silentPredicts ()
+         << " heard_live=" << heardLive << " live_pairs=" << livePairs
+         << " first_fire=" << firstFire
+         << " n_exit_tsim=" << (isScenarioIII () ? nOutOfEnvelope : nWouldExitXy)
+@@ -5228,6 +5345,10 @@
+   cmd.AddValue ("diagKinematics",
+                 "Steps 57/59/61/63: eddy kinematics, radial v_rel, Kalman e_k trend, then exit",
+                 pipe.diagKinematics);
++  cmd.AddValue ("rRange", "r_range (m) for all protocols; NaN = R* (SNR-gate crossing)", pipe.rRangeOverride);
++  cmd.AddValue ("geoCensus", "Hop-distance census every geoEveryS (separate run)", pipe.geoCensus);
++  cmd.AddValue ("geoEveryS", "Census period (s)", pipe.geoEveryS);
++  cmd.AddValue ("tCtrl", "Fixed-Periodic control period T_ctrl (s); NaN = default 5 s", pipe.tCtrl);
+   cmd.AddValue ("out", "Report path", pipe.outPath);
+   cmd.Parse (argc, argv);
+ 

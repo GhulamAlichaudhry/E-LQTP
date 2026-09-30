@@ -1,0 +1,27 @@
+% Drop-in for Section IV-A. Values from the campaign in Table I.
+% Single-column: short two-column parameter list.
+
+\begin{table}[!t]
+\caption{Shared simulation parameters. E-LQTP-only knobs are marked.}
+\label{tab:sim_params}
+\centering
+\scriptsize
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{lc}
+\hline
+Parameter & Value \\
+\hline
+Volume / $N$ / seeds & $6\,\mathrm{km}\times 6\,\mathrm{km}\times 500\,\mathrm{m}$ / $40$ / five \\
+Site / season & $20.125^\circ\mathrm{N}$, $124.125^\circ\mathrm{E}$, January \\
+Seafloor / carrier / band & $5524\,\mathrm{m}$ / $24\,\mathrm{kHz}$ / $2\,\mathrm{kHz}$ \\
+$\mathrm{SL}$ / $\mathrm{DI}$ / $\mathrm{SNR}_{\mathrm{th}}$ & $175\,\mathrm{dB}$ / $0\,\mathrm{dB}$ / $8.68\,\mathrm{dB}$ \\
+$R_b$ / $l$ / $M$ & $1000\,\mathrm{bit/s}$ / $400\,\mathrm{bit}$ / $2$ \\
+$r_{\mathrm{range}}$ / $E_{\mathrm{ini}}$ & $5125\,\mathrm{m}$ / $10000\,\mathrm{J}$ \\
+Efficiency / $P_{\mathrm{rx}}$ / BER floor & $0.5$ / $0.1\,\mathrm{W}$ / $10^{-9}$ \\
+Data interval / $T_{\mathrm{sim}}$ / $dt$ & $30\,\mathrm{s}$ / $600\,\mathrm{s}$ / $1\,\mathrm{s}$ \\
+$\alpha$ / $\gamma$ / reception / envelope & $0.9$ / $0.8$ / SNR gate / leave-area nodes removed \\
+$\varepsilon_0$ / $s_{\mathrm{cap}}$ / $\lambda$ & $2.0\,\mathrm{dB}$ / $2.0\,\mathrm{dB}$ / $1.0$ \\
+$W$ / $W_{\mathrm{mp}}$ / $\rho$ / $T_{\mathrm{ctrl}}$ / $(\beta_1,\beta_2)$ & $5$ / $3$ / $0.6$ / $5\,\mathrm{s}$ / $(0,0)$ \\
+\hline
+\end{tabular}}
+\end{table}

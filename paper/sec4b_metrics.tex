@@ -1,0 +1,70 @@
+\subsection{Metrics}
+\label{sec:eval:metrics}
+Packet-delivery ratio (PDR) is $N_{\mathrm{succ}}/N_{\mathrm{gen}}$
+on packets whose source is still live.
+End-to-end delay $T_{\mathrm{e2e}}$ and hop count are means over
+successful deliveries.
+Energy per bit $E_{\mathrm{bit}}$ follows LQARP's Eq.~45 on
+\emph{data} transmissions only \cite{liu2026lqarp}.
+Each data packet of $l=400\,\mathrm{bit}$ at
+$R_b=1000\,\mathrm{bit/s}$ has airtime $0.4\,\mathrm{s}$.
+Radiated acoustic power from $\mathrm{SL}=175\,\mathrm{dB}$ re
+$1\,\mu\mathrm{Pa}@1\,\mathrm{m}$ is
+$P_{\mathrm{ac}}=10^{(\mathrm{SL}-170.8)/10}=2.630\,\mathrm{W}$;
+with projector efficiency $0.5$ the electrical transmit energy is
+$E_{\mathrm{tx}}=2.104\,\mathrm{J}$ and the receive energy on a
+successful decode is $E_{\mathrm{rx}}=0.040\,\mathrm{J}$.
+Idle listening is not modelled, so $E_{\mathrm{bit}}$ measures
+forwarding work, not modem duty cycle.
+
+A dedicated HELLO uses the same $l=400\,\mathrm{bit}$ as a data
+packet.
+LQARP and RLOR-inspired emit no dedicated control frames, so their
+$O_{\mathrm{ctrl}}$ is identically zero.
+Section~\ref{sec:design:pkt} records that zero as an empty
+control-byte count on the shared live pose.
+E-LQTP and Fixed-Periodic add HELLO bytes on top of the same
+data plane, whose energy is already inside $E_{\mathrm{bit}}$.
+Because HELLO length equals $l$, control transmit power is the
+linear image of $O_{\mathrm{ctrl}}$:
+\begin{equation}
+\label{eq:pctrl}
+P_{\mathrm{ctrl}}
+= \frac{O_{\mathrm{ctrl}}}{l/8}\,E_{\mathrm{tx}}
+= O_{\mathrm{ctrl}}\times 4.208\times 10^{-2}\,\mathrm{W\cdot s/byte}.
+\end{equation}
+At the reported operating points this is $5.69\,\mathrm{W}$
+network-wide under Scenario~II ($135.1\,\mathrm{byte/s}$) and
+$8.88\,\mathrm{W}$ under Scenario~III ($211.0\,\mathrm{byte/s}$),
+against a drift-independent Fixed-Periodic budget of
+$17.40\,\mathrm{W}$ ($413.42\,\mathrm{byte/s}$, $41$ transmitters
+$\times$ $121$ grid instants on $[0,600]\,\mathrm{s}$).
+The joule ratios are therefore the same $0.33\times$ and
+$0.51\times$ already reported in bytes per second.
+
+The ratio of means that adds the mean HELLO transmit energy,
+at $E_{\mathrm{tx}}=2.104\,\mathrm{J}$, to the mean data-plane
+energy and divides by the mean number of delivered bits would
+raise Scenario~II $E_{\mathrm{bit}}$ from $1.156\times 10^{-2}$
+to $2.342\times 10^{-2}\,\mathrm{J/bit}$ for E-LQTP and to
+$4.784\times 10^{-2}\,\mathrm{J/bit}$ for Fixed-Periodic.
+LQARP would remain at $1.156\times 10^{-2}$ because it sends no
+dedicated control frames.
+We keep the LQARP definition of $E_{\mathrm{bit}}$ in the
+protocol-comparison tables so the data-plane columns remain
+comparable to the parent paper, and we report HELLO cost as
+$O_{\mathrm{ctrl}}$ (and the $P_{\mathrm{ctrl}}$ conversion above).
+
+First-fire is the fraction of live AUV--AUV pairs that experience
+at least one rising-edge HELLO.
+VOID counts empty-candidate drops.
+Node-exit packet losses count packets whose forwarding node has
+left the Bellhop envelope; they are recorded separately from
+SNR-reception failures.
+$n_{\mathrm{exit}}$ counts relays that leave the valid envelope.
+Envelope attrition is a geometry fact, not a protocol difference.
+Under Scenario~II the mean number of relays that exit by
+$T_{\mathrm{sim}}$ is $1.8$, $4.4$, $9.4$, $14.4$, and $16.0$ of
+$40$ at $0.5$, $1.0$, $2.0$, $3.0$, and $3.5\,\mathrm{m/s}$.
+PDR in Table~\ref{tab:s2_drift} is therefore computed on a
+shrinking live set; LQARP and E-LQTP lose the same nodes.
